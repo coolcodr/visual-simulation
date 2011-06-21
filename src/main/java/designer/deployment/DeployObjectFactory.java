@@ -61,7 +61,7 @@ public class DeployObjectFactory {
     GenerateProgress progress;// = new GenerateProgress();
 
     public void initDocument(ReportDocument reportDocument, Hashtable analysis, Hashtable charts) {
-        Enumeration enum = analysis.elements();
+        Enumeration enumeration = analysis.elements();
         Enumeration keys = analysis.keys();
 
         progress.setVisible(true);
@@ -73,10 +73,10 @@ public class DeployObjectFactory {
         progress.setMaximun(total);
         progress.setValue(count);
 
-        for (; enum.hasMoreElements();) {
+        for (; enumeration.hasMoreElements();) {
             progress.setValue(++count);
 
-            AnalysisTool2 at = (AnalysisTool2) enum.nextElement();
+            AnalysisTool2 at = (AnalysisTool2) enumeration.nextElement();
             Object key = keys.nextElement();
 
             double[] a = at.getServiceTimes();

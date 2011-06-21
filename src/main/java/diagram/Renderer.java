@@ -49,7 +49,7 @@ class LineRenderer implements Renderer {
     public void paint(DiagramElement d, Graphics g) {
 
         DiagramElement source, target;
-        Enumeration enum;
+        Enumeration enumeration;
         int w, h;
 
         w = d.getWidth();
@@ -232,7 +232,7 @@ class DotArrowLineRenderer extends LineRenderer {
     public void paintLine(DiagramElement d, Graphics2D g2) {
 
         DiagramElement source, target;
-        Enumeration enum;
+        Enumeration enumeration;
         int w, h;
 
         w = d.getWidth();

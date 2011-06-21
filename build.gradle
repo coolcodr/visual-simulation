@@ -1,0 +1,23 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+sourceCompatibility = 1.4
+repositories { mavenCentral() }
+
+dependencies {
+    compile 'batik:batik:1.5'
+    compile 'crimson:crimson:1.1.3'
+    compile 'skinlf:skinlf:1.2.3'
+}
+
+task('dist', type: Zip) {
+    dependsOn 'jar'
+    from jar.archivePath
+    from configurations.runtime
+}
+
+task testrun(type: Copy) {
+    into "$buildDir/testrun"
+    from jar.archivePath
+    from configurations.runtime
+}

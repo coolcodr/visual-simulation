@@ -1,0 +1,54 @@
+mcomponent.distribution.Distribution`mcomponent.distribution.UniformDistribution`Upper Limit`java.lang.Double`setUpperLimit`getUpperLimit`JTextField`
+mcomponent.distribution.Distribution`mcomponent.distribution.UniformDistribution`Lower Limit`java.lang.Double`setLowerLimit`getLowerLimit`JTextField`
+mcomponent.distribution.Distribution`mcomponent.distribution.BetaDistribution`Mean`java.lang.Double`setAlpha`getAlpha`JTextField`
+mcomponent.distribution.Distribution`mcomponent.distribution.BetaDistribution`Standard Deviation`java.lang.Double`setBeta`getBeta`JTextField`
+mcomponent.distribution.Distribution`mcomponent.distribution.BinomialDistribution`Probability`java.lang.Double`setP`getP`JTextField`
+mcomponent.distribution.Distribution`mcomponent.distribution.BinomialDistribution`N`java.lang.Integer`setN`getN`JTextField`
+mcomponent.distribution.Distribution`mcomponent.distribution.ChisquareDistribution`N`java.lang.Integer`setN`getN`JTextField`
+mcomponent.distribution.Distribution`mcomponent.distribution.ErlangDistribution`K`java.lang.Double`setK`getK`JTextField`
+mcomponent.distribution.Distribution`mcomponent.distribution.ErlangDistribution`Mean`java.lang.Double`setMean`getMean`JTextField`
+mcomponent.distribution.Distribution`mcomponent.distribution.ExponentialDistribution`Mean`java.lang.Double`setMean`getMean`JTextField`
+mcomponent.distribution.Distribution`mcomponent.distribution.FDistribution`M`java.lang.Integer`setM`getM`JTextField`
+mcomponent.distribution.Distribution`mcomponent.distribution.FDistribution`N`java.lang.Integer`setN`getN`JTextField`
+mcomponent.distribution.Distribution`mcomponent.distribution.GammaDistribution`Alpha`java.lang.Double`setAlpha`getAlpha`JTextField`
+mcomponent.distribution.Distribution`mcomponent.distribution.GammaDistribution`Beta`java.lang.Double`setBeta`getBeta`JTextField`
+mcomponent.distribution.Distribution`mcomponent.distribution.GeometricDistribution`null`null`null`null`null`
+mcomponent.distribution.Distribution`mcomponent.distribution.LaplaceDistribution`null`null`null`null`null`
+mcomponent.distribution.Distribution`mcomponent.distribution.LognormalDistribution`Mean`java.lang.Double`setMean`getMean`JTextField`
+mcomponent.distribution.Distribution`mcomponent.distribution.LognormalDistribution`Standard Deviation`java.lang.Double`setStdDev`getStdDev`JTextField`
+mcomponent.distribution.Distribution`mcomponent.distribution.NormalDistribution`Mean`java.lang.Double`setMean`getMean`JTextField`
+mcomponent.distribution.Distribution`mcomponent.distribution.NormalDistribution`Standard Deviation`java.lang.Double`setStdDev`getStdDev`JTextField`
+mcomponent.distribution.Distribution`mcomponent.distribution.PoissonDistribution`Mean`java.lang.Double`setMean`getMean`JTextField`
+mcomponent.distribution.Distribution`mcomponent.distribution.ProbabilityDistribution`Probability`java.lang.Double`setProbability`getProbability`JTextField`
+mcomponent.distribution.Distribution`mcomponent.distribution.StudentTDistribution`N`java.lang.Integer`setN`getN`JTextField`
+mcomponent.distribution.Distribution`mcomponent.distribution.TriangularDistribution`Min. Value`java.lang.Double`setMin`getMin`JTextField`
+mcomponent.distribution.Distribution`mcomponent.distribution.TriangularDistribution`Max. Value`java.lang.Double`setMax`getMax`JTextField`
+mcomponent.distribution.Distribution`mcomponent.distribution.TriangularDistribution`Mode`java.lang.Double`setMode`getMode`JTextField`
+mcomponent.distribution.Distribution`mcomponent.distribution.WeibullDistribution`Theta`java.lang.Double`setTheta`getTheta`JTextField`
+mcomponent.distribution.Distribution`mcomponent.distribution.WeibullDistribution`Gamma`java.lang.Double`setGamma`getGamma`JTextField`
+mcomponent.distribution.Distribution`mcomponent.distribution.DoorDistribution`null`null`null`null`null`
+mcomponent.distribution.ObjectCreator`mcomponent.distribution.StringCreator`Name`java.lang.String`setName`getName`JTextField`
+mcomponent.distribution.ObjectCreator`mcomponent.distribution.DefaultCreator`null`null`null`null`null`
+mcomponent.distribution.ObjectCreator`mcomponent.distribution.RedCreator`null`null`null`null`null`
+mcomponent.distribution.ObjectCreator`mcomponent.distribution.BlueCreator`null`null`null`null`null`
+mcomponent.distribution.ObjectCreator`mcomponent.distribution.PictureCreator`null`null`null`null`null`
+mcomponent.distribution.ObjectCreator`mcomponent.distribution.CustomerCreator`null`null`null`null`null`
+mcomponent.distribution.Transform`mcomponent.distribution.DefaultTransform`null`null`null`null`null`
+mcomponent.distribution.Transform`mcomponent.distribution.CustomTransform`null`null`null`null`null`
+mcomponent.distribution.Transform`mcomponent.distribution.CashierTransform`null`null`null`null`null`
+mcomponent.distribution.Transform`mcomponent.distribution.DrinkCounterTransform`null`null`null`null`null`
+mcomponent.distribution.Transform`mcomponent.distribution.FoodCounterTransform`null`null`null`null`null`
+mcomponent.distribution.Transform`mcomponent.distribution.TableTransform`null`null`null`null`null`
+mcomponent.distribution.SplitterModel`mcomponent.distribution.DefaultSplitterModel2`null`null`null`null`null`
+mcomponent.distribution.SplitterModel`mcomponent.distribution.ChoosingCounterSplitterModel`null`null`null`null`null`
+mcomponent.distribution.SplitterModel`mcomponent.distribution.ChoosingExitSplitterModel`null`null`null`null`null`
+mcomponent.distribution.SplitterModel`mcomponent.distribution.ChoosingQueueSplitterModel`null`null`null`null`null`
+mcomponent.distribution.MergerModel`mcomponent.distribution.DefaultMergerModel2`null`null`null`null`null`
+mcomponent.distribution.MergerModel`mcomponent.distribution.EnterQueueMergerModel`null`null`null`null`null`
+animation.Animation`animation.RotatingRect`null`null`null`null`null`
+animation.Animation`animation.BlueRotatingRect`null`null`null`null`null`
+animation.Animation`animation.GreenRotatingRect`null`null`null`null`null`
+animation.Animation`animation.CyanRotatingRect`null`null`null`null`null`
+animation.Animation`animation.AnimationPicture`null`null`null`null`null`
+chart.Presentation`chart.BarChart`null`null`null`null`null`
+chart.DataProcessor`chart.UtilizationProcessor`null`null`null`null`null`

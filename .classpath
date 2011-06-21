@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="src" path="src/main/resources"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="lib" path="/Users/matthewlai/.gradle/cache/batik/batik/jars/batik-1.5.jar"/>
+	<classpathentry exported="true" kind="lib" path="/Users/matthewlai/.gradle/cache/crimson/crimson/jars/crimson-1.1.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="/Users/matthewlai/.gradle/cache/skinlf/skinlf/jars/skinlf-1.2.3.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

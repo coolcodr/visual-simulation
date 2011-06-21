@@ -1,23 +1,23 @@
 package designer;
 
-import designer.deployment.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import java.awt.event.*;
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.tree.*;
+import javax.swing.ComboBoxModel;
+import javax.swing.JOptionPane;
+import javax.swing.tree.DefaultMutableTreeNode;
 
-public class GenerateInternalFrameControl implements ActionListener
-{
+import designer.deployment.GenerateProgress;
+import designer.deployment.SimPropertyChoice;
+
+public class GenerateInternalFrameControl implements ActionListener {
     CoverControl coverControl;
 
-    public GenerateInternalFrameControl(CoverControl coverControl)
-    {
+    public GenerateInternalFrameControl(CoverControl coverControl) {
         this.coverControl = coverControl;
     }
 
-    public void generate()
-    {
+    public void generate() {
         DiagramComponentSetPanel setPane = (DiagramComponentSetPanel) coverControl.cover.getRelateComponent();
 
         ComboBoxModel model = setPane.getComboBox().getModel();
@@ -34,13 +34,12 @@ public class GenerateInternalFrameControl implements ActionListener
         progress.setMaximun(model.getSize());
         progress.setVisible(true);
 
-        for (int i = 0; i < model.getSize(); i++)
-        {
+        for (int i = 0; i < model.getSize(); i++) {
             SimPropertyChoice choice = (SimPropertyChoice) model.getElementAt(i);
 
-            while (! ( (DefaultMutableTreeNode) node.getChildAt(childCurrent)).toString().equalsIgnoreCase(choice.getValue()))
-                ++
-                childCurrent;
+            while (!((DefaultMutableTreeNode) node.getChildAt(childCurrent)).toString().equalsIgnoreCase(choice.getValue())) {
+                ++childCurrent;
+            }
 
             DefaultMutableTreeNode currentNode = (DefaultMutableTreeNode) node.getChildAt(childCurrent);
 
@@ -49,21 +48,18 @@ public class GenerateInternalFrameControl implements ActionListener
             progress.setText("Generating frame for " + choice.getDisplayName() + "...");
             progress.setValue(i);
 
-            for (int j = 0; j < setPanes.length; j++)
-            {
-                setPanes[j] = (DiagramComponentSetPanel) ( (DefaultMutableTreeNode) currentNode.getChildAt(j)).getUserObject();
+            for (int j = 0; j < setPanes.length; j++) {
+                setPanes[j] = (DiagramComponentSetPanel) ((DefaultMutableTreeNode) currentNode.getChildAt(j)).getUserObject();
             }
 
-            if (setPanes.length > 0)
-            {
+            if (setPanes.length > 0) {
                 CreateFrameControl.ForceCreateFrame2(setPanes, choice, setPane.getName().substring(1) + " - " + choice.getDisplayName(), setPane.toString() + " - " + choice.getDisplayName(), setPane.getButton().isVisible());
                 ++count;
             }
             ++childCurrent;
         }
 
-        if (setPane.getCardPane() != null)
-        {
+        if (setPane.getCardPane() != null) {
             CardPane old = setPane.getCardPane();
             setPane.setUseButton(true);
             setPane.setCardPane(null);
@@ -77,8 +73,7 @@ public class GenerateInternalFrameControl implements ActionListener
 
     }
 
-    public void actionPerformed(ActionEvent event)
-    {
+    public void actionPerformed(ActionEvent event) {
         generate();
     }
 }

@@ -8,20 +8,34 @@ package designer;
  * @author unascribed
  * @version 1.0
  */
-import javax.swing.*;
-import java.awt.*;
-import javax.swing.border.*;
-import java.awt.event.*;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Cursor;
+import java.awt.Graphics;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.dnd.DnDConstants;
+import java.awt.dnd.DropTargetDragEvent;
+import java.awt.dnd.DropTargetDropEvent;
+import java.awt.dnd.DropTargetEvent;
+import java.awt.dnd.DropTargetListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.util.Vector;
-import java.awt.dnd.*;
-import java.awt.datatransfer.*;
-import java.io.IOException;
 
-public class DesignUpperPane extends JPanel implements DropTargetListener
-{
-    //DropTarget dropTarget = null;
-    //private DiagramComponentSetPanel ownerSetPanel = null;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
 
+public class DesignUpperPane extends JPanel implements DropTargetListener {
+    // DropTarget dropTarget = null;
+    // private DiagramComponentSetPanel ownerSetPanel = null;
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 8992082508536105575L;
     private UpperPaneControl paneControl;
     private DragBound dragBound;
 
@@ -31,280 +45,260 @@ public class DesignUpperPane extends JPanel implements DropTargetListener
     private UpperPaneMouseListener defaultControl;
     private ElementProperties properties;
 
-	private int dx, dy;
-	private boolean isDragging;
+    private int dx, dy;
+    private boolean isDragging;
 
-    public DesignUpperPane( DesignPane designPane )
-    {
+    public DesignUpperPane(DesignPane designPane) {
         this.designPane = designPane;
-       // this.ownerSetPanel = ownerSetPanel;
-        //dropTarget = new DropTarget (DesignerUI.currentDesignPane, DesignerUI.currentDesignPane);
-        this.setOpaque(false);
-        this.setLayout(null);
+        // this.ownerSetPanel = ownerSetPanel;
+        // dropTarget = new DropTarget (DesignerUI.currentDesignPane,
+        // DesignerUI.currentDesignPane);
+        setOpaque(false);
+        setLayout(null);
 
         defaultControl = new UpperPaneMouseListener();
-        this.addMouseListener(defaultControl);
-        this.addMouseMotionListener(defaultControl);
+        addMouseListener(defaultControl);
+        addMouseMotionListener(defaultControl);
 
-        this.addKeyListener(new KeyControl());
+        addKeyListener(new KeyControl());
 
         dragBound = new DragBound();
         dragBound.setVisible(false);
         add(dragBound);
-        setProperties( PropertiesFactory.createDesignPaneProperties(designPane) );
+        setProperties(PropertiesFactory.createDesignPaneProperties(designPane));
 
         isDragging = false;
     }
-    public void setProperties ( ElementProperties properties ){
+
+    public void setProperties(ElementProperties properties) {
         this.properties = properties;
     }
-    public ElementProperties getProperties (){
+
+    public ElementProperties getProperties() {
         return properties;
     }
 
-    public DesignPane getDesignPane()
-    {
+    public DesignPane getDesignPane() {
         return designPane;
     }
-    public JComponent getDrawBound()
-    {
+
+    public JComponent getDrawBound() {
         return dragBound;
     }
-    public void dragEnter (DropTargetDragEvent event)
-    {
+
+    public void dragEnter(DropTargetDragEvent event) {
         Component object = (Component) (DiagramSourceList.selectedObject);
 
-        if (!isDragging)
-        {
-            if ( object != null && object.getParent() != null && object.getParent().equals(this))
-            {
+        if (!isDragging) {
+            if (object != null && object.getParent() != null && object.getParent().equals(this)) {
                 dx = (int) event.getLocation().getX();
                 dy = (int) event.getLocation().getY();
                 isDragging = true;
-            }
-            else
-            {
+            } else {
                 dx = event.getLocation().x;
                 dy = event.getLocation().y;
                 isDragging = true;
             }
         }
 
-        event.acceptDrag (DnDConstants.ACTION_MOVE);
+        event.acceptDrag(DnDConstants.ACTION_MOVE);
         grid = DesignerControl.getGridSize();
-        //dragBound.setVisible(true);
+        // dragBound.setVisible(true);
 
         DesignerControl.currentDesignPane = designPane;
 
-        if ( designPane instanceof DesignerComponent )
-        {
-            ((DesignerComponent)designPane).getCover().getHighLight(Color.blue);
-        }
-        else if ( designPane.getParent() instanceof CardPane )
-        {
-            ((CardPane)designPane.getParent()).getCover().getHighLight(Color.blue);
+        if (designPane instanceof DesignerComponent) {
+            ((DesignerComponent) designPane).getCover().getHighLight(Color.blue);
+        } else if (designPane.getParent() instanceof CardPane) {
+            ((CardPane) designPane.getParent()).getCover().getHighLight(Color.blue);
         }
     }
-    public void remove ( Component component )
-    {
+
+    public void remove(Component component) {
         super.remove(component);
         designPane.coverComponent.remove(component);
         designPane.setPaneComponent.remove(component);
         designPane.cardPanes.remove(component);
-        this.updateUI();
+        updateUI();
         this.repaint();
-        //deleteComponent(component);
+        // deleteComponent(component);
     }
 
-    public void deleteComponent ( Component component )
-    {
+    public void deleteComponent(Component component) {
         Vector panes = designPane.coverComponent;
-        for ( int i = 0 ; i < panes.size() ; i ++ )
-        {
+        for (int i = 0; i < panes.size(); i++) {
             CoverComponent cover = (CoverComponent) panes.elementAt(i);
-            if ( cover.getRelateComponent().equals(component) )
-            {
+            if (cover.getRelateComponent().equals(component)) {
                 System.out.println("Deleted");
                 this.remove(cover);
                 return;
             }
         }
     }
-    public void dragExit (DropTargetEvent event)
-    {
+
+    public void dragExit(DropTargetEvent event) {
         dragBound.setVisible(false);
-        if ( designPane instanceof DesignerComponent )
-            ( (DesignerComponent) designPane).getCover().getHighLight(false);
-        else if ( designPane.getParent() instanceof CardPane )
-            ((CardPane)designPane.getParent()).getCover().getHighLight(false);
+        if (designPane instanceof DesignerComponent) {
+            ((DesignerComponent) designPane).getCover().getHighLight(false);
+        } else if (designPane.getParent() instanceof CardPane) {
+            ((CardPane) designPane.getParent()).getCover().getHighLight(false);
+        }
 
     }
 
-    public void dragOver (DropTargetDragEvent event)
-    {
-        //System.out.println(event.getLocation());
-        //DiagramComponentSetPanel object = (DiagramComponentSetPanel) (DiagramSourceList.selectedObject);
+    public void dragOver(DropTargetDragEvent event) {
+        // System.out.println(event.getLocation());
+        // DiagramComponentSetPanel object = (DiagramComponentSetPanel)
+        // (DiagramSourceList.selectedObject);
 
         Component object = (Component) (DiagramSourceList.selectedObject);
-        if ( object == null )
+        if (object == null) {
             return;
-        //CoverComponent cover;
-        //if ( object instanceof CoverComponent )
-        if ( ((DesignerComponent)object).getCover() != null )
-			object = (CoverComponent) ((DesignerComponent)object).getCover();
+        }
+        // CoverComponent cover;
+        // if ( object instanceof CoverComponent )
+        if (((DesignerComponent) object).getCover() != null) {
+            object = ((DesignerComponent) object).getCover();
+        }
 
-		int x2, y2;
-		int x, y;
+        int x2, y2;
+        int x, y;
 
-		x2 = event.getLocation().x;
-		y2 = event.getLocation().y;
+        x2 = event.getLocation().x;
+        y2 = event.getLocation().y;
 
-		if ( object.isVisible() && ! DiagramSourceList.isSelected && object.getParent() != null && object.getParent().equals(this) )
-		{
-			x = object.getX() + x2 - dx;
-			y = object.getY() + y2 - dy;
-		}
-		else
-		{
-        	x = (int) event.getLocation().getX() - 10;//- object.getWidth() / 2;
-        	y = (int) event.getLocation().getY() - object.getHeight() / 2;
-		}
-
+        if (object.isVisible() && !DiagramSourceList.isSelected && object.getParent() != null && object.getParent().equals(this)) {
+            x = object.getX() + x2 - dx;
+            y = object.getY() + y2 - dy;
+        } else {
+            x = (int) event.getLocation().getX() - 10;// - object.getWidth() /
+                                                      // 2;
+            y = (int) event.getLocation().getY() - object.getHeight() / 2;
+        }
 
         int width = object.getWidth();
         int height = object.getHeight();
-        x = x - x % grid + grid / 2 ;
-        y = y - y % grid + grid / 2 ;
+        x = x - x % grid + grid / 2;
+        y = y - y % grid + grid / 2;
 
-        dragBound.setBounds( x, y, width, height);
-		dragBound.setVisible(true);
+        dragBound.setBounds(x, y, width, height);
+        dragBound.setVisible(true);
     }
 
-    public void setControl ( UpperPaneControl paneControl )
-    {
-        if ( this.paneControl == null )
-        {
+    public void setControl(UpperPaneControl paneControl) {
+        if (this.paneControl == null) {
             this.paneControl = paneControl;
-            //this.removeMouseListener(defaultControl);
-            //this.removeMouseMotionListener(defaultControl);
-            this.addMouseListener(paneControl);
-            this.addMouseMotionListener(paneControl);
+            // this.removeMouseListener(defaultControl);
+            // this.removeMouseMotionListener(defaultControl);
+            addMouseListener(paneControl);
+            addMouseMotionListener(paneControl);
         }
     }
-    public void resetControl ()
-    {
-        this.removeMouseListener(paneControl);
-        this.removeMouseMotionListener(paneControl);
+
+    public void resetControl() {
+        removeMouseListener(paneControl);
+        removeMouseMotionListener(paneControl);
         paneControl = null;
-        //this.addMouseListener(defaultControl);
-        //this.addMouseMotionListener(defaultControl);
+        // this.addMouseListener(defaultControl);
+        // this.addMouseMotionListener(defaultControl);
 
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }
-    public void drop (DropTargetDropEvent event)
-    {
+
+    public void drop(DropTargetDropEvent event) {
         Component object1 = (Component) (DiagramSourceList.selectedObject);
-        if ( object1 == null )
+        if (object1 == null) {
             return;
+        }
 
-    	isDragging = false;
+        isDragging = false;
 
-        if ( designPane instanceof DesignerComponent )
-            ( (DesignerComponent) designPane).getCover().getHighLight(false);
-        else if ( designPane.getParent() instanceof CardPane )
-            ((CardPane)designPane.getParent()).getCover().getHighLight(false);
+        if (designPane instanceof DesignerComponent) {
+            ((DesignerComponent) designPane).getCover().getHighLight(false);
+        } else if (designPane.getParent() instanceof CardPane) {
+            ((CardPane) designPane.getParent()).getCover().getHighLight(false);
+        }
 
+        // try {
+        Transferable transferable = event.getTransferable();
 
-        //try {
-            Transferable transferable = event.getTransferable();
+        // we accept only Strings
+        if (transferable.isDataFlavorSupported(DataFlavor.stringFlavor)) {
 
-            // we accept only Strings
-            if (transferable.isDataFlavorSupported (DataFlavor.stringFlavor)){
+            event.acceptDrop(DnDConstants.ACTION_MOVE);
+            String s = "";// (String)transferable.getTransferData (
+                          // DataFlavor.stringFlavor);
 
-                event.acceptDrop(DnDConstants.ACTION_MOVE);
-                String s = "";//(String)transferable.getTransferData ( DataFlavor.stringFlavor);
+            // JButton jButton = new JButton();
+            // jButton.setBounds(10,10,50,100);
+            // jButton.setVisible(true);
 
-                //JButton jButton = new JButton();
-                //jButton.setBounds(10,10,50,100);
-                //jButton.setVisible(true);
+            // DiagramComponentSetPanel object = (DiagramComponentSetPanel)
+            // (DiagramSourceList.selectedObject);
 
-                //DiagramComponentSetPanel object = (DiagramComponentSetPanel) (DiagramSourceList.selectedObject);
+            Component object = (Component) (DiagramSourceList.selectedObject);
+            object.setVisible(false);
 
-                Component object = (Component) (DiagramSourceList.selectedObject);
-                object.setVisible(false);
-
-				CoverComponent object2;
-				if ( ((DesignerComponent)object).getCover() != null )
-				{
-					object2 = (CoverComponent)((DesignerComponent)object).getCover();
-					object2.moveXY(dragBound.getX(), dragBound.getY());
-                	object2.setXY();
-            	}
-            	else
-            	{
-            		object.setBounds(dragBound.getX(),dragBound.getY(),dragBound.getWidth(),dragBound.getHeight());
-            	}
-				//if ( object instanceof
-
-                //System.out.println(DiagramSourceList.selectedObject.getClass().toString());
-                //object.setBounds(10,10,object.getWidth(),object.getHeight());
-                //object.setBounds((int)event.getLocation().getX() - object.getWidth() / 2 ,(int)event.getLocation().getY() - object.getHeight()/2,object.getWidth(),object.getHeight());
-				//object2.setBounds2(dragBound.getX(), dragBound.getY(), dragBound.getWidth(), dragBound.getHeight());
-
-
-                if ( object instanceof DesignerComponent )
-                {
-                    designPane.addDesignComponent( (DesignerComponent) object);
-                }
-
-                //Not used this method la may be hehe...
-                //if ( ownerSetPanel != null)
-                    //;//ownerSetPanel.addNestElement(object);
-
-                event.getDropTargetContext().dropComplete(true);
-                //if ( object instanceof DiagramComponentSetPanel )
-                    //((DiagramComponentSetPanel)object).deselectInternal();
-
-                dragBound.setVisible(false);
+            CoverComponent object2;
+            if (((DesignerComponent) object).getCover() != null) {
+                object2 = ((DesignerComponent) object).getCover();
+                object2.moveXY(dragBound.getX(), dragBound.getY());
+                object2.setXY();
+            } else {
+                object.setBounds(dragBound.getX(), dragBound.getY(), dragBound.getWidth(), dragBound.getHeight());
             }
-            else{
-                event.rejectDrop();
-            }
-		DiagramSourceList.isSelected = false;
+            // if ( object instanceof
 
-        //}
-        /*
-        catch (IOException exception) {
-            exception.printStackTrace();
-            System.err.println( "Exception" + exception.getMessage());
+            // System.out.println(DiagramSourceList.selectedObject.getClass().toString());
+            // object.setBounds(10,10,object.getWidth(),object.getHeight());
+            // object.setBounds((int)event.getLocation().getX() -
+            // object.getWidth() / 2 ,(int)event.getLocation().getY() -
+            // object.getHeight()/2,object.getWidth(),object.getHeight());
+            // object2.setBounds2(dragBound.getX(), dragBound.getY(),
+            // dragBound.getWidth(), dragBound.getHeight());
+
+            if (object instanceof DesignerComponent) {
+                designPane.addDesignComponent((DesignerComponent) object);
+            }
+
+            // Not used this method la may be hehe...
+            // if ( ownerSetPanel != null)
+            // ;//ownerSetPanel.addNestElement(object);
+
+            event.getDropTargetContext().dropComplete(true);
+            // if ( object instanceof DiagramComponentSetPanel )
+            // ((DiagramComponentSetPanel)object).deselectInternal();
+
+            dragBound.setVisible(false);
+        } else {
             event.rejectDrop();
         }
-        catch (UnsupportedFlavorException ufException ) {
-            ufException.printStackTrace();
-            System.err.println( "Exception" + ufException.getMessage());
-            event.rejectDrop();
-        }*/
+        DiagramSourceList.isSelected = false;
+
+        // }
+        /*
+         * catch (IOException exception) { exception.printStackTrace();
+         * System.err.println( "Exception" + exception.getMessage());
+         * event.rejectDrop(); } catch (UnsupportedFlavorException ufException )
+         * { ufException.printStackTrace(); System.err.println( "Exception" +
+         * ufException.getMessage()); event.rejectDrop(); }
+         */
     }
-    public void dropActionChanged ( DropTargetDragEvent event )
-    {
+
+    public void dropActionChanged(DropTargetDragEvent event) {
     }
-    public void paint (Graphics g)
-    {
+
+    public void paint(Graphics g) {
         super.paint(g);
         g.setColor(Color.gray);
-        if (getParent() != null &&
-            getParent().getParent() != null &&
-						getParent().getParent().getParent() !=null &&
-            ! (getParent().getParent() instanceof DesignUpperPane) &&
-            ! (getParent().getParent().getParent() instanceof CardPane))
-           g.drawRect(0,0,getWidth()-1,getHeight()-1);
+        if (getParent() != null && getParent().getParent() != null && getParent().getParent().getParent() != null && !(getParent().getParent() instanceof DesignUpperPane) && !(getParent().getParent().getParent() instanceof CardPane)) {
+            g.drawRect(0, 0, getWidth() - 1, getHeight() - 1);
+        }
     }
 
 }
 
-
-class UpperPaneMouseListener extends MouseAdapter implements MouseListener, MouseMotionListener
-{
+class UpperPaneMouseListener extends MouseAdapter implements MouseListener, MouseMotionListener {
     private int dx;
     private int dy;
     private int ex;
@@ -315,33 +309,33 @@ class UpperPaneMouseListener extends MouseAdapter implements MouseListener, Mous
     private DesignUpperPane upperPane;
     private JComponent drawBound;
 
-    public void mousePressed(MouseEvent e)
-    {
+    public void mousePressed(MouseEvent e) {
 
         dx = e.getX();
         dy = e.getY();
 
-        upperPane = (DesignUpperPane)e.getSource();
+        upperPane = (DesignUpperPane) e.getSource();
         designPane = upperPane.getDesignPane();
         drawBound = upperPane.getDrawBound();
 
-        //DesignerControl.currentDesignPane.deselectAll();
+        // DesignerControl.currentDesignPane.deselectAll();
         DesignerControl.currentDesignPane = designPane;
         DesignerControl.currentDesignPane.deselectAll();
 
         designPane.selectThis(upperPane.getProperties());
 
         upperPane.requestFocus();
-        //upperPane = (DesignUpperPane) e.getSource();
-        //designPane = upperPane.getDesignPane();
-        //DesignerControl.currentDesignPane = pane.getDesignPane();
-        //designPane.deselectAll();
-        //DesignerControl.currentDesignPane.showPaneResize(true);
+        // upperPane = (DesignUpperPane) e.getSource();
+        // designPane = upperPane.getDesignPane();
+        // DesignerControl.currentDesignPane = pane.getDesignPane();
+        // designPane.deselectAll();
+        // DesignerControl.currentDesignPane.showPaneResize(true);
     }
-    public void mouseReleased(MouseEvent e)
-    {
-        if ( !drawBound.isVisible() )
+
+    public void mouseReleased(MouseEvent e) {
+        if (!drawBound.isVisible()) {
             return;
+        }
         drawBound.setVisible(false);
         dx = drawBound.getX();
         dy = drawBound.getY();
@@ -352,77 +346,61 @@ class UpperPaneMouseListener extends MouseAdapter implements MouseListener, Mous
         Vector coverComponents = null;
         coverComponents = designPane.coverComponent;
         int count = 0;
-        for ( int i = 0 ; i < coverComponents.size() ; i ++ )
-        {
-            CoverComponent cover = (CoverComponent)coverComponents.elementAt(i);
+        for (int i = 0; i < coverComponents.size(); i++) {
+            CoverComponent cover = (CoverComponent) coverComponents.elementAt(i);
             cx = cover.getX();
             cy = cover.getY();
             cx2 = cx + cover.getWidth();
             cy2 = cy + cover.getHeight();
 
-            if ( cx > dx && cy > dy && cx2 < ex && cy2 < ey )
-            {
-                //System.out.println("ASD");
+            if (cx > dx && cy > dy && cx2 < ex && cy2 < ey) {
+                // System.out.println("ASD");
                 count++;
                 cover.getFocus(true);
             }
             System.out.println("COUNT: " + count);
         }
 
-        if ( count > 1 )
+        if (count > 1) {
             DesignerControl.setEditButtonEnable(true);
+        }
 
     }
-    public void mouseDragged(MouseEvent e)
-    {
+
+    public void mouseDragged(MouseEvent e) {
         int x = e.getX();
         int y = e.getY();
         width = x - dx;
         height = y - dy;
         /*
-        if ( width < 0 )
-        {
-            width = dx - e.getX();
-            dx = e.getX();
-        }
-        if ( height < 0 )
-        {
-            height = dy - e.getX();
-            dy = e.getX();
-        }*/
+         * if ( width < 0 ) { width = dx - e.getX(); dx = e.getX(); } if (
+         * height < 0 ) { height = dy - e.getX(); dy = e.getX(); }
+         */
 
-        drawBound.setBounds(dx < x ? dx : x , dy < y ? dy : y, dx < x ? width : -width, dy < y ? height : -height);
+        drawBound.setBounds(dx < x ? dx : x, dy < y ? dy : y, dx < x ? width : -width, dy < y ? height : -height);
         drawBound.setVisible(true);
         drawBound.repaint();
     }
-    public void mouseMoved(MouseEvent e)
-    {
+
+    public void mouseMoved(MouseEvent e) {
     }
 }
 
-class DragBound extends JComponent
-{
-    public void paint ( Graphics g )
-    {
+class DragBound extends JComponent {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 4543975555974156416L;
+
+    public void paint(Graphics g) {
         g.setColor(Color.gray);
-        g.drawRect(0, 0, getSize().width-1, getSize().height-1);
+        g.drawRect(0, 0, getSize().width - 1, getSize().height - 1);
     }
     /*
-    public void setBounds ( int x, int y, int width, int height )
-    {
-        if ( x < 0 )
-            x = 0;
-        if ( y < 0 )
-            y = 0;
-        super.setBounds(x, y, width, height);
-
-    }
-    public void setLocation ( int x, int y )
-    {
-        if ( x < 0 )
-            x = 0;
-        if ( y < 0 )
-            y = 0;
-        super.setLocation(x, y);
-    }*/
+     * public void setBounds ( int x, int y, int width, int height ) { if ( x <
+     * 0 ) x = 0; if ( y < 0 ) y = 0; super.setBounds(x, y, width, height);
+     * 
+     * } public void setLocation ( int x, int y ) { if ( x < 0 ) x = 0; if ( y <
+     * 0 ) y = 0; super.setLocation(x, y); }
+     */
 }

@@ -1,58 +1,44 @@
 package designer;
 
-import javax.swing.tree.*;
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Component;
 
-class SourceTableRenderer extends DefaultTreeCellRenderer
-{
+import javax.swing.ImageIcon;
+import javax.swing.JTree;
+import javax.swing.tree.DefaultTreeCellRenderer;
+
+class SourceTableRenderer extends DefaultTreeCellRenderer {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -5175664370993052690L;
     private ImageIcon imageIcon;
 
-    public SourceTableRenderer()
-    {
+    public SourceTableRenderer() {
         imageIcon = new ImageIcon("designer/images/test.gif");
     }
 
-    public Component getTreeCellRendererComponent(
-        JTree tree,
-        Object value,
-        boolean sel,
-        boolean expanded,
-        boolean leaf,
-        int row,
-        boolean hasFocus)
-    {
+    public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded, boolean leaf, int row, boolean hasFocus) {
 
-        super.getTreeCellRendererComponent(
-            tree, value, sel,
-            expanded, leaf, row,
-            hasFocus);
-        //if (leaf && isTutorialBook(value))
-        //{
+        super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
+        // if (leaf && isTutorialBook(value))
+        // {
 
-            setIcon(null);
-            //setToolTipText("This book is in the Tutorial series.");
-        //}
-        //else
-        //{
-            //setToolTipText(null); //no tool tip
-        //}
+        setIcon(null);
+        // setToolTipText("This book is in the Tutorial series.");
+        // }
+        // else
+        // {
+        // setToolTipText(null); //no tool tip
+        // }
 
         return this;
     }
     /*
-    protected boolean isTutorialBook(Object value)
-    {
-        DefaultMutableTreeNode node =
-            (DefaultMutableTreeNode) value;
-        BookInfo nodeInfo =
-            (BookInfo) (node.getUserObject());
-        String title = nodeInfo.bookName;
-        if (title.indexOf("Tutorial") >= 0)
-        {
-            return true;
-        }
-
-        return false;
-    }*/
+     * protected boolean isTutorialBook(Object value) { DefaultMutableTreeNode
+     * node = (DefaultMutableTreeNode) value; BookInfo nodeInfo = (BookInfo)
+     * (node.getUserObject()); String title = nodeInfo.bookName; if
+     * (title.indexOf("Tutorial") >= 0) { return true; }
+     * 
+     * return false; }
+     */
 }

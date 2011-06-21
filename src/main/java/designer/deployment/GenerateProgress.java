@@ -1,39 +1,42 @@
 package designer.deployment;
 
-import java.awt.*;
-import javax.swing.*;
+import java.awt.Dimension;
+import java.awt.Frame;
+import java.awt.Rectangle;
+import java.awt.Toolkit;
 
-public class GenerateProgress extends JDialog
-{
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JProgressBar;
+
+public class GenerateProgress extends JDialog {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 8395599831987950498L;
     JPanel panel1 = new JPanel();
     JLabel jLabel1 = new JLabel();
     JProgressBar jProgressBar1 = new JProgressBar();
 
-    public GenerateProgress(Frame frame, String title, boolean modal)
-    {
+    public GenerateProgress(Frame frame, String title, boolean modal) {
         super(frame, title, modal);
-        try
-        {
+        try {
             jbInit();
-        }
-        catch (Exception ex)
-        {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
-    public GenerateProgress()
-    {
+    public GenerateProgress() {
         this(null, "Please wait...", false);
     }
 
-    private void jbInit() throws Exception
-    {
-        this.setResizable(false);
-    this.setSize(new Dimension(350, 100));
-        this.setLocation( (int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() - this.getWidth()) / 2,
-                         (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() - this.getHeight()) / 2);
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+    private void jbInit() throws Exception {
+        setResizable(false);
+        this.setSize(new Dimension(350, 100));
+        this.setLocation((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() - getWidth()) / 2, (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() - getHeight()) / 2);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         panel1.setLayout(null);
         jLabel1.setRequestFocusEnabled(true);
         jLabel1.setText("Preparing Component for Simultation Model...");
@@ -45,21 +48,21 @@ public class GenerateProgress extends JDialog
         panel1.add(jProgressBar1, null);
         jProgressBar1.setValue(0);
     }
-    public void setText ( String text )
-    {
+
+    public void setText(String text) {
         jLabel1.setText(text);
     }
-    public void setMaximun ( int i )
-    {
+
+    public void setMaximun(int i) {
         jProgressBar1.setMaximum(i);
     }
-    public void setValue ( int i )
-    {
+
+    public void setValue(int i) {
         jProgressBar1.setValue(i);
         update(getGraphics());
     }
-    public void setVisible ( boolean b )
-    {
+
+    public void setVisible(boolean b) {
         super.setVisible(b);
     }
 }

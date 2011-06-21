@@ -1,27 +1,24 @@
 package diagram;
-import javax.swing.JComponent;
-import java.awt.*;
-import java.lang.reflect.*;
-import java.awt.event.*;
-import java.util.*;
-import javax.swing.*;
 
 /**
- * Title:
- * Description:
- * Copyright:    Copyright (c) 2001
- * Company:
+ * Title: Description: Copyright: Copyright (c) 2001 Company:
+ * 
  * @author
  * @version 1.0
  */
 
 public class DiagramOutPort extends DiagramPort {
-	
-	public DiagramOutPort() {
-		super();
-	}
-	
-	public void connected(boolean isConnected) {
-		setConnectValid(!isConnected);
-	}
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 2892895050022984819L;
+
+    public DiagramOutPort() {
+        super();
+    }
+
+    public void connected(boolean isConnected) {
+        setConnectValid(!isConnected);
+    }
 }

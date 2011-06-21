@@ -1,11 +1,18 @@
 package designer.deployment;
 
-import javax.swing.*;
-import java.awt.*;
-import java.io.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Rectangle;
+import java.io.Serializable;
 
-public class InputComponentPropertise implements Serializable
-{
+import javax.swing.JComponent;
+
+public class InputComponentPropertise implements Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1896670977872899686L;
+
     private Rectangle bounds;
 
     private String text;
@@ -16,39 +23,37 @@ public class InputComponentPropertise implements Serializable
     private Color background;
     private Font font;
 
-    public InputComponentPropertise( JComponent jComponent )
-    {
-        this.bounds = jComponent.getBounds();
-        this.visible = jComponent.getParent() != null ;
-        this.foreground = jComponent.getForeground();
-        this.background = jComponent.getBackground();
-        this.font = jComponent.getFont();
+    public InputComponentPropertise(JComponent jComponent) {
+        bounds = jComponent.getBounds();
+        visible = jComponent.getParent() != null;
+        foreground = jComponent.getForeground();
+        background = jComponent.getBackground();
+        font = jComponent.getFont();
     }
-    public InputComponentPropertise( JComponent jComponent, String text )
-    {
+
+    public InputComponentPropertise(JComponent jComponent, String text) {
         this(jComponent);
         this.text = text;
     }
-    public InputComponentPropertise( JComponent jComponent, Object[] objects )
-    {
+
+    public InputComponentPropertise(JComponent jComponent, Object[] objects) {
         this(jComponent);
         this.objects = objects;
     }
-    public void setPropertise ( JComponent jComponent )
-    {
+
+    public void setPropertise(JComponent jComponent) {
         jComponent.setBounds(bounds);
         jComponent.setVisible(visible);
         jComponent.setForeground(foreground);
         jComponent.setBackground(background);
         jComponent.setFont(font);
     }
-    public String getText ()
-    {
+
+    public String getText() {
         return text;
     }
-    public Object[] getModel()
-    {
+
+    public Object[] getModel() {
         return objects;
     }
 }
-

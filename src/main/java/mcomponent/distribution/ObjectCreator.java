@@ -1,5 +1,5 @@
 package mcomponent.distribution;
 
 abstract public class ObjectCreator {
-	public abstract Object createObject();
+    public abstract Object createObject();
 }

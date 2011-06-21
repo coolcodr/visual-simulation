@@ -1,13 +1,14 @@
 package designer;
 
+import javax.swing.JPanel;
 
-import javax.swing.*;
-import java.awt.*;
+public class DesignBottomPane extends JPanel {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -8558813118658934383L;
 
-public class DesignBottomPane extends JPanel
-{
-    public DesignBottomPane()
-    {
-        this.setLayout(null);
+    public DesignBottomPane() {
+        setLayout(null);
     }
 }

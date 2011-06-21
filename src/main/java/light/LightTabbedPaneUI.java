@@ -1,20 +1,15 @@
 package light;
 
-import javax.swing.plaf.metal.*;
-import javax.swing.plaf.basic.*;
-import javax.swing.plaf.*;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+import javax.swing.JComponent;
+import javax.swing.plaf.ComponentUI;
+import javax.swing.plaf.basic.BasicTabbedPaneUI;
 
-public class LightTabbedPaneUI extends BasicTabbedPaneUI
-{
+public class LightTabbedPaneUI extends BasicTabbedPaneUI {
 
-    public LightTabbedPaneUI()
-    {
+    public LightTabbedPaneUI() {
     }
-    public static ComponentUI createUI(JComponent jcomponent)
-    {
+
+    public static ComponentUI createUI(JComponent jcomponent) {
         return new LightTabbedPaneUI();
     }
 }

@@ -11,19 +11,14 @@ package print;
 
 import javax.swing.UIManager;
 
-public class PrintMain
-{
-    public static void main(String args[])
-    {
+public class PrintMain {
+    public static void main(String args[]) {
 
-        try
-        {
+        try {
 
             String lnfName = "light.LightLookAndFeel";
             UIManager.setLookAndFeel(lnfName);
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

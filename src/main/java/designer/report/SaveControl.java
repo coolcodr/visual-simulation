@@ -1,52 +1,47 @@
 package designer.report;
 
-import print.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
-import java.io.*;
-import java.awt.*;
+import print.ReportDocument;
 
-public class SaveControl
-{
+public class SaveControl {
     private ReportDocument reportDocument;
 
-    public SaveControl()
-    {
+    public SaveControl() {
         this(null);
     }
 
-    public SaveControl(ReportDocument reportDocument)
-    {
+    public SaveControl(ReportDocument reportDocument) {
         this.reportDocument = reportDocument;
     }
 
-    public void setReportDocument(ReportDocument reportDocument)
-    {
+    public void setReportDocument(ReportDocument reportDocument) {
         this.reportDocument = reportDocument;
     }
 
-    public void saveAs()
-    {
+    public void saveAs() {
 
     }
 
-    public void save()
-    {
-        if (reportDocument == null)
+    public void save() {
+        if (reportDocument == null) {
             return;
+        }
 
         reportDocument.prepareImage();
-        //TEMP
-        try
-        {
+        // TEMP
+        try {
             File outFile = new File("C:/temp_report.vsr");
             FileOutputStream outFileStream = new FileOutputStream(outFile);
             ObjectOutputStream outObjectStream = new ObjectOutputStream(outFileStream);
 
             outObjectStream.writeObject(reportDocument);
             outObjectStream.close();
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println(e.getStackTrace());
         }
 
@@ -54,12 +49,10 @@ public class SaveControl
 
     }
 
-    public ReportDocument load()
-    {
+    public ReportDocument load() {
         ReportDocument reportDocument = null;
-        //TEMP
-        try
-        {
+        // TEMP
+        try {
             File inFile = new File("C:/temp_report.vsr");
             FileInputStream inFileStream = new FileInputStream(inFile);
             ObjectInputStream inObjectStream = new ObjectInputStream(inFileStream);
@@ -68,8 +61,7 @@ public class SaveControl
             inObjectStream.close();
         }
 
-        catch (Exception e)
-        {
+        catch (Exception e) {
             System.out.println(e);
         }
 

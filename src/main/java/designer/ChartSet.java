@@ -1,32 +1,30 @@
 package designer;
 
-public class ChartSet
-{
+public class ChartSet {
     String tag;
     String title;
     String name;
 
-    public ChartSet( String name, String title )
-    {
+    public ChartSet(String name, String title) {
         this.name = name;
         this.title = title;
 
-        this.tag = name;
+        tag = name;
     }
-    public String getTag ()
-    {
+
+    public String getTag() {
         return tag;
     }
-    public String getDisplay ()
-    {
-        return "[%$"+tag+"/"+title+"$%]";
+
+    public String getDisplay() {
+        return "[%$" + tag + "/" + title + "$%]";
     }
-    public String getTitle ()
-    {
+
+    public String getTitle() {
         return title;
     }
-    public String toString ()
-    {
+
+    public String toString() {
         return title;
     }
 }

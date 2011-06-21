@@ -1,61 +1,58 @@
 package designer.deployment;
 
+import java.awt.Rectangle;
 import java.io.Serializable;
-import java.awt.*;
-import javax.swing.*;
-import java.lang.reflect.*;
-import javax.swing.border.TitledBorder;
+import java.lang.reflect.Method;
+
 import javax.swing.BorderFactory;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
 import javax.swing.border.Border;
-import java.util.Vector;
+import javax.swing.border.TitledBorder;
 
-public class CardProperties implements Serializable
-{
-    //private Class componentClass;
+public class CardProperties implements Serializable {
+    // private Class componentClass;
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -1419801349431658667L;
     private Rectangle bounds;
     private String text;
     private boolean visible;
 
-    public CardProperties( JComponent cardPane, String text )
-    {
+    public CardProperties(JComponent cardPane, String text) {
         initValue(cardPane);
         this.text = text;
     }
 
-    private void initValue( JComponent cardPane )
-    {
+    private void initValue(JComponent cardPane) {
         /*
-        Class componentClass = cardPane.getClass();
-        try
-        {
-            Method getTextMethod = componentClass.getMethod("getText", null);
-            text = (String)getTextMethod.invoke(jComponent, null);
-        }*/
-        //text = cardPane.getText();
+         * Class componentClass = cardPane.getClass(); try { Method
+         * getTextMethod = componentClass.getMethod("getText", null); text =
+         * (String)getTextMethod.invoke(jComponent, null); }
+         */
+        // text = cardPane.getText();
 
-        //catch (Exception e)
-        //{ System.out.println(e);}
+        // catch (Exception e)
+        // { System.out.println(e);}
 
         bounds = cardPane.getBounds();
-        visible = true;//cardPane.isVisible();
+        visible = true;// cardPane.isVisible();
     }
 
-    public void setPropertise ( JPanel jPanel )
-    {
+    public void setPropertise(JPanel jPanel) {
         Class componentClass = jPanel.getClass();
 
-        try
-        {
+        try {
             Class[] classArray = new Class[] { String.class };
             Method setTextMethod = componentClass.getMethod("setText", classArray);
 
             Object[] objectArray = new Object[] { text };
             setTextMethod.invoke(jPanel, objectArray);
+        } catch (Exception e) {
+            System.out.println(e);
         }
-        catch (Exception e)
-        { System.out.println(e);}
-
 
         Border border = BorderFactory.createEtchedBorder();
         Border titledBorder = new TitledBorder(border, text);

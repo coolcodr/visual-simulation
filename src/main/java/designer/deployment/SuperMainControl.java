@@ -1,50 +1,34 @@
 package designer.deployment;
 
-import statistic.*;
-import mcomponent.distribution.*;
-import engine.eventhandler.*;
-import mcomponent.*;
-import mcomponent.queue.*;
-import engine.*;
-import chart.*;
+import engine.eventhandler.TerminationEventHandler;
 
-import java.util.Hashtable;
+public class SuperMainControl implements TerminationEventHandler {
 
-public class SuperMainControl implements TerminationEventHandler
-{
+    public SuperMainControl() {
 
-	public SuperMainControl()
-	{
+    }
 
-	}
-	public SuperMainControl( DeployObjectFactory deployObjectFactory )
-	{
+    public SuperMainControl(DeployObjectFactory deployObjectFactory) {
 
-	}
+    }
 
-	public void init() throws InvalidDataException
-	{
+    public void init() throws InvalidDataException {
 
+    }
 
-	}
+    private void overrideData() throws InvalidDataException {
 
-	private void overrideData() throws InvalidDataException
-	{
+    }
 
-	}
+    public void processAddTerminationEvent() {
 
-	public void processAddTerminationEvent()
-	{
+    }
 
-	}
+    public void processTerminationEvent(engine.Event _event) {
 
-	public void processTerminationEvent(engine.Event _event)
-	{
+    }
 
-	}
-
-	public void startRun() throws InvalidDataException
-	{
-	}
+    public void startRun() throws InvalidDataException {
+    }
 
 }

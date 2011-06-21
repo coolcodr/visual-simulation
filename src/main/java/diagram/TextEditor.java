@@ -1,8 +1,4 @@
 package diagram;
-import java.awt.event.*;
-import javax.swing.*;
-import java.awt.*;
-import java.util.*;
 
 //import javax.swing.JPanel;
 
@@ -16,31 +12,25 @@ import java.util.*;
  */
 
 /*
-public class TextEditor extends JPanel {
-	
-	final static int SCHEMA = 0;
-	final static int CONTEXT = 1;
-	
-	private ClassSchemaPanel _schemaPanel;
-	private ClassContextPanel _contextPanel;
-	
-	private JFrame _frame;
-	
-	public TextEditor(JFrame frame) {
-		super();
-		
-		_frame = frame;
-		
-		_schemaPanel = new ClassSchemaPanel(this);
-		_contextPanel = new ClassContextPanel(this);
-		
-		setMode(_schemaPanel);
-	}
-	
-	public void setModel(JPanel jPanel) {
-		removeAll();
-		
-		add(jPanel);
-	}
-}
-*/
+ * public class TextEditor extends JPanel {
+ * 
+ * final static int SCHEMA = 0; final static int CONTEXT = 1;
+ * 
+ * private ClassSchemaPanel _schemaPanel; private ClassContextPanel
+ * _contextPanel;
+ * 
+ * private JFrame _frame;
+ * 
+ * public TextEditor(JFrame frame) { super();
+ * 
+ * _frame = frame;
+ * 
+ * _schemaPanel = new ClassSchemaPanel(this); _contextPanel = new
+ * ClassContextPanel(this);
+ * 
+ * setMode(_schemaPanel); }
+ * 
+ * public void setModel(JPanel jPanel) { removeAll();
+ * 
+ * add(jPanel); } }
+ */

@@ -1,9 +1,10 @@
 package engine.eventhandler;
-import engine.*;
+
+import engine.Event;
 
 public interface TerminationEventHandler {
-	
-	public void processAddTerminationEvent();
-	
-	public void processTerminationEvent(Event _event);
+
+    public void processAddTerminationEvent();
+
+    public void processTerminationEvent(Event _event);
 }

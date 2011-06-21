@@ -1,26 +1,22 @@
 package diagram;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.KeyEvent;
 
 /**
- * Title:
- * Description:
- * Copyright:    Copyright (c) 2001
- * Company:
+ * Title: Description: Copyright: Copyright (c) 2001 Company:
+ * 
  * @author
  * @version 1.0
  */
 
-public class DefaultKeyControl implements KeyControl{
-	
-	public void keyPressed(KeyEvent e) {
-	}
-	
-	public void keyReleased(KeyEvent e) {
-	}
-	
-	public void keyTyped(KeyEvent e) {
-	}
+public class DefaultKeyControl implements KeyControl {
+
+    public void keyPressed(KeyEvent e) {
+    }
+
+    public void keyReleased(KeyEvent e) {
+    }
+
+    public void keyTyped(KeyEvent e) {
+    }
 }

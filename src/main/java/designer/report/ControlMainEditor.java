@@ -1,43 +1,61 @@
 package designer.report;
 
-import print.*;
+import java.awt.Component;
+import java.awt.Dimension;
 
-import java.awt.event.*;
-import javax.swing.*;
-import javax.swing.text.*;
-import javax.swing.event.*;
-import java.io.*;
-import java.awt.*;
-import java.util.*;
-import java.awt.image.*;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import javax.swing.RepaintManager;
+import javax.swing.event.CaretEvent;
+import javax.swing.event.CaretListener;
+import javax.swing.text.MutableAttributeSet;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
 
-import designer.*;
+import print.DialogMultiPage;
+import print.ObjectComponent;
+import print.PCPageNumber;
+import print.ReportDocument;
+import print.ReportPage;
+import designer.DesignerControl;
 
 /**
- * <p>Title: Print Editor</p>
- * <p>Description: </p>
- * <p>Copyright: Copyright (c) 2002</p>
- * <p>Company: </p>
+ * <p>
+ * Title: Print Editor
+ * </p>
+ * <p>
+ * Description:
+ * </p>
+ * <p>
+ * Copyright: Copyright (c) 2002
+ * </p>
+ * <p>
+ * Company:
+ * </p>
+ * 
  * @author unascribed
  * @version 1.0
  */
 
-public class ControlMainEditor
-{
-    //Print Page
+public class ControlMainEditor {
+    // Print Page
     private ReportPage reportPage;
     private ReportDocument reportDocument;
 
-    //Control
+    // Control
     private ControlPrint controlPrint;
 
-    //Panework
+    // Panework
     protected ControlPaneEdit controlPaneEdit;
 
-    //Save and load control
+    // Save and load control
     protected SaveControl saveControl;
 
-    //Pane
+    // Pane
     private BackPane backPane;
     private PreviewPane previewPane;
     private JList pageList;
@@ -54,205 +72,199 @@ public class ControlMainEditor
 
     private DialogMultiPage dialogMultiPage;
 
-    public ControlMainEditor(  JScrollPane jScrollPane,  JScrollPane jScrollPane1, PrintEditor printEditor )
-    {
+    public ControlMainEditor(JScrollPane jScrollPane, JScrollPane jScrollPane1, PrintEditor printEditor) {
         this.jScrollPane = jScrollPane;
         this.jScrollPane1 = jScrollPane1;
         this.printEditor = printEditor;
-        this.pageList = printEditor.getList();
+        pageList = printEditor.getList();
 
         jTextField = new JTextField();
         controlPrint = new ControlPrint();
         reportDocument = new ReportDocument();
-        controlPaneEdit = new ControlPaneEdit( this );
+        controlPaneEdit = new ControlPaneEdit(this);
 
         controlPaneEdit.setGridSize(DesignerControl.getGridSize());
         saveControl = new SaveControl(reportDocument);
 
-        dialogMultiPage = new DialogMultiPage ( printEditor );
+        dialogMultiPage = new DialogMultiPage(printEditor);
 
         jTextField.setNextFocusableComponent(jTextPane);
 
         previewScale = 0.5;
 
     }
-    public void refreshPageList ()
-    {
+
+    public void refreshPageList() {
 
     }
-    public ReportDocument getReportDocument ()
-    {
+
+    public ReportDocument getReportDocument() {
         return reportDocument;
     }
-    public void close ()
-    {
-        ((DefaultListModel)pageList.getModel()).removeAllElements();
+
+    public void close() {
+        ((DefaultListModel) pageList.getModel()).removeAllElements();
 
         jTextField = new JTextField();
         controlPrint = new ControlPrint();
         reportDocument = new ReportDocument();
-        controlPaneEdit = new ControlPaneEdit( this );
+        controlPaneEdit = new ControlPaneEdit(this);
 
         saveControl = new SaveControl(reportDocument);
 
         previewScale = 0.5;
 
-        if ( backPane != null )
-        {
+        if (backPane != null) {
             backPane.removeAll();
             backPane.setPreferredSize(new Dimension(0, 0));
         }
 
-        if ( previewPane != null )
-        {
+        if (previewPane != null) {
             previewPane.removeAll();
             previewPane.setPreferredSize(new Dimension(0, 0));
         }
         jScrollPane.updateUI();
         jScrollPane1.updateUI();
-        //this.refreshPreview();
-        //this.refreshView();
+        // this.refreshPreview();
+        // this.refreshView();
     }
-    public void addNewDiagram ( ObjectComponent component )
-    {
-        //Create a new page
-        /* failed in image
-        ImageIcon image = new ImageIcon("E:\\Temp\\simChart-Printing intergrate 001\\Printing\\images\\AlignCenter16.gif");
 
-        Image i1 = image.getImage();
-        *
-        component.setBounds(1,1,1,1);
-        reportPage = new ReportPage();
-
-        ObjectImage objectImage = new ObjectImage((BufferedImage)i1);
-        */
-        component.setBounds(1,1,1,1);
+    public void addNewDiagram(ObjectComponent component) {
+        // Create a new page
+        /*
+         * failed in image ImageIcon image = new ImageIcon(
+         * "E:\\Temp\\simChart-Printing intergrate 001\\Printing\\images\\AlignCenter16.gif"
+         * );
+         * 
+         * Image i1 = image.getImage();
+         * 
+         * component.setBounds(1,1,1,1); reportPage = new ReportPage();
+         * 
+         * ObjectImage objectImage = new ObjectImage((BufferedImage)i1);
+         */
+        component.setBounds(1, 1, 1, 1);
         reportPage = new ReportPage(reportDocument.getHeaderFooter());
         reportPage.addDiagram(component);
 
-        //Add it to doucment
+        // Add it to doucment
         reportDocument.addReportPage(reportPage);
     }
-    public void saveAs ()
-    {
+
+    public void saveAs() {
         saveControl.saveAs();
     }
-    public void save ()
-    {
+
+    public void save() {
         saveControl.save();
     }
-    public void viewPage ( int i )
-    {
+
+    public void viewPage(int i) {
         JScrollBar sb = jScrollPane.getVerticalScrollBar();
         int max = backPane.getPreferredSize().height - 10;
         int numOfReport = reportDocument.getNumOfPage();
-        int page = (int) ( max / numOfReport );
+        int page = (max / numOfReport);
         int value = page * i;
         sb.setValue(value);
     }
-    public void load ()
-     {
-         reportDocument = saveControl.load();
-         load(reportDocument);
-     }
-     public void load ( ReportDocument reportDocument )
-     {
-         if ( reportDocument == null ) return;
 
-         this.reportDocument = reportDocument;
-         reportDocument.restoreImage();
-         reportDocument.setPageFormat(true);
+    public void load() {
+        reportDocument = saveControl.load();
+        load(reportDocument);
+    }
 
-         controlPaneEdit = new ControlPaneEdit( this );
+    public void load(ReportDocument reportDocument) {
+        if (reportDocument == null) {
+            return;
+        }
 
-         saveControl = new SaveControl(reportDocument);
+        this.reportDocument = reportDocument;
+        reportDocument.restoreImage();
+        reportDocument.setPageFormat(true);
 
-         previewScale = 0.5;
+        controlPaneEdit = new ControlPaneEdit(this);
 
-         if ( backPane != null )
-         {
-             backPane.removeAll();
-             backPane.setPreferredSize(new Dimension(0, 0));
+        saveControl = new SaveControl(reportDocument);
 
-         }
+        previewScale = 0.5;
 
-         if ( previewPane != null )
-         {
-             previewPane.removeAll();
-             previewPane.setPreferredSize(new Dimension(0, 0));
-         }
+        if (backPane != null) {
+            backPane.removeAll();
+            backPane.setPreferredSize(new Dimension(0, 0));
 
-         try
-         {
-             refreshView();
-             refreshPreview();
-         }
-         catch ( Exception ex )
-         {
-             System.out.println(ex);
-         }
+        }
 
-         jScrollPane.updateUI();
-         jScrollPane1.updateUI();
+        if (previewPane != null) {
+            previewPane.removeAll();
+            previewPane.setPreferredSize(new Dimension(0, 0));
+        }
 
-         printEditor.enableEditMenuItem(true);
-         printEditor.updateFormatingDialog(reportDocument.getPageNumberFormat(), reportDocument.getDateTimeFormat());
-     }
+        try {
+            refreshView();
+            refreshPreview();
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
 
-    public void addParagraph ()
-    {
+        jScrollPane.updateUI();
+        jScrollPane1.updateUI();
+
+        printEditor.enableEditMenuItem(true);
+        printEditor.updateFormatingDialog(reportDocument.getPageNumberFormat(), reportDocument.getDateTimeFormat());
+    }
+
+    public void addParagraph() {
         controlPaneEdit.setStatus(ControlPaneEdit.ADD_PARAGRAPH);
     }
-    public void editHeader ()
-    {
+
+    public void editHeader() {
         controlPaneEdit.addHeader(backPane);
     }
-    public void editFooter ()
-    {
+
+    public void editFooter() {
         controlPaneEdit.addFooter(backPane);
     }
-    public void addHeaderLine (boolean b)
-    {
-        controlPaneEdit.addHeaderLine(backPane,b);
+
+    public void addHeaderLine(boolean b) {
+        controlPaneEdit.addHeaderLine(backPane, b);
     }
-    public void addFooterLine (boolean b)
-    {
-        controlPaneEdit.addFooterLine(backPane,b);
+
+    public void addFooterLine(boolean b) {
+        controlPaneEdit.addFooterLine(backPane, b);
     }
-    public boolean getHeaderLine ()
-    {
+
+    public boolean getHeaderLine() {
         return controlPaneEdit.getHeaderLine(backPane);
     }
-    public boolean getFooterLine ()
-    {
+
+    public boolean getFooterLine() {
         return controlPaneEdit.getFooterLine(backPane);
     }
-    public boolean getHaveHeader()
-    {
+
+    public boolean getHaveHeader() {
         return controlPaneEdit.getHaveHeader(backPane);
     }
-    public boolean getHaveFooter()
-    {
+
+    public boolean getHaveFooter() {
         return controlPaneEdit.getHaveFooter(backPane);
     }
-    public void removeHeader()
-    {
+
+    public void removeHeader() {
         controlPaneEdit.removeHeader(backPane);
     }
-    public void removeFooter()
-    {
+
+    public void removeFooter() {
         controlPaneEdit.removeFooter(backPane);
     }
-    public void scrollToPageTop ( int i )
-    {
+
+    public void scrollToPageTop(int i) {
     }
-    public void refreshView ( )
-    {
+
+    public void refreshView() {
         reportDocument.updateStartPage(true);
         reportDocument.refresh();
 
-        backPane = new BackPane ( controlPaneEdit, reportDocument, pageList);
-        backPane.setPreferredSize(new Dimension ( (int)jScrollPane.getSize().getWidth(), (int)jScrollPane.getSize().getHeight()));
+        backPane = new BackPane(controlPaneEdit, reportDocument, pageList);
+        backPane.setPreferredSize(new Dimension((int) jScrollPane.getSize().getWidth(), (int) jScrollPane.getSize().getHeight()));
         backPane.addAllPanel();
 
         jScrollPane.add(backPane);
@@ -260,14 +272,16 @@ public class ControlMainEditor
         backPane.setVisible(true);
 
     }
-    public void refreshPreview()
-    {
+
+    public void refreshPreview() {
         reportDocument.updateStartPage(false);
         reportDocument.refresh();
 
         previewPane = new PreviewPane(reportDocument, previewScale);
-        //previewPane.setPreferredSize(new Dimension ( (int)jScrollPane.getSize().getWidth(), (int)jScrollPane.getSize().getHeight()));
-        previewPane.setPreferredSize(new Dimension ( (int)jScrollPane.getSize().getWidth(), (int)jScrollPane.getSize().getHeight()));
+        // previewPane.setPreferredSize(new Dimension (
+        // (int)jScrollPane.getSize().getWidth(),
+        // (int)jScrollPane.getSize().getHeight()));
+        previewPane.setPreferredSize(new Dimension((int) jScrollPane.getSize().getWidth(), (int) jScrollPane.getSize().getHeight()));
         previewPane.addAllPanel();
 
         jScrollPane1.add(previewPane);
@@ -275,226 +289,233 @@ public class ControlMainEditor
         previewPane.setVisible(true);
 
     }
-    public void setPreviewScale ( double d )
-    {
+
+    public void setPreviewScale(double d) {
         previewScale = d;
         refreshPreview();
     }
-    public void setTwoPagePreview ()
-    {
-        previewScale = (jScrollPane1.getWidth()/ 2 - 20)/ reportDocument.getMultiPageFormat().getWidth();
+
+    public void setTwoPagePreview() {
+        previewScale = (jScrollPane1.getWidth() / 2 - 20) / reportDocument.getMultiPageFormat().getWidth();
         refreshPreview();
     }
-    public void setPageWidthPreview ()
-    {
-        previewScale = (jScrollPane1.getWidth() - 30)/ reportDocument.getMultiPageFormat().getWidth();
+
+    public void setPageWidthPreview() {
+        previewScale = (jScrollPane1.getWidth() - 30) / reportDocument.getMultiPageFormat().getWidth();
         refreshPreview();
     }
-    public void setWholePagePreview ()
-    {
-        previewScale = (jScrollPane1.getHeight() - 15)/ reportDocument.getMultiPageFormat().getHeight();
+
+    public void setWholePagePreview() {
+        previewScale = (jScrollPane1.getHeight() - 15) / reportDocument.getMultiPageFormat().getHeight();
         refreshPreview();
     }
-    public double getPreviewScale ()
-    {
+
+    public double getPreviewScale() {
         return previewPane.getScale();
     }
-    public void setTextPane ( JTextPane jTextPane )
-    {
+
+    public void setTextPane(JTextPane jTextPane) {
         this.jTextPane = jTextPane;
-        jTextPane.addCaretListener( new CaretListener()
-        {
-            public void caretUpdate ( CaretEvent e )
-            {
+        jTextPane.addCaretListener(new CaretListener() {
+            public void caretUpdate(CaretEvent e) {
                 updateTextFormat();
             }
         });
     }
-    public void setCurrentFontFormat ( JTextPane jTextPane )
-    {
+
+    public void setCurrentFontFormat(JTextPane jTextPane) {
         printEditor.setFontFormat();
     }
-    public void updateTextFormat ()
-    {
-        //printEditor.updateTextFormat(jTextPane.getCharacterAttributes());
-        //if ( jTextPane.getCaretPosition() != 0 )
-            printEditor.updateParagraphFormat(jTextPane.getParagraphAttributes());
-        if ( jTextPane.getCaretPosition() != 0 )
-            printEditor.updateTextFormat(jTextPane.getStyledDocument().getCharacterElement(jTextPane.getCaretPosition()-1).getAttributes());
+
+    public void updateTextFormat() {
+        // printEditor.updateTextFormat(jTextPane.getCharacterAttributes());
+        // if ( jTextPane.getCaretPosition() != 0 )
+        printEditor.updateParagraphFormat(jTextPane.getParagraphAttributes());
+        if (jTextPane.getCaretPosition() != 0) {
+            printEditor.updateTextFormat(jTextPane.getStyledDocument().getCharacterElement(jTextPane.getCaretPosition() - 1).getAttributes());
+        }
     }
-    public void pageSetup ()
-    {
+
+    public void pageSetup() {
         reportDocument.setPageFormat();
-        //reportDocument.updateStartPage(true);
-        if ( jScrollPane1.isShowing() )
+        // reportDocument.updateStartPage(true);
+        if (jScrollPane1.isShowing()) {
             refreshPreview();
-        else
+        } else {
             refreshView();
+        }
     }
-    public void setMultiPageFormat ()
-    {
+
+    public void setMultiPageFormat() {
         dialogMultiPage.showDialog(reportDocument.getPageFormat());
         int result[] = dialogMultiPage.getMultiPageFormat();
-        reportDocument.setMultiPage(result[0],result[1]);
+        reportDocument.setMultiPage(result[0], result[1]);
         reportDocument.setMultiPageOrientation(result[2]);
         reportDocument.setMultiPageDirection(result[3]);
         reportDocument.setMultiPageBoarder(result[4]);
-        if ( jScrollPane1.isShowing() )
+        if (jScrollPane1.isShowing()) {
             refreshPreview();
-        else
+        } else {
             refreshView();
+        }
     }
-    public void print ()
-    {
+
+    public void print() {
         reportDocument.updateStartPage(false);
         controlPrint.printDocument(reportDocument);
         reportDocument.updateStartPage(true);
     }
-    public void setDiagramScale ( int i )
-    {
-        if ( controlPaneEdit.getSelectedDiagram()!=null && controlPaneEdit.setDiagramScale(i) )
-        //if ( controlPaneEdit.setDiagramScale(i) )
-            refreshView ();
+
+    public void setDiagramScale(int i) {
+        if (controlPaneEdit.getSelectedDiagram() != null && controlPaneEdit.setDiagramScale(i)) {
+            // if ( controlPaneEdit.setDiagramScale(i) )
+            refreshView();
+        }
         printEditor.repaint();
     }
-    public void setDiagramScaleHorizontalFit ()
-    {
-        //if ( controlPaneEdit.getSelectedDiagram()!=null && controlPaneEdit.setDiagramScaleHorizontalFit() )
-        if ( controlPaneEdit.setDiagramScaleHorizontalFit() )
-            refreshView ();
+
+    public void setDiagramScaleHorizontalFit() {
+        // if ( controlPaneEdit.getSelectedDiagram()!=null &&
+        // controlPaneEdit.setDiagramScaleHorizontalFit() )
+        if (controlPaneEdit.setDiagramScaleHorizontalFit()) {
+            refreshView();
+        }
         printEditor.repaint();
     }
-    public void setDiagramScaleVerticalFit ()
-    {
-        //if ( controlPaneEdit.getSelectedDiagram()!=null && controlPaneEdit.setDiagramScaleVerticalFit() )
-        if (  controlPaneEdit.setDiagramScaleVerticalFit() )
-            refreshView ();
+
+    public void setDiagramScaleVerticalFit() {
+        // if ( controlPaneEdit.getSelectedDiagram()!=null &&
+        // controlPaneEdit.setDiagramScaleVerticalFit() )
+        if (controlPaneEdit.setDiagramScaleVerticalFit()) {
+            refreshView();
+        }
         printEditor.repaint();
     }
-    public void setDiagramPositionCenter()
-    {
+
+    public void setDiagramPositionCenter() {
         controlPaneEdit.setDiagramPositionCenter();
         printEditor.repaint();
     }
-    public void setFont ( String s )
-    {
+
+    public void setFont(String s) {
         MutableAttributeSet attr = new SimpleAttributeSet();
-        StyleConstants.setFontFamily( attr, s);
+        StyleConstants.setFontFamily(attr, s);
         jTextPane.setCharacterAttributes(attr, false);
     }
-    public void setFontSize ( int i )
-    {
+
+    public void setFontSize(int i) {
         MutableAttributeSet attr = new SimpleAttributeSet();
-        StyleConstants.setFontSize (attr, i);
+        StyleConstants.setFontSize(attr, i);
         jTextPane.setCharacterAttributes(attr, false);
     }
-    public void setItatic ( boolean b )
-    {
+
+    public void setItatic(boolean b) {
         MutableAttributeSet attr = new SimpleAttributeSet();
-        StyleConstants.setItalic (attr, b);
+        StyleConstants.setItalic(attr, b);
         jTextPane.setCharacterAttributes(attr, false);
     }
-    public void setBold ( boolean b )
-    {
+
+    public void setBold(boolean b) {
         MutableAttributeSet attr = new SimpleAttributeSet();
-        StyleConstants.setBold (attr, b);
+        StyleConstants.setBold(attr, b);
         jTextPane.setCharacterAttributes(attr, false);
     }
-    public void setUnderLine ( boolean b )
-    {
+
+    public void setUnderLine(boolean b) {
         MutableAttributeSet attr = new SimpleAttributeSet();
         StyleConstants.setUnderline(attr, b);
         jTextPane.setCharacterAttributes(attr, false);
     }
-    public void setLeftAlign( boolean b )
-    {
+
+    public void setLeftAlign(boolean b) {
         MutableAttributeSet attr = new SimpleAttributeSet();
-        StyleConstants.setAlignment(attr,StyleConstants.ALIGN_LEFT );
+        StyleConstants.setAlignment(attr, StyleConstants.ALIGN_LEFT);
         jTextPane.setParagraphAttributes(attr, false);
         updateTextFormat();
     }
-    public void setCenterAlign( boolean b )
-    {
+
+    public void setCenterAlign(boolean b) {
         MutableAttributeSet attr = new SimpleAttributeSet();
-        if (b)
-            StyleConstants.setAlignment(attr,StyleConstants.ALIGN_CENTER );
-        else
-            StyleConstants.setAlignment(attr,StyleConstants.ALIGN_LEFT );
+        if (b) {
+            StyleConstants.setAlignment(attr, StyleConstants.ALIGN_CENTER);
+        } else {
+            StyleConstants.setAlignment(attr, StyleConstants.ALIGN_LEFT);
+        }
         jTextPane.setParagraphAttributes(attr, false);
         updateTextFormat();
     }
-    public void setRightAlign( boolean b )
-    {
+
+    public void setRightAlign(boolean b) {
         MutableAttributeSet attr = new SimpleAttributeSet();
-        if (b)
-            StyleConstants.setAlignment(attr,StyleConstants.ALIGN_RIGHT );
-        else
-            StyleConstants.setAlignment(attr,StyleConstants.ALIGN_LEFT );
+        if (b) {
+            StyleConstants.setAlignment(attr, StyleConstants.ALIGN_RIGHT);
+        } else {
+            StyleConstants.setAlignment(attr, StyleConstants.ALIGN_LEFT);
+        }
 
         jTextPane.setParagraphAttributes(attr, false);
         updateTextFormat();
     }
-    public void setJustifyAlign( boolean b )
-    {
+
+    public void setJustifyAlign(boolean b) {
         MutableAttributeSet attr = new SimpleAttributeSet();
-        if (b)
-            StyleConstants.setAlignment(attr,StyleConstants.ALIGN_JUSTIFIED );
-        else
-            StyleConstants.setAlignment(attr,StyleConstants.ALIGN_LEFT );
+        if (b) {
+            StyleConstants.setAlignment(attr, StyleConstants.ALIGN_JUSTIFIED);
+        } else {
+            StyleConstants.setAlignment(attr, StyleConstants.ALIGN_LEFT);
+        }
         jTextPane.setParagraphAttributes(attr, false);
         updateTextFormat();
     }
-    public void removeItem()
-    {
+
+    public void removeItem() {
         controlPaneEdit.removeItem();
     }
-    public void enableDiagramEditButton ( boolean b )
-    {
+
+    public void enableDiagramEditButton(boolean b) {
         printEditor.enableDiagramEditButton(b);
     }
-    public void enableParagraphEditButton ( boolean b )
-    {
+
+    public void enableParagraphEditButton(boolean b) {
         printEditor.enableParagraphEditButton(b);
     }
-    public void setAddTextSelected ( boolean b )
-    {
+
+    public void setAddTextSelected(boolean b) {
         printEditor.enableAddTextButton(b);
     }
-    public void setScaleText ( int i )
-    {
+
+    public void setScaleText(int i) {
         printEditor.setScaleText(i);
     }
-    public void setStatus3Text ( String s )
-    {
+
+    public void setStatus3Text(String s) {
         printEditor.setStatus3Text(s);
     }
-    public void setStatus2Text ( String s )
-    {
+
+    public void setStatus2Text(String s) {
         printEditor.setStatus2Text(s);
     }
-    public void setStatus1Text ( int currentPage, int totalPage )
-    {
+
+    public void setStatus1Text(int currentPage, int totalPage) {
         printEditor.setStatus1Text(currentPage, totalPage);
         pageList.setSelectedIndex(currentPage);
     }
-    public void updatePageNumber ( PCPageNumber pcPageNumber )
-    {
+
+    public void updatePageNumber(PCPageNumber pcPageNumber) {
         reportDocument.setPageNumberFormat(pcPageNumber);
     }
-    public void updateDataTime ( PCPageNumber pcPageNumber )
-    {
-        reportDocument.setDateTimeFormat ( pcPageNumber );
+
+    public void updateDataTime(PCPageNumber pcPageNumber) {
+        reportDocument.setDateTimeFormat(pcPageNumber);
     }
 
-    public static void disableDoubleBuffering(Component c)
-	{
-    	RepaintManager currentManager = RepaintManager.currentManager(c);
-    	currentManager.setDoubleBufferingEnabled(false);
-  	}
+    public static void disableDoubleBuffering(Component c) {
+        RepaintManager currentManager = RepaintManager.currentManager(c);
+        currentManager.setDoubleBufferingEnabled(false);
+    }
 
-  	public static void enableDoubleBuffering(Component c)
-  	{
-    	RepaintManager currentManager = RepaintManager.currentManager(c);
-    	currentManager.setDoubleBufferingEnabled(true);
-  	}
+    public static void enableDoubleBuffering(Component c) {
+        RepaintManager currentManager = RepaintManager.currentManager(c);
+        currentManager.setDoubleBufferingEnabled(true);
+    }
 }

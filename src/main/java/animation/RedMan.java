@@ -1,25 +1,31 @@
 package animation;
 
-import java.awt.*;
-import javax.swing.*;
-import java.awt.image.*;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
 
 public class RedMan extends Animation {
-	
-	Image cover;
-	
-	public RedMan() {
-		java.net.URL imageurl = this.getClass().getResource("redman.gif");
-		cover = new ImageIcon(imageurl).getImage();
-		this.setSize(new Dimension(30,40));
-		this.setStartStatus(false);
-	}
-	
-	public void paintComponent(Graphics g) {
-		if(this.getStartStatus()) {
-			g.drawImage(cover,0,0,this.getParent());
-			this.setVisible(true);
-		}
-	}
-	
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -9216952431151231493L;
+    Image cover;
+
+    public RedMan() {
+        java.net.URL imageurl = getClass().getResource("redman.gif");
+        cover = new ImageIcon(imageurl).getImage();
+        this.setSize(new Dimension(30, 40));
+        setStartStatus(false);
+    }
+
+    public void paintComponent(Graphics g) {
+        if (getStartStatus()) {
+            g.drawImage(cover, 0, 0, getParent());
+            setVisible(true);
+        }
+    }
+
 }

@@ -1,37 +1,30 @@
 package designer;
 
-public class DesignPaneMoveCommand extends PropertyCommand
-{
+public class DesignPaneMoveCommand extends PropertyCommand {
     DesignPaneMemento memento;
     DesignPane designPane;
-    public DesignPaneMoveCommand(DesignPane designPane)
-    {
+
+    public DesignPaneMoveCommand(DesignPane designPane) {
         this.designPane = designPane;
         memento = new DesignPaneMemento(designPane);
     }
 
-    public boolean setValue(Object object) throws InvalidPropertyException
-    {
-        try
-        {
+    public boolean setValue(Object object) throws InvalidPropertyException {
+        try {
             DesignPaneMemento memento = (DesignPaneMemento) object;
             memento.restore();
             return true;
-        }
-        catch (Exception ex)
-        {
+        } catch (Exception ex) {
             System.out.println(ex);
             throw new InvalidPropertyException("Invalid Value");
         }
     }
 
-    public Object getValue()
-    {
+    public Object getValue() {
         return memento;
     }
 
-    public PropertyCommand createUndoCommand()
-    {
+    public PropertyCommand createUndoCommand() {
         DesignPaneMoveCommand undoCommand = new DesignPaneMoveCommand(designPane);
         undoCommand.oldValue = new DesignPaneMemento(designPane);
         return undoCommand;
@@ -39,8 +32,7 @@ public class DesignPaneMoveCommand extends PropertyCommand
 
 }
 
-class DesignPaneMemento
-{
+class DesignPaneMemento {
     private DesignPane designPane;
 
     private int x;
@@ -49,8 +41,7 @@ class DesignPaneMemento
     private int height;
     private String text;
 
-    public DesignPaneMemento(DesignPane designPane)
-    {
+    public DesignPaneMemento(DesignPane designPane) {
         this.designPane = designPane;
 
         x = designPane.getX();
@@ -60,8 +51,7 @@ class DesignPaneMemento
 
     }
 
-    public void restore()
-    {
+    public void restore() {
         designPane.setBounds(x, y, width, height);
         designPane.repaint();
     }

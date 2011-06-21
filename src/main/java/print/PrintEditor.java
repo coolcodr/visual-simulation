@@ -40,17 +40,29 @@ import javax.swing.text.AttributeSet;
 import javax.swing.text.StyleConstants;
 
 /**
- * <p>Title: </p>
- * <p>Description: </p>
- * <p>Copyright: Copyright (c) 2002</p>
- * <p>Company: </p>
+ * <p>
+ * Title:
+ * </p>
+ * <p>
+ * Description:
+ * </p>
+ * <p>
+ * Copyright: Copyright (c) 2002
+ * </p>
+ * <p>
+ * Company:
+ * </p>
+ * 
  * @author unascribed
  * @version 1.0
  */
 
-public class PrintEditor extends JFrame
-{
-    //GUI component
+public class PrintEditor extends JFrame {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -1569706397116283136L;
+    // GUI component
     private BorderLayout borderLayout1 = new BorderLayout();
     private JPanel jPanel1 = new JPanel();
     private JPanel jPanel2 = new JPanel();
@@ -60,42 +72,70 @@ public class PrintEditor extends JFrame
     private JToolBar jToolBar3 = new JToolBar();
     private BorderLayout borderLayout2 = new BorderLayout();
 
-    private JButton jButton1New ;//= new JButton(new ImageIcon(url1));
-    private JButton jButton1Open;//  = new JButton(new ImageIcon("print/images/Open16.gif"));
-    private JButton jButton1Save ;// =;//  new JButton(new ImageIcon("print/images/Save16.gif"));
-    private JButton jButton1PageSetup ;// = new JButton(new ImageIcon("print/images/PageSetup16.gif"));
-    private JToggleButton jButton1Preview ;// = new JToggleButton(new ImageIcon("print/images/PrintPreview16.gif"));
-    private JButton jButton1Print ;// = new JButton(new ImageIcon("print/images/Print16.gif"));
-    private JButton jButton1ZoomIn ;// = new JButton(new ImageIcon("print/images/ZoomIn16.gif"));
-    private JButton jButton1ZoomOut ;// = new JButton(new ImageIcon("print/images/ZoomOut16.gif"));
-    private JMenuItem jMenuItem1 ;// = new JMenuItem(new ImageIcon("print/images/New16.gif"));
-    private JMenuItem jMenuItem2 ;// = new JMenuItem(new ImageIcon("print/images/Open16.gif"));
-    private JMenuItem jMenuItem3 ;// = new JMenuItem(new ImageIcon("print/images/Blank16.gif"));
-    private JMenuItem jMenuItem5 ;// = new JMenuItem(new ImageIcon("print/images/Save16.gif"));
-    private JMenuItem jMenuItem6 ;// = new JMenuItem(new ImageIcon("print/images/Blank16.gif"));
-    private JMenuItem jMenuItem8 ;// = new JMenuItem(new ImageIcon("print/images/PageSetup16.gif"));
-    private JMenuItem jMenuItem9 ;// = new JMenuItem(new ImageIcon("print/images/PrintPreview16.gif"));
-    private JMenuItem jMenuItem10 ;// = new JMenuItem(new ImageIcon("print/images/Print16.gif"));
-    private JMenuItem jMenuItem4 ;// = new JMenuItem(new ImageIcon("print/images/Blank16.gif"));
+    private JButton jButton1New;// = new JButton(new ImageIcon(url1));
+    private JButton jButton1Open;// = new JButton(new
+                                 // ImageIcon("print/images/Open16.gif"));
+    private JButton jButton1Save;// =;// new JButton(new
+                                 // ImageIcon("print/images/Save16.gif"));
+    private JButton jButton1PageSetup;// = new JButton(new
+                                      // ImageIcon("print/images/PageSetup16.gif"));
+    private JToggleButton jButton1Preview;// = new JToggleButton(new
+                                          // ImageIcon("print/images/PrintPreview16.gif"));
+    private JButton jButton1Print;// = new JButton(new
+                                  // ImageIcon("print/images/Print16.gif"));
+    private JButton jButton1ZoomIn;// = new JButton(new
+                                   // ImageIcon("print/images/ZoomIn16.gif"));
+    private JButton jButton1ZoomOut;// = new JButton(new
+                                    // ImageIcon("print/images/ZoomOut16.gif"));
+    private JMenuItem jMenuItem1;// = new JMenuItem(new
+                                 // ImageIcon("print/images/New16.gif"));
+    private JMenuItem jMenuItem2;// = new JMenuItem(new
+                                 // ImageIcon("print/images/Open16.gif"));
+    private JMenuItem jMenuItem3;// = new JMenuItem(new
+                                 // ImageIcon("print/images/Blank16.gif"));
+    private JMenuItem jMenuItem5;// = new JMenuItem(new
+                                 // ImageIcon("print/images/Save16.gif"));
+    private JMenuItem jMenuItem6;// = new JMenuItem(new
+                                 // ImageIcon("print/images/Blank16.gif"));
+    private JMenuItem jMenuItem8;// = new JMenuItem(new
+                                 // ImageIcon("print/images/PageSetup16.gif"));
+    private JMenuItem jMenuItem9;// = new JMenuItem(new
+                                 // ImageIcon("print/images/PrintPreview16.gif"));
+    private JMenuItem jMenuItem10;// = new JMenuItem(new
+                                  // ImageIcon("print/images/Print16.gif"));
+    private JMenuItem jMenuItem4;// = new JMenuItem(new
+                                 // ImageIcon("print/images/Blank16.gif"));
     private JPanel jPanel3 = new JPanel();
-    private JToggleButton jButton2AlignLeft;//  = new JToggleButton(new ImageIcon("print/images/AlignLeft16.gif"));
+    private JToggleButton jButton2AlignLeft;// = new JToggleButton(new
+                                            // ImageIcon("print/images/AlignLeft16.gif"));
     private JToolBar jToolBar2 = new JToolBar();
     private BorderLayout borderLayout3 = new BorderLayout();
     private JSplitPane jSplitPane1 = new JSplitPane();
     private JComboBox jComboBox1 = new JComboBox();
-    private JToggleButton jButton2AlignCenter;//  = new JToggleButton(new ImageIcon("print/images/AlignCenter16.gif"));
-    private JToggleButton jButton2AlignRight;//  = new JToggleButton(new ImageIcon("print/images/AlignRight16.gif"));
-    private JToggleButton jButton2AlignJustify;//  = new JToggleButton(new ImageIcon("print/images/AlignJustify16.gif"));
+    private JToggleButton jButton2AlignCenter;// = new JToggleButton(new
+                                              // ImageIcon("print/images/AlignCenter16.gif"));
+    private JToggleButton jButton2AlignRight;// = new JToggleButton(new
+                                             // ImageIcon("print/images/AlignRight16.gif"));
+    private JToggleButton jButton2AlignJustify;// = new JToggleButton(new
+                                               // ImageIcon("print/images/AlignJustify16.gif"));
     private JComboBox jComboBox2Font = new JComboBox();
     private JComboBox jComboBox2Size = new JComboBox();
-    private JToggleButton jButton2Bold;//  = new JToggleButton(new ImageIcon("print/images/Bold16.gif"));
-    private JToggleButton jButton2Italic;//  = new JToggleButton(new ImageIcon("print/images/Italic16.gif"));
-    private JToggleButton jButton2Underline;//  = new JToggleButton(new ImageIcon("print/images/Underline16.gif"));
-    private JToggleButton jButton2Text;//  = new JToggleButton(new ImageIcon("print/images/Text16.gif"));
-    private JButton jButtonCenter;//  = new JButton(new ImageIcon("print/images/GraphJusCenter16.gif"));
-    private JButton jButtonFitHoz;//  = new JButton(new ImageIcon("print/images/GraphJusHorizontal16.gif"));
-    private JButton jButtonFitVer;//  = new JButton(new ImageIcon("print/images/GraphJusVertical16.gif"));
-    private JButton jButtonDelete;//  = new JButton(new ImageIcon("print/images/Delete16.gif"));
+    private JToggleButton jButton2Bold;// = new JToggleButton(new
+                                       // ImageIcon("print/images/Bold16.gif"));
+    private JToggleButton jButton2Italic;// = new JToggleButton(new
+                                         // ImageIcon("print/images/Italic16.gif"));
+    private JToggleButton jButton2Underline;// = new JToggleButton(new
+                                            // ImageIcon("print/images/Underline16.gif"));
+    private JToggleButton jButton2Text;// = new JToggleButton(new
+                                       // ImageIcon("print/images/Text16.gif"));
+    private JButton jButtonCenter;// = new JButton(new
+                                  // ImageIcon("print/images/GraphJusCenter16.gif"));
+    private JButton jButtonFitHoz;// = new JButton(new
+                                  // ImageIcon("print/images/GraphJusHorizontal16.gif"));
+    private JButton jButtonFitVer;// = new JButton(new
+                                  // ImageIcon("print/images/GraphJusVertical16.gif"));
+    private JButton jButtonDelete;// = new JButton(new
+                                  // ImageIcon("print/images/Delete16.gif"));
     private JButton jButton1 = new JButton();
     private JMenu jMenu2 = new JMenu();
     private JMenuItem jMenuItem11 = new JMenuItem();
@@ -118,7 +158,7 @@ public class PrintEditor extends JFrame
     private JComboBox jComboBox2Scale = new JComboBox();
     private JScrollPane jScrollPane = new JScrollPane();
 
-    //Printing Control Object
+    // Printing Control Object
     private DialogHeaderFooter dialogPageNumber;
     private DialogMultiPage dialogMultiPage;
 
@@ -138,7 +178,8 @@ public class PrintEditor extends JFrame
     private JPanel jPanel4 = new JPanel();
     private BorderLayout borderLayout5 = new BorderLayout();
     private JScrollPane jScrollPane1 = new JScrollPane();
-    private JMenuItem jMenuItem22;//  = new JMenuItem(new ImageIcon("print/images/Blank16.gif"));
+    private JMenuItem jMenuItem22;// = new JMenuItem(new
+                                  // ImageIcon("print/images/Blank16.gif"));
     private JPanel jPanel5 = new JPanel();
     private JMenu jMenu5 = new JMenu();
     private JMenuItem jMenuItem24 = new JMenuItem();
@@ -152,58 +193,61 @@ public class PrintEditor extends JFrame
     BorderLayout borderLayout6 = new BorderLayout();
     JScrollPane jScrollPane2 = new JScrollPane();
     private JList pageList = new JList(new DefaultListModel());
-  JMenuBar jMenuViewer = new JMenuBar();
-  JMenu jMenu7 = new JMenu();
-  JMenu jMenu8 = new JMenu();
-  JMenuItem jMenuItem28 = new JMenuItem();
-  JMenuItem jMenuItem29 = new JMenuItem();
-  JMenuItem jMenuItem30 = new JMenuItem();
-  JMenuItem jMenuItem31 = new JMenuItem();
-  JMenuItem jMenuItem32 = new JMenuItem();
-  JMenuItem jMenuItem33 = new JMenuItem();
-  JMenuItem jMenuItem34 = new JMenuItem();
-  JMenuItem jMenuItem35 = new JMenuItem();
-  JMenuItem jMenuItem36 = new JMenuItem();
-  JMenuItem jMenuItem37 = new JMenuItem();
-  JMenuItem jMenuItem38 = new JMenuItem();
-  JMenuItem jMenuItem39 = new JMenuItem();
-  JButton jButton4;// = new JButton(new ImageIcon("print/images/Print16.gif"));
-  JButton jButton5;//  = new JButton(new ImageIcon("print/images/ZoomIn16.gif"));
-  JButton jButton6;//  = new JButton(new ImageIcon("print/images/ZoomOut16.gif"));
+    JMenuBar jMenuViewer = new JMenuBar();
+    JMenu jMenu7 = new JMenu();
+    JMenu jMenu8 = new JMenu();
+    JMenuItem jMenuItem28 = new JMenuItem();
+    JMenuItem jMenuItem29 = new JMenuItem();
+    JMenuItem jMenuItem30 = new JMenuItem();
+    JMenuItem jMenuItem31 = new JMenuItem();
+    JMenuItem jMenuItem32 = new JMenuItem();
+    JMenuItem jMenuItem33 = new JMenuItem();
+    JMenuItem jMenuItem34 = new JMenuItem();
+    JMenuItem jMenuItem35 = new JMenuItem();
+    JMenuItem jMenuItem36 = new JMenuItem();
+    JMenuItem jMenuItem37 = new JMenuItem();
+    JMenuItem jMenuItem38 = new JMenuItem();
+    JMenuItem jMenuItem39 = new JMenuItem();
+    JButton jButton4;// = new JButton(new
+                     // ImageIcon("print/images/Print16.gif"));
+    JButton jButton5;// = new JButton(new
+                     // ImageIcon("print/images/ZoomIn16.gif"));
+    JButton jButton6;// = new JButton(new
+                     // ImageIcon("print/images/ZoomOut16.gif"));
 
-    public PrintEditor()
-    {
+    public PrintEditor() {
         try {
             jbInit();
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        //addPage( new ObjectComponent(new ObjectTest1()) );
-        setEditMode ();
+        // addPage( new ObjectComponent(new ObjectTest1()) );
+        setEditMode();
     }
-    public PrintEditor( Component component )
-    {
+
+    public PrintEditor(Component component) {
         this();
-        addPage( new ObjectComponent(component) );
-        //addPage( component) ;
+        addPage(new ObjectComponent(component));
+        // addPage( component) ;
     }
-    public PrintEditor( Component[] component )
-    {
+
+    public PrintEditor(Component[] component) {
         this();
-        for ( int i = 0 ; i < component.length ; i ++ )
-            addPage ( new ObjectComponent(component[i]) );
+        for (int i = 0; i < component.length; i++) {
+            addPage(new ObjectComponent(component[i]));
+        }
     }
-    public PrintEditor ( ReportDocument reportDocument, boolean readOnly )
-    {
+
+    public PrintEditor(ReportDocument reportDocument, boolean readOnly) {
         this();
-        //addPage( new ObjectComponent(new ObjectTest1()) );
+        // addPage( new ObjectComponent(new ObjectTest1()) );
         controlMainEditor.load(reportDocument);
-        if ( readOnly )
-            setViewMode ();
+        if (readOnly) {
+            setViewMode();
+        }
     }
-    private void setViewMode ()
-    {
+
+    private void setViewMode() {
         jToolBar1.setVisible(false);
         jToolBar2.setVisible(false);
 
@@ -215,13 +259,15 @@ public class PrintEditor extends JFrame
         jButton1Preview.setSelected(true);
         jButton1Preview_actionPerformed(null);
         controlMainEditor.setPreviewScale(1);
-        this.setTitle("Report Viewer");
-        this.setSize( (int)controlMainEditor.getReportDocument().getPageFormat().getWidth() + 200, this.getHeight());
-        this.setJMenuBar(jMenuViewer);
+        setTitle("Report Viewer");
+        this.setSize((int) controlMainEditor.getReportDocument().getPageFormat().getWidth() + 200, getHeight());
+        setJMenuBar(jMenuViewer);
     }
-    private void setEditMode ()
-    {
-        //this.setSize( (int) controlMainEditor.getReportDocument().getPageFormat().getWidth() + 200, this.getHeight());
+
+    private void setEditMode() {
+        // this.setSize( (int)
+        // controlMainEditor.getReportDocument().getPageFormat().getWidth() +
+        // 200, this.getHeight());
         jToolBar1.setVisible(true);
         jToolBar2.setVisible(true);
         jPanel1.add(jToolBar1, BorderLayout.NORTH);
@@ -230,13 +276,13 @@ public class PrintEditor extends JFrame
         jPanel2.setVisible(true);
         jButton1Preview.setSelected(false);
         jButton1Preview_actionPerformed(null);
-        this.setTitle("Report Editor");
-        this.setJMenuBar(jMenuEditor);
+        setTitle("Report Editor");
+        setJMenuBar(jMenuEditor);
         jPanel3.updateUI();
         jPanel3.repaint();
     }
-    private void jbInit() throws Exception
-    {
+
+    private void jbInit() throws Exception {
         URL url;
         url = PrintEditor.class.getResource("images/New16.gif");
         jButton1New = new JButton(new ImageIcon(url));
@@ -305,19 +351,17 @@ public class PrintEditor extends JFrame
         url = PrintEditor.class.getResource("images/ZoomOut16.gif");
         jButton6 = new JButton(new ImageIcon(url));
 
+        // IAMGE INSITIALEIZED
+        border1 = BorderFactory.createLineBorder(Color.lightGray, 1);
+        this.setBounds(0, 0, 800, 600);
+        this.setLocation((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() - getWidth()) / 2, (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() - getHeight()) / 2);
 
-        //IAMGE INSITIALEIZED
-        border1 = BorderFactory.createLineBorder(Color.lightGray,1);
-        this.setBounds(0,0,800,600);
-        this.setLocation((int)(Toolkit.getDefaultToolkit().getScreenSize().getWidth() - this.getWidth())/2,
-                         (int)(Toolkit.getDefaultToolkit().getScreenSize().getHeight() - this.getHeight())/2);
+        setTitle("Print Editor");
 
-        this.setTitle("Print Editor");
-
-        //GUI Component
-        this.getContentPane().setLayout(borderLayout1);
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        this.setJMenuBar(jMenuEditor);
+        // GUI Component
+        getContentPane().setLayout(borderLayout1);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setJMenuBar(jMenuEditor);
         jMenu1.setFont(new java.awt.Font("Dialog", 0, 12));
         jMenu1.setText("File");
         jPanel1.setLayout(borderLayout2);
@@ -327,16 +371,16 @@ public class PrintEditor extends JFrame
         jMenuItem1.addActionListener(new PrintEditor_jMenuItem1_actionAdapter(this));
         jMenuItem2.setFont(new java.awt.Font("Dialog", 0, 12));
         jMenuItem2.setText("Open...");
-    jMenuItem2.addActionListener(new PrintEditor_jMenuItem2_actionAdapter(this));
+        jMenuItem2.addActionListener(new PrintEditor_jMenuItem2_actionAdapter(this));
         jMenuItem3.setFont(new java.awt.Font("Dialog", 0, 12));
         jMenuItem3.setText("Close");
-    jMenuItem3.addActionListener(new PrintEditor_jMenuItem3_actionAdapter(this));
+        jMenuItem3.addActionListener(new PrintEditor_jMenuItem3_actionAdapter(this));
         jMenuItem5.setFont(new java.awt.Font("Dialog", 0, 12));
         jMenuItem5.setText("Save");
-    jMenuItem5.addActionListener(new PrintEditor_jMenuItem5_actionAdapter(this));
+        jMenuItem5.addActionListener(new PrintEditor_jMenuItem5_actionAdapter(this));
         jMenuItem6.setFont(new java.awt.Font("Dialog", 0, 12));
         jMenuItem6.setText("Save as...");
-    jMenuItem6.addActionListener(new PrintEditor_jMenuItem6_actionAdapter(this));
+        jMenuItem6.addActionListener(new PrintEditor_jMenuItem6_actionAdapter(this));
         jMenuItem8.setFont(new java.awt.Font("Dialog", 0, 12));
         jMenuItem8.setText("Page Setup...");
         jMenuItem8.addActionListener(new PrintEditor_jMenuItem8_actionAdapter(this));
@@ -414,7 +458,7 @@ public class PrintEditor extends JFrame
         jButton1.setFont(new java.awt.Font("Dialog", 0, 12));
         jButton1.setFocusPainted(false);
         jButton1.setText("Close");
-    jButton1.addActionListener(new PrintEditor_jButton1_actionAdapter(this));
+        jButton1.addActionListener(new PrintEditor_jButton1_actionAdapter(this));
         jMenu2.setFont(new java.awt.Font("Dialog", 0, 12));
         jMenu2.setText("Edit");
         jMenuItem11.setFont(new java.awt.Font("Dialog", 0, 12));
@@ -444,11 +488,11 @@ public class PrintEditor extends JFrame
         jMenuItem17.setEnabled(false);
         jMenuItem17.setFont(new java.awt.Font("Dialog", 0, 12));
         jMenuItem17.setText("Zoom In");
-    jMenuItem17.addActionListener(new PrintEditor_jMenuItem17_actionAdapter(this));
+        jMenuItem17.addActionListener(new PrintEditor_jMenuItem17_actionAdapter(this));
         jMenuItem18.setEnabled(false);
         jMenuItem18.setFont(new java.awt.Font("Dialog", 0, 12));
         jMenuItem18.setText("Zoom out");
-    jMenuItem18.addActionListener(new PrintEditor_jMenuItem18_actionAdapter(this));
+        jMenuItem18.addActionListener(new PrintEditor_jMenuItem18_actionAdapter(this));
         jMenuItem19.setEnabled(false);
         jMenuItem19.setFont(new java.awt.Font("Dialog", 0, 12));
         jMenuItem19.setText("Page Width");
@@ -484,9 +528,9 @@ public class PrintEditor extends JFrame
         jButton1New.setFocusPainted(false);
         jButton1New.addActionListener(new PrintEditor_jButton1New_actionAdapter(this));
         jButton1Open.setFocusPainted(false);
-    jButton1Open.addActionListener(new PrintEditor_jButton1Open_actionAdapter(this));
+        jButton1Open.addActionListener(new PrintEditor_jButton1Open_actionAdapter(this));
         jButton1Save.setFocusPainted(false);
-    jButton1Save.addActionListener(new PrintEditor_jButton1Save_actionAdapter(this));
+        jButton1Save.addActionListener(new PrintEditor_jButton1Save_actionAdapter(this));
         jButton1PageSetup.setFocusPainted(false);
         jButton1PageSetup.addActionListener(new PrintEditor_jButton1PageSetup_actionAdapter(this));
         jButton1Preview.setFocusPainted(false);
@@ -523,12 +567,12 @@ public class PrintEditor extends JFrame
         jButton2.setText("Test");
         jButton2.addActionListener(new PrintEditor_jButton2_actionAdapter(this));
         jPanel4.setLayout(borderLayout5);
-        //jScrollPane1.setBorder(BorderFactory.createEtchedBorder());
+        // jScrollPane1.setBorder(BorderFactory.createEtchedBorder());
         jScrollPane1.setBorder(BorderFactory.createLoweredBevelBorder());
-        //jScrollPane1.setBorder(null);
+        // jScrollPane1.setBorder(null);
         jPanel4.setVisible(false);
         jScrollPane.setName("");
-    jScrollPane.setBorder(BorderFactory.createLoweredBevelBorder());
+        jScrollPane.setBorder(BorderFactory.createLoweredBevelBorder());
         jMenuItem22.setFont(new java.awt.Font("Dialog", 0, 12));
         jMenuItem22.setText("Multipage Setup");
         jMenuItem22.addActionListener(new PrintEditor_jMenuItem22_actionAdapter(this));
@@ -562,68 +606,68 @@ public class PrintEditor extends JFrame
         jButton3.setBounds(new Rectangle(438, 5, 64, 23));
         jButton3.setVisible(false);
         jPanel5.setBackground(Color.white);
-    jPanel5.setBorder(null);
+        jPanel5.setBorder(null);
         jPanel5.setLayout(borderLayout6);
         pageList.setBorder(null);
-    pageList.addMouseListener(new PrintEditor_pageList_mouseAdapter(this));
+        pageList.addMouseListener(new PrintEditor_pageList_mouseAdapter(this));
         jScrollPane2.setBorder(BorderFactory.createLoweredBevelBorder());
         jSplitPane1.setBorder(null);
-    jSplitPane1.setDividerSize(5);
-    jMenu7.setText("File");
-    jMenu8.setText("View");
-    jMenuItem28.setText("Zoom In");
-    jMenuItem28.addActionListener(new PrintEditor_jMenuItem28_actionAdapter(this));
-    jMenuItem29.setText("Zoom Out");
-    jMenuItem29.addActionListener(new PrintEditor_jMenuItem29_actionAdapter(this));
-    jMenuItem30.setText("Page Width");
-    jMenuItem30.addActionListener(new PrintEditor_jMenuItem30_actionAdapter(this));
-    jMenuItem31.setText("Whole Page");
-    jMenuItem31.addActionListener(new PrintEditor_jMenuItem31_actionAdapter(this));
-    jMenuItem32.setText("Two Page");
-    jMenuItem32.addActionListener(new PrintEditor_jMenuItem32_actionAdapter(this));
-    jMenuItem33.setText("Save as...");
-    jMenuItem33.addActionListener(new PrintEditor_jMenuItem33_actionAdapter(this));
-    jMenuItem34.setText("Page Setup");
-    jMenuItem34.addActionListener(new PrintEditor_jMenuItem34_actionAdapter(this));
-    jMenuItem35.setText("Multipage Setup");
-    jMenuItem35.addActionListener(new PrintEditor_jMenuItem35_actionAdapter(this));
-    jMenuItem36.setText("Print...");
-    jMenuItem36.addActionListener(new PrintEditor_jMenuItem36_actionAdapter(this));
-    jMenuItem37.setText("Exit");
-    jMenuItem37.addActionListener(new PrintEditor_jMenuItem37_actionAdapter(this));
-    jMenuItem38.setText("Edit");
+        jSplitPane1.setDividerSize(5);
+        jMenu7.setText("File");
+        jMenu8.setText("View");
+        jMenuItem28.setText("Zoom In");
+        jMenuItem28.addActionListener(new PrintEditor_jMenuItem28_actionAdapter(this));
+        jMenuItem29.setText("Zoom Out");
+        jMenuItem29.addActionListener(new PrintEditor_jMenuItem29_actionAdapter(this));
+        jMenuItem30.setText("Page Width");
+        jMenuItem30.addActionListener(new PrintEditor_jMenuItem30_actionAdapter(this));
+        jMenuItem31.setText("Whole Page");
+        jMenuItem31.addActionListener(new PrintEditor_jMenuItem31_actionAdapter(this));
+        jMenuItem32.setText("Two Page");
+        jMenuItem32.addActionListener(new PrintEditor_jMenuItem32_actionAdapter(this));
+        jMenuItem33.setText("Save as...");
+        jMenuItem33.addActionListener(new PrintEditor_jMenuItem33_actionAdapter(this));
+        jMenuItem34.setText("Page Setup");
+        jMenuItem34.addActionListener(new PrintEditor_jMenuItem34_actionAdapter(this));
+        jMenuItem35.setText("Multipage Setup");
+        jMenuItem35.addActionListener(new PrintEditor_jMenuItem35_actionAdapter(this));
+        jMenuItem36.setText("Print...");
+        jMenuItem36.addActionListener(new PrintEditor_jMenuItem36_actionAdapter(this));
+        jMenuItem37.setText("Exit");
+        jMenuItem37.addActionListener(new PrintEditor_jMenuItem37_actionAdapter(this));
+        jMenuItem38.setText("Edit");
         jMenuItem38.addActionListener(new PrintEditor_jMenuItem38_actionAdapter(this));
-    jMenuItem39.setText("Original Size");
-    jMenuItem39.addActionListener(new PrintEditor_jMenuItem39_actionAdapter(this));
-    jButton4.setBounds(new Rectangle(8, 4, 24, 24));
-    jButton4.setText("");
-    jButton4.addActionListener(new PrintEditor_jButton4_actionAdapter(this));
-    jButton5.setBounds(new Rectangle(42, 4, 24, 24));
-    jButton5.setText("");
-    jButton5.addActionListener(new PrintEditor_jButton5_actionAdapter(this));
-    jButton6.setBounds(new Rectangle(68, 4, 24, 24));
-    jButton6.setText("");
-    jButton6.addActionListener(new PrintEditor_jButton6_actionAdapter(this));
-    this.getContentPane().add(jPanel1, BorderLayout.NORTH);
-        this.getContentPane().add(jPanel2, BorderLayout.SOUTH);
-        jPanel2.add(jLabelStatus1,  BorderLayout.WEST);
+        jMenuItem39.setText("Original Size");
+        jMenuItem39.addActionListener(new PrintEditor_jMenuItem39_actionAdapter(this));
+        jButton4.setBounds(new Rectangle(8, 4, 24, 24));
+        jButton4.setText("");
+        jButton4.addActionListener(new PrintEditor_jButton4_actionAdapter(this));
+        jButton5.setBounds(new Rectangle(42, 4, 24, 24));
+        jButton5.setText("");
+        jButton5.addActionListener(new PrintEditor_jButton5_actionAdapter(this));
+        jButton6.setBounds(new Rectangle(68, 4, 24, 24));
+        jButton6.setText("");
+        jButton6.addActionListener(new PrintEditor_jButton6_actionAdapter(this));
+        getContentPane().add(jPanel1, BorderLayout.NORTH);
+        getContentPane().add(jPanel2, BorderLayout.SOUTH);
+        jPanel2.add(jLabelStatus1, BorderLayout.WEST);
         jPanel2.add(jLabelStatus3, BorderLayout.EAST);
         jPanel2.add(jLabelStatus2, BorderLayout.CENTER);
         jPanel3.add(jToolBar2, BorderLayout.NORTH);
-        jPanel3.add(jSplitPane1,  BorderLayout.CENTER);
+        jPanel3.add(jSplitPane1, BorderLayout.CENTER);
         jMenuEditor.add(jMenu1);
         jMenuEditor.add(jMenu2);
         jMenuEditor.add(jMenu3);
         jMenuEditor.add(jMenu4);
-    jToolBar3.add(jButton4, null);
-    jToolBar3.add(jButton5, null);
-    jToolBar3.add(jButton6, null);
+        jToolBar3.add(jButton4, null);
+        jToolBar3.add(jButton5, null);
+        jToolBar3.add(jButton6, null);
         jToolBar1.setLayout(null);
-        jToolBar1.setPreferredSize(new Dimension( 30, 30) );
+        jToolBar1.setPreferredSize(new Dimension(30, 30));
         jToolBar1.add(jButton1New, null);
 
         jToolBar3.setLayout(null);
-        jToolBar3.setPreferredSize(new Dimension( 30, 30) );
+        jToolBar3.setPreferredSize(new Dimension(30, 30));
 
         jButton1New.setBounds(new Rectangle(8, 4, 24, 24));
         jButton1Open.setBounds(34, 4, 24, 24);
@@ -638,7 +682,6 @@ public class PrintEditor extends JFrame
         jToolBar1.add(jButton1Open, null);
         jToolBar1.add(jButton1Save, null);
         jToolBar1.add(jButton1PageSetup, null);
-
 
         jToolBar1.add(jButton1Preview, null);
         jToolBar1.add(jButton1Print, null);
@@ -707,8 +750,8 @@ public class PrintEditor extends JFrame
         jSplitPane1.add(jPanel5, JSplitPane.LEFT);
         jPanel5.add(jScrollPane2, BorderLayout.CENTER);
         jScrollPane2.getViewport().add(pageList, null);
-        this.getContentPane().add(jPanel4, BorderLayout.CENTER);
-        this.getContentPane().add(jPanel3,  BorderLayout.CENTER);
+        getContentPane().add(jPanel4, BorderLayout.CENTER);
+        getContentPane().add(jPanel3, BorderLayout.CENTER);
         jPanel4.add(jScrollPane1, BorderLayout.CENTER);
         jMenu5.add(jMenuItem24);
         jMenu5.add(jMenuItem26);
@@ -716,260 +759,257 @@ public class PrintEditor extends JFrame
         jMenu6.add(jMenuItem25);
         jMenu6.add(jMenuItem27);
         jMenu6.add(jCheckBoxMenuItem4);
-    jMenuViewer.add(jMenu7);
-    jMenuViewer.add(jMenu8);
-    jMenu8.add(jMenuItem28);
-    jMenu8.add(jMenuItem29);
-    jMenu8.add(jMenuItem30);
-    jMenu8.add(jMenuItem31);
-    jMenu8.add(jMenuItem32);
-    jMenu8.add(jMenuItem39);
-    jMenu7.add(jMenuItem38);
-    jMenu7.add(jMenuItem33);
-    jMenu7.addSeparator();
-    jMenu7.add(jMenuItem34);
-    jMenu7.add(jMenuItem35);
-    jMenu7.add(jMenuItem36);
-    jMenu7.addSeparator();
-    jMenu7.add(jMenuItem37);
+        jMenuViewer.add(jMenu7);
+        jMenuViewer.add(jMenu8);
+        jMenu8.add(jMenuItem28);
+        jMenu8.add(jMenuItem29);
+        jMenu8.add(jMenuItem30);
+        jMenu8.add(jMenuItem31);
+        jMenu8.add(jMenuItem32);
+        jMenu8.add(jMenuItem39);
+        jMenu7.add(jMenuItem38);
+        jMenu7.add(jMenuItem33);
+        jMenu7.addSeparator();
+        jMenu7.add(jMenuItem34);
+        jMenu7.add(jMenuItem35);
+        jMenu7.add(jMenuItem36);
+        jMenu7.addSeparator();
+        jMenu7.add(jMenuItem37);
         jSplitPane1.setDividerLocation(140);
         jScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         jScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
-        jScrollPane1.addComponentListener( new ComponentListener () {
-            public void componentHidden ( ComponentEvent event ){}
-            public void componentShown ( ComponentEvent event ){}
-            public void componentMoved ( ComponentEvent event ){}
-            public void componentResized ( ComponentEvent event ){
-                //controlMainEditor.refreshPreview();
+        jScrollPane1.addComponentListener(new ComponentListener() {
+            public void componentHidden(ComponentEvent event) {
+            }
+
+            public void componentShown(ComponentEvent event) {
+            }
+
+            public void componentMoved(ComponentEvent event) {
+            }
+
+            public void componentResized(ComponentEvent event) {
+                // controlMainEditor.refreshPreview();
             }
         });
         GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
         Font fontList[] = env.getAllFonts();
-        for (int i = 0; i < fontList.length; i++)
-        {
+        for (int i = 0; i < fontList.length; i++) {
             jComboBox2Font.addItem(fontList[i].getFontName());
         }
-        for (int i = 8; i <= 18; i += 2)
+        for (int i = 8; i <= 18; i += 2) {
             jComboBox2Size.addItem(String.valueOf(i));
-        for (int i = 24; i <= 36; i += 6)
+        }
+        for (int i = 24; i <= 36; i += 6) {
             jComboBox2Size.addItem(String.valueOf(i));
-        for (int i = 48; i <= 72; i += 12)
+        }
+        for (int i = 48; i <= 72; i += 12) {
             jComboBox2Size.addItem(String.valueOf(i));
+        }
 
-        for (int i = 25; i <= 200; i += 25)
-        {
-            jComboBox2Scale.addItem(String.valueOf(i)+"%");
-            jComboBox1.addItem(String.valueOf(i)+"%");
+        for (int i = 25; i <= 200; i += 25) {
+            jComboBox2Scale.addItem(String.valueOf(i) + "%");
+            jComboBox1.addItem(String.valueOf(i) + "%");
         }/*
-        for (int i = 200; i <= 300; i =+ 50)
-        {
-            jComboBox2Scale.addItem(String.valueOf(i));
-            jComboBox1.addItem(String.valueOf(i));
-        }*/
-        //jComboBox2Font.setEditable(true);
+          * for (int i = 200; i <= 300; i =+ 50) {
+          * jComboBox2Scale.addItem(String.valueOf(i));
+          * jComboBox1.addItem(String.valueOf(i)); }
+          */
+        // jComboBox2Font.setEditable(true);
 
         jComboBox2Size.setSelectedIndex(2);
         jComboBox2Scale.setSelectedIndex(3);
         jComboBox1.setSelectedIndex(3);
         /*
-        for ( int i = 0 ; i < jComboBox2Font.getItemCount() ; i++ )
-        {
-            jComboBox2Font.setSelectedIndex(0);
-            if ( (jComboBox2Font.getItemAt(i).toString().compareTo("dialog.plain") == 0 ))
-            {
-                jComboBox2Font.setSelectedIndex(i);
-                break;
-            }
-        }*/
-        jComboBox2Font.setSelectedItem("dialog.plain");//new JTextField().getFont().getFontName());
+         * for ( int i = 0 ; i < jComboBox2Font.getItemCount() ; i++ ) {
+         * jComboBox2Font.setSelectedIndex(0); if (
+         * (jComboBox2Font.getItemAt(i).toString().compareTo("dialog.plain") ==
+         * 0 )) { jComboBox2Font.setSelectedIndex(i); break; } }
+         */
+        jComboBox2Font.setSelectedItem("dialog.plain");// new
+                                                       // JTextField().getFont().getFontName());
         controlMainEditor = new ControlMainEditor(jScrollPane, jScrollPane1, this);
 
         dialogPageNumber = new DialogHeaderFooter(this);
-        //dialogMultiPage = new DialogMultiPage(this);
-        //dialogPageNumber.show();
+        // dialogMultiPage = new DialogMultiPage(this);
+        // dialogPageNumber.show();
         controlMainEditor.updatePageNumber(dialogPageNumber.getPageNumberFormat());
         controlMainEditor.updateDataTime(dialogPageNumber.getDateTimeFormat());
-        //Printing Object
+        // Printing Object
         setStatus3Text("Editing ");
         enableEditMenuItem(false);
     }
-    public void updateFormatingDialog ( PCPageNumber pageNumber, PCPageNumber dateTime )
-    {
+
+    public void updateFormatingDialog(PCPageNumber pageNumber, PCPageNumber dateTime) {
         dialogPageNumber.setPageNumberFormat(pageNumber);
         dialogPageNumber.setDateTimeFormat(dateTime);
     }
-    void jMenuItem1_actionPerformed(ActionEvent e)
-    {
+
+    void jMenuItem1_actionPerformed(ActionEvent e) {
         ObjectTest1 test1 = new ObjectTest1();
         controlMainEditor.addNewDiagram(new ObjectComponent(test1));
         controlMainEditor.refreshView();
     }
 
-    void jMenuItem10_actionPerformed(ActionEvent e)
-    {
+    void jMenuItem10_actionPerformed(ActionEvent e) {
         controlMainEditor.print();
         controlMainEditor.refreshView();
     }
 
-    void jMenuItem8_actionPerformed(ActionEvent e)
-    {
+    void jMenuItem8_actionPerformed(ActionEvent e) {
         controlMainEditor.pageSetup();
         controlMainEditor.refreshView();
     }
 
-    void jButton2Text_actionPerformed(ActionEvent e)
-    {
+    void jButton2Text_actionPerformed(ActionEvent e) {
         controlMainEditor.addParagraph();
     }
 
-    void jButton1New_actionPerformed(ActionEvent e)
-    {
-        addPage ( new ObjectComponent(new ObjectTest1()) );
+    void jButton1New_actionPerformed(ActionEvent e) {
+        addPage(new ObjectComponent(new ObjectTest1()));
     }
 
-    void jComboBox2Scale_itemStateChanged(ItemEvent e)
-    {
-        if(e.getStateChange() == ItemEvent.SELECTED )
-        {
+    void jComboBox2Scale_itemStateChanged(ItemEvent e) {
+        if (e.getStateChange() == ItemEvent.SELECTED) {
             int i = 0;
-            String s ;
-            if ( controlMainEditor != null )
-            {
+            String s;
+            if (controlMainEditor != null) {
                 s = (String) e.getItem();
-                if ( s.substring(s.length()-1, s.length()).compareTo("%") ==  0 )
-                    i = Integer.parseInt(s.substring( 0, s.length()-1));
-                else
+                if (s.substring(s.length() - 1, s.length()).compareTo("%") == 0) {
+                    i = Integer.parseInt(s.substring(0, s.length() - 1));
+                } else {
                     i = Integer.parseInt(s);
+                }
                 controlMainEditor.setDiagramScale(i);
             }
         }
     }
 
-    void jComboBox2Size_itemStateChanged(ItemEvent e)
-    {
-        int i = Integer.parseInt((String)e.getItem());
-        if ( controlMainEditor != null )
+    void jComboBox2Size_itemStateChanged(ItemEvent e) {
+        int i = Integer.parseInt((String) e.getItem());
+        if (controlMainEditor != null) {
             controlMainEditor.setFontSize(i);
+        }
     }
-    void jButton2Italic_actionPerformed(ActionEvent e)
-    {
+
+    void jButton2Italic_actionPerformed(ActionEvent e) {
         controlMainEditor.setItatic(jButton2Italic.isSelected());
     }
 
-    void jButton2Bold_actionPerformed(ActionEvent e)
-    {
+    void jButton2Bold_actionPerformed(ActionEvent e) {
         controlMainEditor.setBold(jButton2Bold.isSelected());
     }
 
-    void jButton2Underline_actionPerformed(ActionEvent e)
-    {
+    void jButton2Underline_actionPerformed(ActionEvent e) {
         controlMainEditor.setUnderLine(jButton2Underline.isSelected());
     }
 
-    void jComboBox2Font_itemStateChanged(ItemEvent e)
-    {
-        String s = (String)e.getItem();
-        if ( controlMainEditor != null )
-            controlMainEditor.setFont( s );
+    void jComboBox2Font_itemStateChanged(ItemEvent e) {
+        String s = (String) e.getItem();
+        if (controlMainEditor != null) {
+            controlMainEditor.setFont(s);
+        }
     }
 
-    void jButton2AlignRight_actionPerformed(ActionEvent e)
-    {
+    void jButton2AlignRight_actionPerformed(ActionEvent e) {
         controlMainEditor.setRightAlign(jButton2AlignRight.isSelected());
     }
 
-    void jButton2AlignCenter_actionPerformed(ActionEvent e)
-    {
+    void jButton2AlignCenter_actionPerformed(ActionEvent e) {
         controlMainEditor.setCenterAlign(jButton2AlignCenter.isSelected());
     }
 
-    void jButton2AlignJustify_actionPerformed(ActionEvent e)
-    {
+    void jButton2AlignJustify_actionPerformed(ActionEvent e) {
         controlMainEditor.setJustifyAlign(jButton2AlignJustify.isSelected());
     }
 
-    void jButton2AlignLeft_actionPerformed(ActionEvent e)
-    {
+    void jButton2AlignLeft_actionPerformed(ActionEvent e) {
         controlMainEditor.setLeftAlign(jButton2AlignLeft.isSelected());
     }
 
-    public void addPage ( ObjectComponent component )
-    {
+    public void addPage(ObjectComponent component) {
         controlMainEditor.addNewDiagram(component);
         enableEditMenuItem(true);
         controlMainEditor.refreshView();
     }
 
-    public void updateTextFormat ( AttributeSet attr )
-    {
-        //styledDocument.getCharacterElement(1).getAttributes().getAttribute(StyleConstants.Alignment) == new Integer(StyleConstants.ALIGN_LEFT) )
-        if ( String.valueOf(attr.getAttribute(StyleConstants.Bold)) == "true" )
+    public void updateTextFormat(AttributeSet attr) {
+        // styledDocument.getCharacterElement(1).getAttributes().getAttribute(StyleConstants.Alignment)
+        // == new Integer(StyleConstants.ALIGN_LEFT) )
+        if (String.valueOf(attr.getAttribute(StyleConstants.Bold)) == "true") {
             jButton2Bold.setSelected(true);
-        else
+        } else {
             jButton2Bold.setSelected(false);
-        if ( String.valueOf(attr.getAttribute(StyleConstants.Italic)) == "true" )
+        }
+        if (String.valueOf(attr.getAttribute(StyleConstants.Italic)) == "true") {
             jButton2Italic.setSelected(true);
-        else
+        } else {
             jButton2Italic.setSelected(false);
-        if ( String.valueOf(attr.getAttribute(StyleConstants.Underline)) == "true" )
+        }
+        if (String.valueOf(attr.getAttribute(StyleConstants.Underline)) == "true") {
             jButton2Underline.setSelected(true);
-        else
+        } else {
             jButton2Underline.setSelected(false);
+        }
 
         jComboBox2Size.setSelectedItem(String.valueOf(attr.getAttribute(StyleConstants.FontSize)));
         jComboBox2Font.setSelectedItem(String.valueOf(attr.getAttribute(StyleConstants.FontFamily)));
     }
-    public void updateParagraphFormat ( AttributeSet attr )
-    {
-        if ( String.valueOf(attr.getAttribute(StyleConstants.Alignment)).compareTo(String.valueOf(StyleConstants.ALIGN_LEFT)) == 0 )
+
+    public void updateParagraphFormat(AttributeSet attr) {
+        if (String.valueOf(attr.getAttribute(StyleConstants.Alignment)).compareTo(String.valueOf(StyleConstants.ALIGN_LEFT)) == 0) {
             jButton2AlignLeft.setSelected(true);
-        else
+        } else {
             jButton2AlignLeft.setSelected(false);
-        if ( String.valueOf(attr.getAttribute(StyleConstants.Alignment)).compareTo(String.valueOf(StyleConstants.ALIGN_RIGHT)) == 0 )
+        }
+        if (String.valueOf(attr.getAttribute(StyleConstants.Alignment)).compareTo(String.valueOf(StyleConstants.ALIGN_RIGHT)) == 0) {
             jButton2AlignRight.setSelected(true);
-        else
+        } else {
             jButton2AlignRight.setSelected(false);
-        if ( String.valueOf(attr.getAttribute(StyleConstants.Alignment)).compareTo(String.valueOf(StyleConstants.ALIGN_CENTER)) == 0 )
+        }
+        if (String.valueOf(attr.getAttribute(StyleConstants.Alignment)).compareTo(String.valueOf(StyleConstants.ALIGN_CENTER)) == 0) {
             jButton2AlignCenter.setSelected(true);
-        else
+        } else {
             jButton2AlignCenter.setSelected(false);
-        if ( String.valueOf(attr.getAttribute(StyleConstants.Alignment)).compareTo(String.valueOf(StyleConstants.ALIGN_JUSTIFIED)) == 0 )
+        }
+        if (String.valueOf(attr.getAttribute(StyleConstants.Alignment)).compareTo(String.valueOf(StyleConstants.ALIGN_JUSTIFIED)) == 0) {
             jButton2AlignJustify.setSelected(true);
-        else
+        } else {
             jButton2AlignJustify.setSelected(false);
-        //txtTemp.setText(String.valueOf(attr.getAttribute(StyleConstants.Alignment)));
+            // txtTemp.setText(String.valueOf(attr.getAttribute(StyleConstants.Alignment)));
+        }
     }
-    public void setFontFormat()
-    {
-        int i = Integer.parseInt((String)jComboBox2Size.getSelectedItem());
+
+    public void setFontFormat() {
+        int i = Integer.parseInt((String) jComboBox2Size.getSelectedItem());
         controlMainEditor.setFontSize(i);
         controlMainEditor.setItatic(jButton2Italic.isSelected());
         controlMainEditor.setBold(jButton2Bold.isSelected());
         controlMainEditor.setUnderLine(jButton2Underline.isSelected());
-        String s = (String)jComboBox2Font.getSelectedItem();
-        controlMainEditor.setFont( s );
+        String s = (String) jComboBox2Font.getSelectedItem();
+        controlMainEditor.setFont(s);
         controlMainEditor.setRightAlign(jButton2AlignRight.isSelected());
         controlMainEditor.setCenterAlign(jButton2AlignCenter.isSelected());
         controlMainEditor.setJustifyAlign(jButton2AlignJustify.isSelected());
         controlMainEditor.setLeftAlign(jButton2AlignLeft.isSelected());
     }
-    public void enableParagraphEditButton ( boolean b )
-    {
+
+    public void enableParagraphEditButton(boolean b) {
         jButtonFitHoz.setEnabled(b);
         jButtonFitVer.setEnabled(b);
         jButtonDelete.setEnabled(b);
     }
-    public void enableDiagramEditButton ( boolean b )
-    {
+
+    public void enableDiagramEditButton(boolean b) {
         jComboBox2Scale.setEnabled(b);
         jButtonCenter.setEnabled(b);
         jButtonFitHoz.setEnabled(b);
         jButtonFitVer.setEnabled(b);
         jButtonDelete.setEnabled(false);
     }
-    public void enableZoomButton ( boolean b )
-    {
+
+    public void enableZoomButton(boolean b) {
         jButton1ZoomIn.setEnabled(b);
         jButton1ZoomOut.setEnabled(b);
         jComboBox1.setEnabled(b);
@@ -979,82 +1019,75 @@ public class PrintEditor extends JFrame
         jMenuItem20.setEnabled(b);
         jMenuItem21.setEnabled(b);
     }
-    public JList getList ()
-    {
+
+    public JList getList() {
         return pageList;
     }
-    public void setScaleText ( int i )
-    {
-        jComboBox2Scale.setSelectedItem(String.valueOf(i)+"%");
+
+    public void setScaleText(int i) {
+        jComboBox2Scale.setSelectedItem(String.valueOf(i) + "%");
     }
-    public void setPreviewScaleText ( int i )
-    {
-        jComboBox1.setSelectedItem(String.valueOf(i)+"%");
+
+    public void setPreviewScaleText(int i) {
+        jComboBox1.setSelectedItem(String.valueOf(i) + "%");
     }
-    public void enableAddTextButton ( boolean b )
-    {
+
+    public void enableAddTextButton(boolean b) {
         jButton2Text.setSelected(b);
     }
-    public void enableEditMenuItem ( boolean b )
-    {
+
+    public void enableEditMenuItem(boolean b) {
         jMenu5.setEnabled(b);
         jMenu6.setEnabled(b);
         jMenuItem7.setEnabled(b);
     }
-    public void setStatus3Text ( String s )
-    {
+
+    public void setStatus3Text(String s) {
         jLabelStatus3.setText(s);
     }
-    public void setStatus2Text ( String s )
-    {
+
+    public void setStatus2Text(String s) {
         jLabelStatus2.setText(s);
     }
-    public void setStatus1Text ( int currentPage, int totalPage )
-    {
+
+    public void setStatus1Text(int currentPage, int totalPage) {
         this.currentPage = currentPage;
         this.totalPage = totalPage;
-        jLabelStatus1.setText(" Page " + ( currentPage + 1 ) + " of " + totalPage);
+        jLabelStatus1.setText(" Page " + (currentPage + 1) + " of " + totalPage);
     }
 
-    void jMenuItem7_actionPerformed(ActionEvent e)
-    {
+    void jMenuItem7_actionPerformed(ActionEvent e) {
         dialogPageNumber.showInitial();
         controlMainEditor.refreshView();
     }
 
-    void jButton1PageSetup_actionPerformed(ActionEvent e)
-    {
+    void jButton1PageSetup_actionPerformed(ActionEvent e) {
         controlMainEditor.pageSetup();
-        //controlMainEditor.refreshView();
+        // controlMainEditor.refreshView();
     }
 
-    void jButton1Print_actionPerformed(ActionEvent e)
-    {
+    void jButton1Print_actionPerformed(ActionEvent e) {
         controlMainEditor.print();
-        //controlMainEditor.refreshView();
+        // controlMainEditor.refreshView();
     }
 
-    void jButton2_actionPerformed(ActionEvent e)
-    {
+    void jButton2_actionPerformed(ActionEvent e) {
         controlMainEditor.editHeader();
     }
 
     void jButton1Preview_actionPerformed(ActionEvent e) {
-        if ( jButton1Preview.isSelected() )
-        {
+        if (jButton1Preview.isSelected()) {
             jPanel3.setVisible(false);
-            this.getContentPane().add(jPanel4,  BorderLayout.CENTER);
+            getContentPane().add(jPanel4, BorderLayout.CENTER);
             jPanel4.setBorder(null);
             controlMainEditor.refreshPreview();
             jPanel4.setVisible(true);
             enableZoomButton(true);
-            setPreviewScaleText( (int) (controlMainEditor.getPreviewScale() * 100) );
+            setPreviewScaleText((int) (controlMainEditor.getPreviewScale() * 100));
 
-        }
-        else
-        {
+        } else {
             jPanel4.setVisible(false);
-            this.getContentPane().add(jPanel3,  BorderLayout.CENTER);
+            getContentPane().add(jPanel3, BorderLayout.CENTER);
             controlMainEditor.refreshView();
             jPanel3.setVisible(true);
             enableZoomButton(false);
@@ -1062,58 +1095,57 @@ public class PrintEditor extends JFrame
     }
 
     void jButton1ZoomIn_actionPerformed(ActionEvent e) {
-        controlMainEditor.setPreviewScale(controlMainEditor.getPreviewScale()+ 0.25);
-        setPreviewScaleText( (int)(controlMainEditor.getPreviewScale() * 100) );
+        controlMainEditor.setPreviewScale(controlMainEditor.getPreviewScale() + 0.25);
+        setPreviewScaleText((int) (controlMainEditor.getPreviewScale() * 100));
     }
 
     void jButton1ZoomOut_actionPerformed(ActionEvent e) {
-        double scale = controlMainEditor.getPreviewScale()-0.25;
-        controlMainEditor.setPreviewScale( ( scale  > 0.25 ? scale : controlMainEditor.getPreviewScale()*0.5 )  );
-        setPreviewScaleText( (int)(controlMainEditor.getPreviewScale() * 100) );
+        double scale = controlMainEditor.getPreviewScale() - 0.25;
+        controlMainEditor.setPreviewScale((scale > 0.25 ? scale : controlMainEditor.getPreviewScale() * 0.5));
+        setPreviewScaleText((int) (controlMainEditor.getPreviewScale() * 100));
     }
 
     void jMenuItem22_actionPerformed(ActionEvent e) {
         controlMainEditor.setMultiPageFormat();
     }
 
-    void jComboBox1_itemStateChanged(ItemEvent e)
-    {
-        if(e.getStateChange() == ItemEvent.SELECTED )
-        {
+    void jComboBox1_itemStateChanged(ItemEvent e) {
+        if (e.getStateChange() == ItemEvent.SELECTED) {
             int i = 0;
-            String s ;
-            if ( controlMainEditor != null )
-            {
+            String s;
+            if (controlMainEditor != null) {
                 s = (String) e.getItem();
-                if ( s.substring(s.length()-1, s.length()).compareTo("%") ==  0 )
-                    i = Integer.parseInt(s.substring( 0, s.length()-1));
-                else
+                if (s.substring(s.length() - 1, s.length()).compareTo("%") == 0) {
+                    i = Integer.parseInt(s.substring(0, s.length() - 1));
+                } else {
                     i = Integer.parseInt(s);
-                controlMainEditor.setPreviewScale((float)i/100);
+                }
+                controlMainEditor.setPreviewScale((float) i / 100);
             }
         }
     }
 
     void jMenuItem19_actionPerformed(ActionEvent e) {
         controlMainEditor.setPageWidthPreview();
-        setPreviewScaleText( (int)(controlMainEditor.getPreviewScale() * 100) );
+        setPreviewScaleText((int) (controlMainEditor.getPreviewScale() * 100));
     }
 
     void jMenuItem20_actionPerformed(ActionEvent e) {
         controlMainEditor.setWholePagePreview();
-        setPreviewScaleText( (int)(controlMainEditor.getPreviewScale() * 100) );
+        setPreviewScaleText((int) (controlMainEditor.getPreviewScale() * 100));
     }
 
     void jMenuItem21_actionPerformed(ActionEvent e) {
         controlMainEditor.setTwoPagePreview();
-        setPreviewScaleText( (int)(controlMainEditor.getPreviewScale() * 100) );
+        setPreviewScaleText((int) (controlMainEditor.getPreviewScale() * 100));
     }
 
     void jCheckBoxMenuItem2_actionPerformed(ActionEvent e) {
-        if (jCheckBoxMenuItem2.isSelected())
+        if (jCheckBoxMenuItem2.isSelected()) {
             controlMainEditor.controlPaneEdit.setGridSize(20);
-        else
+        } else {
             controlMainEditor.controlPaneEdit.setGridSize(1);
+        }
     }
 
     void jButtonFitVer_actionPerformed(ActionEvent e) {
@@ -1157,14 +1189,14 @@ public class PrintEditor extends JFrame
         jCheckBoxMenuItem3.setSelected(controlMainEditor.getHeaderLine());
         jCheckBoxMenuItem3.setEnabled(controlMainEditor.getHaveHeader());
         jMenuItem26.setEnabled(controlMainEditor.getHaveHeader());
-        jMenuItem24.setText((controlMainEditor.getHaveHeader()?"Edit Header":"Add Header"));
+        jMenuItem24.setText((controlMainEditor.getHaveHeader() ? "Edit Header" : "Add Header"));
     }
 
     void jMenu6_menuSelected(MenuEvent e) {
         jCheckBoxMenuItem4.setSelected(controlMainEditor.getFooterLine());
         jCheckBoxMenuItem4.setEnabled(controlMainEditor.getHaveFooter());
         jMenuItem27.setEnabled(controlMainEditor.getHaveFooter());
-        jMenuItem25.setText((controlMainEditor.getHaveFooter()?"Edit Footer":"Add Footer"));
+        jMenuItem25.setText((controlMainEditor.getHaveFooter() ? "Edit Footer" : "Add Footer"));
     }
 
     void jCheckBoxMenuItem3_actionPerformed(ActionEvent e) {
@@ -1183,109 +1215,106 @@ public class PrintEditor extends JFrame
         setVisible(false);
     }
 
-  void jMenuItem6_actionPerformed(ActionEvent e) {
-      controlMainEditor.saveAs();
-  }
+    void jMenuItem6_actionPerformed(ActionEvent e) {
+        controlMainEditor.saveAs();
+    }
 
-  void jMenuItem5_actionPerformed(ActionEvent e) {
-      controlMainEditor.save();
-  }
+    void jMenuItem5_actionPerformed(ActionEvent e) {
+        controlMainEditor.save();
+    }
 
-  void jMenuItem2_actionPerformed(ActionEvent e) {
-      controlMainEditor.load();
-  }
+    void jMenuItem2_actionPerformed(ActionEvent e) {
+        controlMainEditor.load();
+    }
 
-  void jMenuItem3_actionPerformed(ActionEvent e) {
+    void jMenuItem3_actionPerformed(ActionEvent e) {
 
-      /*
-      jScrollPane.removeAll();
-      this.controlMainEditor = new ControlMainEditor(jScrollPane, jScrollPane1, this);
+        /*
+         * jScrollPane.removeAll(); this.controlMainEditor = new
+         * ControlMainEditor(jScrollPane, jScrollPane1, this);
+         * 
+         * dialogPageNumber = new DialogHeaderFooter(this);
+         * controlMainEditor.updatePageNumber
+         * (dialogPageNumber.getPageNumberFormat());
+         * controlMainEditor.updateDataTime
+         * (dialogPageNumber.getDateTimeFormat());
+         */
+        controlMainEditor.close();
 
-      dialogPageNumber = new DialogHeaderFooter(this);
-      controlMainEditor.updatePageNumber(dialogPageNumber.getPageNumberFormat());
-      controlMainEditor.updateDataTime(dialogPageNumber.getDateTimeFormat());
-*/
-controlMainEditor.close();
+        controlMainEditor.updatePageNumber(dialogPageNumber.getPageNumberFormat());
+        controlMainEditor.updateDataTime(dialogPageNumber.getDateTimeFormat());
 
-controlMainEditor.updatePageNumber(dialogPageNumber.getPageNumberFormat());
-controlMainEditor.updateDataTime(dialogPageNumber.getDateTimeFormat());
+    }
 
-  }
+    void jMenuItem17_actionPerformed(ActionEvent e) {
+        controlMainEditor.setPreviewScale(controlMainEditor.getPreviewScale() + 0.25);
+        setPreviewScaleText((int) (controlMainEditor.getPreviewScale() * 100));
+    }
 
-  void jMenuItem17_actionPerformed(ActionEvent e) {
-      controlMainEditor.setPreviewScale(controlMainEditor.getPreviewScale()+ 0.25);
-     setPreviewScaleText( (int)(controlMainEditor.getPreviewScale() * 100) );
-  }
+    void jButton1Open_actionPerformed(ActionEvent e) {
+        controlMainEditor.load();
 
-  void jButton1Open_actionPerformed(ActionEvent e) {
-      controlMainEditor.load();
+    }
 
-  }
+    void jButton1Save_actionPerformed(ActionEvent e) {
+        controlMainEditor.save();
+    }
 
-  void jButton1Save_actionPerformed(ActionEvent e) {
-      controlMainEditor.save();
-  }
+    void jButton1_actionPerformed(ActionEvent e) {
+        setVisible(false);
 
-  void jButton1_actionPerformed(ActionEvent e) {
-      setVisible(false);
+    }
 
-  }
+    void pageList_mousePressed(MouseEvent e) {
+        int index = ((JList) e.getSource()).getSelectedIndex();
+        if (index >= 0) {
+            controlMainEditor.viewPage(index);
+        }
+    }
 
-  void pageList_mousePressed(MouseEvent e) {
-      int index = ((JList)e.getSource()).getSelectedIndex();
-      if ( index >= 0 )
-          controlMainEditor.viewPage(index);
-  }
+    void pageList_mouseReleased(MouseEvent e) {
+        int index = ((JList) e.getSource()).getSelectedIndex();
+        if (index >= 0) {
+            controlMainEditor.viewPage(index);
+        }
+    }
 
-  void pageList_mouseReleased(MouseEvent e) {
-      int index = ((JList)e.getSource()).getSelectedIndex();
-      if ( index >= 0 )
-
-          controlMainEditor.viewPage(index);
-  }
-
-  void jMenuItem18_actionPerformed(ActionEvent e) {
-          double scale = controlMainEditor.getPreviewScale()-0.25;
-          controlMainEditor.setPreviewScale( ( scale  > 0.25 ? scale : controlMainEditor.getPreviewScale()*0.5 )  );
-          setPreviewScaleText( (int)(controlMainEditor.getPreviewScale() * 100) );
-  }
+    void jMenuItem18_actionPerformed(ActionEvent e) {
+        double scale = controlMainEditor.getPreviewScale() - 0.25;
+        controlMainEditor.setPreviewScale((scale > 0.25 ? scale : controlMainEditor.getPreviewScale() * 0.5));
+        setPreviewScaleText((int) (controlMainEditor.getPreviewScale() * 100));
+    }
 
     void jMenuItem38_actionPerformed(ActionEvent e) {
         setEditMode();
     }
 
-  void jMenuItem39_actionPerformed(ActionEvent e) {
-      controlMainEditor.setPreviewScale(1);
-  }
-
-
+    void jMenuItem39_actionPerformed(ActionEvent e) {
+        controlMainEditor.setPreviewScale(1);
+    }
 
 }
 
-class PrintEditor_jMenuItem1_actionAdapter implements java.awt.event.ActionListener
-{
+class PrintEditor_jMenuItem1_actionAdapter implements java.awt.event.ActionListener {
     private PrintEditor adaptee;
 
-    PrintEditor_jMenuItem1_actionAdapter(PrintEditor adaptee)
-    {
+    PrintEditor_jMenuItem1_actionAdapter(PrintEditor adaptee) {
         this.adaptee = adaptee;
     }
-    public void actionPerformed(ActionEvent e)
-    {
+
+    public void actionPerformed(ActionEvent e) {
         adaptee.jMenuItem1_actionPerformed(e);
     }
 }
 
-class PrintEditor_jMenuItem10_actionAdapter implements java.awt.event.ActionListener
-{
+class PrintEditor_jMenuItem10_actionAdapter implements java.awt.event.ActionListener {
     private PrintEditor adaptee;
 
-    PrintEditor_jMenuItem10_actionAdapter(PrintEditor adaptee)
-    {
+    PrintEditor_jMenuItem10_actionAdapter(PrintEditor adaptee) {
         this.adaptee = adaptee;
     }
-    public void actionPerformed(ActionEvent e)
-    {
+
+    public void actionPerformed(ActionEvent e) {
         adaptee.jMenuItem10_actionPerformed(e);
     }
 }
@@ -1296,6 +1325,7 @@ class PrintEditor_jMenuItem8_actionAdapter implements java.awt.event.ActionListe
     PrintEditor_jMenuItem8_actionAdapter(PrintEditor adaptee) {
         this.adaptee = adaptee;
     }
+
     public void actionPerformed(ActionEvent e) {
         adaptee.jMenuItem8_actionPerformed(e);
     }
@@ -1307,6 +1337,7 @@ class PrintEditor_jButton2Text_actionAdapter implements java.awt.event.ActionLis
     PrintEditor_jButton2Text_actionAdapter(PrintEditor adaptee) {
         this.adaptee = adaptee;
     }
+
     public void actionPerformed(ActionEvent e) {
         adaptee.jButton2Text_actionPerformed(e);
     }
@@ -1318,6 +1349,7 @@ class PrintEditor_jButton1New_actionAdapter implements java.awt.event.ActionList
     PrintEditor_jButton1New_actionAdapter(PrintEditor adaptee) {
         this.adaptee = adaptee;
     }
+
     public void actionPerformed(ActionEvent e) {
         adaptee.jButton1New_actionPerformed(e);
     }
@@ -1329,6 +1361,7 @@ class PrintEditor_jComboBox2Scale_itemAdapter implements java.awt.event.ItemList
     PrintEditor_jComboBox2Scale_itemAdapter(PrintEditor adaptee) {
         this.adaptee = adaptee;
     }
+
     public void itemStateChanged(ItemEvent e) {
         adaptee.jComboBox2Scale_itemStateChanged(e);
     }
@@ -1340,6 +1373,7 @@ class PrintEditor_jComboBox2Size_itemAdapter implements java.awt.event.ItemListe
     PrintEditor_jComboBox2Size_itemAdapter(PrintEditor adaptee) {
         this.adaptee = adaptee;
     }
+
     public void itemStateChanged(ItemEvent e) {
         adaptee.jComboBox2Size_itemStateChanged(e);
     }
@@ -1351,6 +1385,7 @@ class PrintEditor_jButton2Italic_actionAdapter implements java.awt.event.ActionL
     PrintEditor_jButton2Italic_actionAdapter(PrintEditor adaptee) {
         this.adaptee = adaptee;
     }
+
     public void actionPerformed(ActionEvent e) {
         adaptee.jButton2Italic_actionPerformed(e);
     }
@@ -1362,6 +1397,7 @@ class PrintEditor_jButton2Bold_actionAdapter implements java.awt.event.ActionLis
     PrintEditor_jButton2Bold_actionAdapter(PrintEditor adaptee) {
         this.adaptee = adaptee;
     }
+
     public void actionPerformed(ActionEvent e) {
         adaptee.jButton2Bold_actionPerformed(e);
     }
@@ -1373,6 +1409,7 @@ class PrintEditor_jButton2Underline_actionAdapter implements java.awt.event.Acti
     PrintEditor_jButton2Underline_actionAdapter(PrintEditor adaptee) {
         this.adaptee = adaptee;
     }
+
     public void actionPerformed(ActionEvent e) {
         adaptee.jButton2Underline_actionPerformed(e);
     }
@@ -1384,6 +1421,7 @@ class PrintEditor_jComboBox2Font_itemAdapter implements java.awt.event.ItemListe
     PrintEditor_jComboBox2Font_itemAdapter(PrintEditor adaptee) {
         this.adaptee = adaptee;
     }
+
     public void itemStateChanged(ItemEvent e) {
         adaptee.jComboBox2Font_itemStateChanged(e);
     }
@@ -1395,6 +1433,7 @@ class PrintEditor_jButton2AlignRight_actionAdapter implements java.awt.event.Act
     PrintEditor_jButton2AlignRight_actionAdapter(PrintEditor adaptee) {
         this.adaptee = adaptee;
     }
+
     public void actionPerformed(ActionEvent e) {
         adaptee.jButton2AlignRight_actionPerformed(e);
     }
@@ -1406,6 +1445,7 @@ class PrintEditor_jButton2AlignCenter_actionAdapter implements java.awt.event.Ac
     PrintEditor_jButton2AlignCenter_actionAdapter(PrintEditor adaptee) {
         this.adaptee = adaptee;
     }
+
     public void actionPerformed(ActionEvent e) {
         adaptee.jButton2AlignCenter_actionPerformed(e);
     }
@@ -1417,6 +1457,7 @@ class PrintEditor_jButton2AlignJustify_actionAdapter implements java.awt.event.A
     PrintEditor_jButton2AlignJustify_actionAdapter(PrintEditor adaptee) {
         this.adaptee = adaptee;
     }
+
     public void actionPerformed(ActionEvent e) {
         adaptee.jButton2AlignJustify_actionPerformed(e);
     }
@@ -1428,6 +1469,7 @@ class PrintEditor_jButton2AlignLeft_actionAdapter implements java.awt.event.Acti
     PrintEditor_jButton2AlignLeft_actionAdapter(PrintEditor adaptee) {
         this.adaptee = adaptee;
     }
+
     public void actionPerformed(ActionEvent e) {
         adaptee.jButton2AlignLeft_actionPerformed(e);
     }
@@ -1439,6 +1481,7 @@ class PrintEditor_jMenuItem7_actionAdapter implements java.awt.event.ActionListe
     PrintEditor_jMenuItem7_actionAdapter(PrintEditor adaptee) {
         this.adaptee = adaptee;
     }
+
     public void actionPerformed(ActionEvent e) {
         adaptee.jMenuItem7_actionPerformed(e);
     }
@@ -1450,6 +1493,7 @@ class PrintEditor_jButton1PageSetup_actionAdapter implements java.awt.event.Acti
     PrintEditor_jButton1PageSetup_actionAdapter(PrintEditor adaptee) {
         this.adaptee = adaptee;
     }
+
     public void actionPerformed(ActionEvent e) {
         adaptee.jButton1PageSetup_actionPerformed(e);
     }
@@ -1461,6 +1505,7 @@ class PrintEditor_jButton1Print_actionAdapter implements java.awt.event.ActionLi
     PrintEditor_jButton1Print_actionAdapter(PrintEditor adaptee) {
         this.adaptee = adaptee;
     }
+
     public void actionPerformed(ActionEvent e) {
         adaptee.jButton1Print_actionPerformed(e);
     }
@@ -1472,6 +1517,7 @@ class PrintEditor_jButton2_actionAdapter implements java.awt.event.ActionListene
     PrintEditor_jButton2_actionAdapter(PrintEditor adaptee) {
         this.adaptee = adaptee;
     }
+
     public void actionPerformed(ActionEvent e) {
         adaptee.jButton2_actionPerformed(e);
     }
@@ -1483,6 +1529,7 @@ class PrintEditor_jButton1Preview_actionAdapter implements java.awt.event.Action
     PrintEditor_jButton1Preview_actionAdapter(PrintEditor adaptee) {
         this.adaptee = adaptee;
     }
+
     public void actionPerformed(ActionEvent e) {
         adaptee.jButton1Preview_actionPerformed(e);
     }
@@ -1494,6 +1541,7 @@ class PrintEditor_jButton1ZoomIn_actionAdapter implements java.awt.event.ActionL
     PrintEditor_jButton1ZoomIn_actionAdapter(PrintEditor adaptee) {
         this.adaptee = adaptee;
     }
+
     public void actionPerformed(ActionEvent e) {
         adaptee.jButton1ZoomIn_actionPerformed(e);
     }
@@ -1505,6 +1553,7 @@ class PrintEditor_jButton1ZoomOut_actionAdapter implements java.awt.event.Action
     PrintEditor_jButton1ZoomOut_actionAdapter(PrintEditor adaptee) {
         this.adaptee = adaptee;
     }
+
     public void actionPerformed(ActionEvent e) {
         adaptee.jButton1ZoomOut_actionPerformed(e);
     }
@@ -1516,6 +1565,7 @@ class PrintEditor_jMenuItem22_actionAdapter implements java.awt.event.ActionList
     PrintEditor_jMenuItem22_actionAdapter(PrintEditor adaptee) {
         this.adaptee = adaptee;
     }
+
     public void actionPerformed(ActionEvent e) {
         adaptee.jMenuItem22_actionPerformed(e);
     }
@@ -1527,6 +1577,7 @@ class PrintEditor_jComboBox1_itemAdapter implements java.awt.event.ItemListener 
     PrintEditor_jComboBox1_itemAdapter(PrintEditor adaptee) {
         this.adaptee = adaptee;
     }
+
     public void itemStateChanged(ItemEvent e) {
         adaptee.jComboBox1_itemStateChanged(e);
     }
@@ -1538,6 +1589,7 @@ class PrintEditor_jMenuItem19_actionAdapter implements java.awt.event.ActionList
     PrintEditor_jMenuItem19_actionAdapter(PrintEditor adaptee) {
         this.adaptee = adaptee;
     }
+
     public void actionPerformed(ActionEvent e) {
         adaptee.jMenuItem19_actionPerformed(e);
     }
@@ -1549,6 +1601,7 @@ class PrintEditor_jMenuItem20_actionAdapter implements java.awt.event.ActionList
     PrintEditor_jMenuItem20_actionAdapter(PrintEditor adaptee) {
         this.adaptee = adaptee;
     }
+
     public void actionPerformed(ActionEvent e) {
         adaptee.jMenuItem20_actionPerformed(e);
     }
@@ -1560,6 +1613,7 @@ class PrintEditor_jMenuItem21_actionAdapter implements java.awt.event.ActionList
     PrintEditor_jMenuItem21_actionAdapter(PrintEditor adaptee) {
         this.adaptee = adaptee;
     }
+
     public void actionPerformed(ActionEvent e) {
         adaptee.jMenuItem21_actionPerformed(e);
     }
@@ -1571,6 +1625,7 @@ class PrintEditor_jCheckBoxMenuItem2_actionAdapter implements java.awt.event.Act
     PrintEditor_jCheckBoxMenuItem2_actionAdapter(PrintEditor adaptee) {
         this.adaptee = adaptee;
     }
+
     public void actionPerformed(ActionEvent e) {
         adaptee.jCheckBoxMenuItem2_actionPerformed(e);
     }
@@ -1582,6 +1637,7 @@ class PrintEditor_jButtonFitHoz_actionAdapter implements java.awt.event.ActionLi
     PrintEditor_jButtonFitHoz_actionAdapter(PrintEditor adaptee) {
         this.adaptee = adaptee;
     }
+
     public void actionPerformed(ActionEvent e) {
         adaptee.jButtonFitHor_actionPerformed(e);
     }
@@ -1593,6 +1649,7 @@ class PrintEditor_jButtonFitVer_actionAdapter implements java.awt.event.ActionLi
     PrintEditor_jButtonFitVer_actionAdapter(PrintEditor adaptee) {
         this.adaptee = adaptee;
     }
+
     public void actionPerformed(ActionEvent e) {
         adaptee.jButtonFitVer_actionPerformed(e);
     }
@@ -1604,6 +1661,7 @@ class PrintEditor_jButtonCenter_actionAdapter implements java.awt.event.ActionLi
     PrintEditor_jButtonCenter_actionAdapter(PrintEditor adaptee) {
         this.adaptee = adaptee;
     }
+
     public void actionPerformed(ActionEvent e) {
         adaptee.jButtonCenter_actionPerformed(e);
     }
@@ -1615,6 +1673,7 @@ class PrintEditor_jMenuItem9_actionAdapter implements java.awt.event.ActionListe
     PrintEditor_jMenuItem9_actionAdapter(PrintEditor adaptee) {
         this.adaptee = adaptee;
     }
+
     public void actionPerformed(ActionEvent e) {
         adaptee.jMenuItem9_actionPerformed(e);
     }
@@ -1626,6 +1685,7 @@ class PrintEditor_jButton3_actionAdapter implements java.awt.event.ActionListene
     PrintEditor_jButton3_actionAdapter(PrintEditor adaptee) {
         this.adaptee = adaptee;
     }
+
     public void actionPerformed(ActionEvent e) {
         adaptee.jButton3_actionPerformed(e);
     }
@@ -1637,6 +1697,7 @@ class PrintEditor_jMenuItem25_actionAdapter implements java.awt.event.ActionList
     PrintEditor_jMenuItem25_actionAdapter(PrintEditor adaptee) {
         this.adaptee = adaptee;
     }
+
     public void actionPerformed(ActionEvent e) {
         adaptee.jMenuItem25_actionPerformed(e);
     }
@@ -1648,6 +1709,7 @@ class PrintEditor_jMenuItem24_actionAdapter implements java.awt.event.ActionList
     PrintEditor_jMenuItem24_actionAdapter(PrintEditor adaptee) {
         this.adaptee = adaptee;
     }
+
     public void actionPerformed(ActionEvent e) {
         adaptee.jMenuItem24_actionPerformed(e);
     }
@@ -1659,6 +1721,7 @@ class PrintEditor_jMenuItem26_actionAdapter implements java.awt.event.ActionList
     PrintEditor_jMenuItem26_actionAdapter(PrintEditor adaptee) {
         this.adaptee = adaptee;
     }
+
     public void actionPerformed(ActionEvent e) {
         adaptee.jMenuItem26_actionPerformed(e);
     }
@@ -1670,6 +1733,7 @@ class PrintEditor_jMenuItem27_actionAdapter implements java.awt.event.ActionList
     PrintEditor_jMenuItem27_actionAdapter(PrintEditor adaptee) {
         this.adaptee = adaptee;
     }
+
     public void actionPerformed(ActionEvent e) {
         adaptee.jMenuItem27_actionPerformed(e);
     }
@@ -1681,11 +1745,14 @@ class PrintEditor_jMenu5_menuAdapter implements javax.swing.event.MenuListener {
     PrintEditor_jMenu5_menuAdapter(PrintEditor adaptee) {
         this.adaptee = adaptee;
     }
+
     public void menuSelected(MenuEvent e) {
         adaptee.jMenu5_menuSelected(e);
     }
+
     public void menuDeselected(MenuEvent e) {
     }
+
     public void menuCanceled(MenuEvent e) {
     }
 }
@@ -1696,11 +1763,14 @@ class PrintEditor_jMenu6_menuAdapter implements javax.swing.event.MenuListener {
     PrintEditor_jMenu6_menuAdapter(PrintEditor adaptee) {
         this.adaptee = adaptee;
     }
+
     public void menuSelected(MenuEvent e) {
         adaptee.jMenu6_menuSelected(e);
     }
+
     public void menuDeselected(MenuEvent e) {
     }
+
     public void menuCanceled(MenuEvent e) {
     }
 }
@@ -1711,6 +1781,7 @@ class PrintEditor_jCheckBoxMenuItem3_actionAdapter implements java.awt.event.Act
     PrintEditor_jCheckBoxMenuItem3_actionAdapter(PrintEditor adaptee) {
         this.adaptee = adaptee;
     }
+
     public void actionPerformed(ActionEvent e) {
         adaptee.jCheckBoxMenuItem3_actionPerformed(e);
     }
@@ -1722,6 +1793,7 @@ class PrintEditor_jCheckBoxMenuItem4_actionAdapter implements java.awt.event.Act
     PrintEditor_jCheckBoxMenuItem4_actionAdapter(PrintEditor adaptee) {
         this.adaptee = adaptee;
     }
+
     public void actionPerformed(ActionEvent e) {
         adaptee.jCheckBoxMenuItem4_actionPerformed(e);
     }
@@ -1733,297 +1805,325 @@ class PrintEditor_jButtonDelete_actionAdapter implements java.awt.event.ActionLi
     PrintEditor_jButtonDelete_actionAdapter(PrintEditor adaptee) {
         this.adaptee = adaptee;
     }
+
     public void actionPerformed(ActionEvent e) {
         adaptee.jButtonDelete_actionPerformed(e);
     }
 }
 
 class PrintEditor_jMenuItem4_actionAdapter implements java.awt.event.ActionListener {
-  PrintEditor adaptee;
+    PrintEditor adaptee;
 
-  PrintEditor_jMenuItem4_actionAdapter(PrintEditor adaptee) {
-    this.adaptee = adaptee;
-  }
-  public void actionPerformed(ActionEvent e) {
-    adaptee.jMenuItem4_actionPerformed(e);
-  }
+    PrintEditor_jMenuItem4_actionAdapter(PrintEditor adaptee) {
+        this.adaptee = adaptee;
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        adaptee.jMenuItem4_actionPerformed(e);
+    }
 }
 
 class PrintEditor_jMenuItem6_actionAdapter implements java.awt.event.ActionListener {
-  PrintEditor adaptee;
+    PrintEditor adaptee;
 
-  PrintEditor_jMenuItem6_actionAdapter(PrintEditor adaptee) {
-    this.adaptee = adaptee;
-  }
-  public void actionPerformed(ActionEvent e) {
-    adaptee.jMenuItem6_actionPerformed(e);
-  }
+    PrintEditor_jMenuItem6_actionAdapter(PrintEditor adaptee) {
+        this.adaptee = adaptee;
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        adaptee.jMenuItem6_actionPerformed(e);
+    }
 }
 
 class PrintEditor_jMenuItem5_actionAdapter implements java.awt.event.ActionListener {
-  PrintEditor adaptee;
+    PrintEditor adaptee;
 
-  PrintEditor_jMenuItem5_actionAdapter(PrintEditor adaptee) {
-    this.adaptee = adaptee;
-  }
-  public void actionPerformed(ActionEvent e) {
-    adaptee.jMenuItem5_actionPerformed(e);
-  }
+    PrintEditor_jMenuItem5_actionAdapter(PrintEditor adaptee) {
+        this.adaptee = adaptee;
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        adaptee.jMenuItem5_actionPerformed(e);
+    }
 }
 
 class PrintEditor_jMenuItem2_actionAdapter implements java.awt.event.ActionListener {
-  PrintEditor adaptee;
+    PrintEditor adaptee;
 
-  PrintEditor_jMenuItem2_actionAdapter(PrintEditor adaptee) {
-    this.adaptee = adaptee;
-  }
-  public void actionPerformed(ActionEvent e) {
-    adaptee.jMenuItem2_actionPerformed(e);
-  }
+    PrintEditor_jMenuItem2_actionAdapter(PrintEditor adaptee) {
+        this.adaptee = adaptee;
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        adaptee.jMenuItem2_actionPerformed(e);
+    }
 }
 
 class PrintEditor_jMenuItem3_actionAdapter implements java.awt.event.ActionListener {
-  PrintEditor adaptee;
+    PrintEditor adaptee;
 
-  PrintEditor_jMenuItem3_actionAdapter(PrintEditor adaptee) {
-    this.adaptee = adaptee;
-  }
-  public void actionPerformed(ActionEvent e) {
-    adaptee.jMenuItem3_actionPerformed(e);
-  }
+    PrintEditor_jMenuItem3_actionAdapter(PrintEditor adaptee) {
+        this.adaptee = adaptee;
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        adaptee.jMenuItem3_actionPerformed(e);
+    }
 }
 
 class PrintEditor_jMenuItem17_actionAdapter implements java.awt.event.ActionListener {
-  PrintEditor adaptee;
+    PrintEditor adaptee;
 
-  PrintEditor_jMenuItem17_actionAdapter(PrintEditor adaptee) {
-    this.adaptee = adaptee;
-  }
-  public void actionPerformed(ActionEvent e) {
-    adaptee.jMenuItem17_actionPerformed(e);
-  }
+    PrintEditor_jMenuItem17_actionAdapter(PrintEditor adaptee) {
+        this.adaptee = adaptee;
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        adaptee.jMenuItem17_actionPerformed(e);
+    }
 }
 
 class PrintEditor_jButton1Open_actionAdapter implements java.awt.event.ActionListener {
-  PrintEditor adaptee;
+    PrintEditor adaptee;
 
-  PrintEditor_jButton1Open_actionAdapter(PrintEditor adaptee) {
-    this.adaptee = adaptee;
-  }
-  public void actionPerformed(ActionEvent e) {
-    adaptee.jButton1Open_actionPerformed(e);
-  }
+    PrintEditor_jButton1Open_actionAdapter(PrintEditor adaptee) {
+        this.adaptee = adaptee;
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        adaptee.jButton1Open_actionPerformed(e);
+    }
 }
 
 class PrintEditor_jButton1Save_actionAdapter implements java.awt.event.ActionListener {
-  PrintEditor adaptee;
+    PrintEditor adaptee;
 
-  PrintEditor_jButton1Save_actionAdapter(PrintEditor adaptee) {
-    this.adaptee = adaptee;
-  }
-  public void actionPerformed(ActionEvent e) {
-    adaptee.jButton1Save_actionPerformed(e);
-  }
+    PrintEditor_jButton1Save_actionAdapter(PrintEditor adaptee) {
+        this.adaptee = adaptee;
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        adaptee.jButton1Save_actionPerformed(e);
+    }
 }
 
 class PrintEditor_jButton1_actionAdapter implements java.awt.event.ActionListener {
-  PrintEditor adaptee;
+    PrintEditor adaptee;
 
-  PrintEditor_jButton1_actionAdapter(PrintEditor adaptee) {
-    this.adaptee = adaptee;
-  }
-  public void actionPerformed(ActionEvent e) {
-    adaptee.jButton1_actionPerformed(e);
-  }
+    PrintEditor_jButton1_actionAdapter(PrintEditor adaptee) {
+        this.adaptee = adaptee;
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        adaptee.jButton1_actionPerformed(e);
+    }
 }
 
 class PrintEditor_pageList_mouseAdapter extends java.awt.event.MouseAdapter {
-  PrintEditor adaptee;
+    PrintEditor adaptee;
 
-  PrintEditor_pageList_mouseAdapter(PrintEditor adaptee) {
-    this.adaptee = adaptee;
-  }
-  public void mousePressed(MouseEvent e) {
-    adaptee.pageList_mousePressed(e);
-  }
-  public void mouseReleased(MouseEvent e) {
-    adaptee.pageList_mouseReleased(e);
-  }
+    PrintEditor_pageList_mouseAdapter(PrintEditor adaptee) {
+        this.adaptee = adaptee;
+    }
+
+    public void mousePressed(MouseEvent e) {
+        adaptee.pageList_mousePressed(e);
+    }
+
+    public void mouseReleased(MouseEvent e) {
+        adaptee.pageList_mouseReleased(e);
+    }
 }
 
 class PrintEditor_jMenuItem18_actionAdapter implements java.awt.event.ActionListener {
-  PrintEditor adaptee;
+    PrintEditor adaptee;
 
-  PrintEditor_jMenuItem18_actionAdapter(PrintEditor adaptee) {
-    this.adaptee = adaptee;
-  }
-  public void actionPerformed(ActionEvent e) {
-    adaptee.jMenuItem18_actionPerformed(e);
+    PrintEditor_jMenuItem18_actionAdapter(PrintEditor adaptee) {
+        this.adaptee = adaptee;
+    }
 
-  }
+    public void actionPerformed(ActionEvent e) {
+        adaptee.jMenuItem18_actionPerformed(e);
+
+    }
 }
 
 class PrintEditor_jMenuItem28_actionAdapter implements java.awt.event.ActionListener {
-  PrintEditor adaptee;
+    PrintEditor adaptee;
 
-  PrintEditor_jMenuItem28_actionAdapter(PrintEditor adaptee) {
-    this.adaptee = adaptee;
-  }
-  public void actionPerformed(ActionEvent e) {
-    adaptee.jMenuItem17_actionPerformed(e);
-  }
+    PrintEditor_jMenuItem28_actionAdapter(PrintEditor adaptee) {
+        this.adaptee = adaptee;
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        adaptee.jMenuItem17_actionPerformed(e);
+    }
 }
 
 class PrintEditor_jMenuItem29_actionAdapter implements java.awt.event.ActionListener {
-  PrintEditor adaptee;
+    PrintEditor adaptee;
 
-  PrintEditor_jMenuItem29_actionAdapter(PrintEditor adaptee) {
-    this.adaptee = adaptee;
-  }
-  public void actionPerformed(ActionEvent e) {
-    adaptee.jMenuItem18_actionPerformed(e);
-  }
+    PrintEditor_jMenuItem29_actionAdapter(PrintEditor adaptee) {
+        this.adaptee = adaptee;
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        adaptee.jMenuItem18_actionPerformed(e);
+    }
 }
 
 class PrintEditor_jMenuItem30_actionAdapter implements java.awt.event.ActionListener {
-  PrintEditor adaptee;
+    PrintEditor adaptee;
 
-  PrintEditor_jMenuItem30_actionAdapter(PrintEditor adaptee) {
-    this.adaptee = adaptee;
-  }
-  public void actionPerformed(ActionEvent e) {
-    adaptee.jMenuItem19_actionPerformed(e);
-  }
+    PrintEditor_jMenuItem30_actionAdapter(PrintEditor adaptee) {
+        this.adaptee = adaptee;
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        adaptee.jMenuItem19_actionPerformed(e);
+    }
 }
 
 class PrintEditor_jMenuItem31_actionAdapter implements java.awt.event.ActionListener {
-  PrintEditor adaptee;
+    PrintEditor adaptee;
 
-  PrintEditor_jMenuItem31_actionAdapter(PrintEditor adaptee) {
-    this.adaptee = adaptee;
-  }
-  public void actionPerformed(ActionEvent e) {
-    adaptee.jMenuItem20_actionPerformed(e);
-  }
+    PrintEditor_jMenuItem31_actionAdapter(PrintEditor adaptee) {
+        this.adaptee = adaptee;
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        adaptee.jMenuItem20_actionPerformed(e);
+    }
 }
 
 class PrintEditor_jMenuItem32_actionAdapter implements java.awt.event.ActionListener {
-  PrintEditor adaptee;
+    PrintEditor adaptee;
 
-  PrintEditor_jMenuItem32_actionAdapter(PrintEditor adaptee) {
-    this.adaptee = adaptee;
-  }
-  public void actionPerformed(ActionEvent e) {
-    adaptee.jMenuItem21_actionPerformed(e);
-  }
+    PrintEditor_jMenuItem32_actionAdapter(PrintEditor adaptee) {
+        this.adaptee = adaptee;
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        adaptee.jMenuItem21_actionPerformed(e);
+    }
 }
 
 class PrintEditor_jMenuItem33_actionAdapter implements java.awt.event.ActionListener {
-  PrintEditor adaptee;
+    PrintEditor adaptee;
 
-  PrintEditor_jMenuItem33_actionAdapter(PrintEditor adaptee) {
-    this.adaptee = adaptee;
-  }
-  public void actionPerformed(ActionEvent e) {
-    adaptee.jMenuItem6_actionPerformed(e);
-  }
+    PrintEditor_jMenuItem33_actionAdapter(PrintEditor adaptee) {
+        this.adaptee = adaptee;
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        adaptee.jMenuItem6_actionPerformed(e);
+    }
 }
 
 class PrintEditor_jMenuItem34_actionAdapter implements java.awt.event.ActionListener {
-  PrintEditor adaptee;
+    PrintEditor adaptee;
 
-  PrintEditor_jMenuItem34_actionAdapter(PrintEditor adaptee) {
-    this.adaptee = adaptee;
-  }
-  public void actionPerformed(ActionEvent e) {
-    adaptee.jMenuItem8_actionPerformed(e);
-  }
+    PrintEditor_jMenuItem34_actionAdapter(PrintEditor adaptee) {
+        this.adaptee = adaptee;
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        adaptee.jMenuItem8_actionPerformed(e);
+    }
 }
 
 class PrintEditor_jMenuItem35_actionAdapter implements java.awt.event.ActionListener {
-  PrintEditor adaptee;
+    PrintEditor adaptee;
 
-  PrintEditor_jMenuItem35_actionAdapter(PrintEditor adaptee) {
-    this.adaptee = adaptee;
-  }
-  public void actionPerformed(ActionEvent e) {
-    adaptee.jMenuItem22_actionPerformed(e);
-  }
+    PrintEditor_jMenuItem35_actionAdapter(PrintEditor adaptee) {
+        this.adaptee = adaptee;
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        adaptee.jMenuItem22_actionPerformed(e);
+    }
 }
 
 class PrintEditor_jMenuItem36_actionAdapter implements java.awt.event.ActionListener {
-  PrintEditor adaptee;
+    PrintEditor adaptee;
 
-  PrintEditor_jMenuItem36_actionAdapter(PrintEditor adaptee) {
-    this.adaptee = adaptee;
-  }
-  public void actionPerformed(ActionEvent e) {
-    adaptee.jMenuItem10_actionPerformed(e);
-  }
+    PrintEditor_jMenuItem36_actionAdapter(PrintEditor adaptee) {
+        this.adaptee = adaptee;
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        adaptee.jMenuItem10_actionPerformed(e);
+    }
 }
 
 class PrintEditor_jMenuItem37_actionAdapter implements java.awt.event.ActionListener {
-  PrintEditor adaptee;
+    PrintEditor adaptee;
 
-  PrintEditor_jMenuItem37_actionAdapter(PrintEditor adaptee) {
-    this.adaptee = adaptee;
-  }
-  public void actionPerformed(ActionEvent e) {
-    adaptee.jMenuItem4_actionPerformed(e);
-  }
+    PrintEditor_jMenuItem37_actionAdapter(PrintEditor adaptee) {
+        this.adaptee = adaptee;
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        adaptee.jMenuItem4_actionPerformed(e);
+    }
 }
 
 class PrintEditor_jMenuItem38_actionAdapter implements java.awt.event.ActionListener {
-  PrintEditor adaptee;
+    PrintEditor adaptee;
 
-  PrintEditor_jMenuItem38_actionAdapter(PrintEditor adaptee) {
-    this.adaptee = adaptee;
-  }
-  public void actionPerformed(ActionEvent e) {
-    adaptee.jMenuItem38_actionPerformed(e);
-  }
+    PrintEditor_jMenuItem38_actionAdapter(PrintEditor adaptee) {
+        this.adaptee = adaptee;
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        adaptee.jMenuItem38_actionPerformed(e);
+    }
 }
 
 class PrintEditor_jMenuItem39_actionAdapter implements java.awt.event.ActionListener {
-  PrintEditor adaptee;
+    PrintEditor adaptee;
 
-  PrintEditor_jMenuItem39_actionAdapter(PrintEditor adaptee) {
-    this.adaptee = adaptee;
-  }
-  public void actionPerformed(ActionEvent e) {
-    adaptee.jMenuItem39_actionPerformed(e);
-  }
+    PrintEditor_jMenuItem39_actionAdapter(PrintEditor adaptee) {
+        this.adaptee = adaptee;
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        adaptee.jMenuItem39_actionPerformed(e);
+    }
 }
 
 class PrintEditor_jButton4_actionAdapter implements java.awt.event.ActionListener {
-  PrintEditor adaptee;
+    PrintEditor adaptee;
 
-  PrintEditor_jButton4_actionAdapter(PrintEditor adaptee) {
-    this.adaptee = adaptee;
-  }
-  public void actionPerformed(ActionEvent e) {
-    adaptee.jMenuItem10_actionPerformed(e);
-  }
+    PrintEditor_jButton4_actionAdapter(PrintEditor adaptee) {
+        this.adaptee = adaptee;
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        adaptee.jMenuItem10_actionPerformed(e);
+    }
 }
 
 class PrintEditor_jButton5_actionAdapter implements java.awt.event.ActionListener {
-  PrintEditor adaptee;
+    PrintEditor adaptee;
 
-  PrintEditor_jButton5_actionAdapter(PrintEditor adaptee) {
-    this.adaptee = adaptee;
-  }
-  public void actionPerformed(ActionEvent e) {
-    adaptee.jMenuItem17_actionPerformed(e);
-  }
+    PrintEditor_jButton5_actionAdapter(PrintEditor adaptee) {
+        this.adaptee = adaptee;
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        adaptee.jMenuItem17_actionPerformed(e);
+    }
 }
 
 class PrintEditor_jButton6_actionAdapter implements java.awt.event.ActionListener {
-  PrintEditor adaptee;
+    PrintEditor adaptee;
 
-  PrintEditor_jButton6_actionAdapter(PrintEditor adaptee) {
-    this.adaptee = adaptee;
-  }
-  public void actionPerformed(ActionEvent e) {
-    adaptee.jMenuItem18_actionPerformed(e);
-  }
+    PrintEditor_jButton6_actionAdapter(PrintEditor adaptee) {
+        this.adaptee = adaptee;
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        adaptee.jMenuItem18_actionPerformed(e);
+    }
 }

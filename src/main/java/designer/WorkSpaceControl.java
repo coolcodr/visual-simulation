@@ -1,5 +1,4 @@
 package designer;
 
-public class WorkSpaceControl
-{
+public class WorkSpaceControl {
 }

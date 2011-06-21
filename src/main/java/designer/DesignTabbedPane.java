@@ -1,60 +1,67 @@
 package designer;
 
-import designer.report.*;
+import java.awt.Component;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-import javax.swing.JTabbedPane;
-import java.awt.event.*;
-import java.awt.*;
-import javax.swing.JPanel;
 import javax.swing.JComboBox;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 
-public class DesignTabbedPane extends JTabbedPane
-{
+import designer.report.PrintEditor;
+
+public class DesignTabbedPane extends JTabbedPane {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 3543610396517594906L;
+
     private int previousSelectedIndex;
 
     JPanel temp = new JPanel();;
 
-    public DesignTabbedPane()
-    {
-    	temp.setVisible(true);
-        this.addMouseListener(new MouseListener()
-        {
-            public void mouseEntered(MouseEvent e){}
-            public void mouseExited(MouseEvent e){}
-            public void mouseReleased(MouseEvent e){}
-            public void mousePressed(MouseEvent e)
-            {
-            	System.out.println("TAB PANE MOUSE PRESSED");
-            	DesignerControl.currentDesignPane.deselectAll();
-                DesignTabbedPane pane = (DesignTabbedPane)e.getSource();
-                if ( pane.getSelectedIndex() < 0 )
+    public DesignTabbedPane() {
+        temp.setVisible(true);
+        addMouseListener(new MouseListener() {
+            public void mouseEntered(MouseEvent e) {
+            }
+
+            public void mouseExited(MouseEvent e) {
+            }
+
+            public void mouseReleased(MouseEvent e) {
+            }
+
+            public void mousePressed(MouseEvent e) {
+                System.out.println("TAB PANE MOUSE PRESSED");
+                DesignerControl.currentDesignPane.deselectAll();
+                DesignTabbedPane pane = (DesignTabbedPane) e.getSource();
+                if (pane.getSelectedIndex() < 0) {
                     return;
-                if ( pane.getComponent(pane.getSelectedIndex()) instanceof DesignBackPane )
-                {
-                    DesignPane currentDesignPane = ( (DesignBackPane) pane.getComponent(pane.getSelectedIndex())).getDesignPane();
-                    ( (DesignBackPane) pane.getComponent(pane.getSelectedIndex())).refresh();
+                }
+                if (pane.getComponent(pane.getSelectedIndex()) instanceof DesignBackPane) {
+                    DesignPane currentDesignPane = ((DesignBackPane) pane.getComponent(pane.getSelectedIndex())).getDesignPane();
+                    ((DesignBackPane) pane.getComponent(pane.getSelectedIndex())).refresh();
                     currentDesignPane.setVisible(true);
                     currentDesignPane.refresh();
                     UIDesigner.getControl().setCurrentDesignPane(currentDesignPane);
 
                     UIDesigner.mainWindow.setFrameEnable();
-                }
-                else
-                {
+                } else {
                     System.out.println("REPOR ENABLED");
                     UIDesigner.mainWindow.setReportEnable();
                 }
             }
-            public void mouseClicked(MouseEvent e){}
+
+            public void mouseClicked(MouseEvent e) {
+            }
         });
     }
-    public void updateUI ()
-    {
-        int selected =  getSelectedIndex();
-        if ( selected >= 0 )
-        {
-            if (getComponent(getSelectedIndex())instanceof DesignBackPane)
-            {
+
+    public void updateUI() {
+        int selected = getSelectedIndex();
+        if (selected >= 0) {
+            if (getComponent(getSelectedIndex()) instanceof DesignBackPane) {
                 DesignBackPane pane = (DesignBackPane) getComponent(getSelectedIndex());
                 pane.setName(pane.getDesignPane().toString());
                 pane.updateUI();
@@ -64,23 +71,19 @@ public class DesignTabbedPane extends JTabbedPane
 
                 Component[] temp = new Component[count];
 
-                for (int i = 0; i < temp.length; i++)
-                {
+                for (int i = 0; i < temp.length; i++) {
                     temp[i] = getComponent(i);
                 }
                 int current = 0;
 
                 removeAll();
 
-                while (current < count)
-                {
+                while (current < count) {
                     add(temp[current]);
                     ++current;
                 }
-                this.setSelectedIndex(selected);
-            }
-            else
-            {
+                setSelectedIndex(selected);
+            } else {
                 UIDesigner.mainWindow.setReportEnable();
             }
 
@@ -88,48 +91,41 @@ public class DesignTabbedPane extends JTabbedPane
         super.updateUI();
     }
 
-    public void setSelectedIndex(int i)
-    {
+    public void setSelectedIndex(int i) {
         DesignerControl.currentDesignPane.deselectAll();
 
-        try
-        {
-            previousSelectedIndex = this.getSelectedIndex();
+        try {
+            previousSelectedIndex = getSelectedIndex();
             super.setSelectedIndex(i);
 
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println(e);
         }
 
-        i = this.getSelectedIndex();
+        i = getSelectedIndex();
 
-        if (i >= 0)
-        {
-            //System.out.println("TEST 7");
-            if ( getComponent(i) instanceof DesignBackPane )
-            {
-                DesignPane currentDesignPane = ( (DesignBackPane)this.getComponent(i)).getDesignPane();
-                //System.out.println("TEST 8");
-                ( (DesignBackPane)this.getComponent(i)).refresh();
-                //System.out.println("TEST 9");
+        if (i >= 0) {
+            // System.out.println("TEST 7");
+            if (getComponent(i) instanceof DesignBackPane) {
+                DesignPane currentDesignPane = ((DesignBackPane) getComponent(i)).getDesignPane();
+                // System.out.println("TEST 8");
+                ((DesignBackPane) getComponent(i)).refresh();
+                // System.out.println("TEST 9");
                 currentDesignPane.setVisible(true);
                 currentDesignPane.refresh();
 
-                //System.out.println("TEST 10");
+                // System.out.println("TEST 10");
                 UIDesigner.getControl().setCurrentDesignPane(currentDesignPane);
                 UIDesigner.mainWindow.getFrameList().setSelectedItem(currentDesignPane);
                 UIDesigner.mainWindow.setFrameEnable();
-            }
-            else
-            {
+            } else {
                 JComboBox jComboBox = UIDesigner.mainWindow.getFrameList();
-                for ( int j = 0 ; j < jComboBox.getItemCount() ; j ++ )
-                {
-                    if ( jComboBox.getItemAt(j) instanceof PrintEditor)
-                        if ( ( (PrintEditor) jComboBox.getItemAt(j)).getDesignPane().equals(getComponent(i)))
+                for (int j = 0; j < jComboBox.getItemCount(); j++) {
+                    if (jComboBox.getItemAt(j) instanceof PrintEditor) {
+                        if (((PrintEditor) jComboBox.getItemAt(j)).getDesignPane().equals(getComponent(i))) {
                             UIDesigner.mainWindow.getFrameList().setSelectedIndex(j);
+                        }
+                    }
                 }
                 UIDesigner.mainWindow.setReportEnable();
             }
@@ -137,18 +133,14 @@ public class DesignTabbedPane extends JTabbedPane
         }
 
     }
-    public void remove ( Component c )
-    {
+
+    public void remove(Component c) {
         super.remove(c);
-            this.setSelectedIndex(previousSelectedIndex);
+        setSelectedIndex(previousSelectedIndex);
     }
     /*
-    public void removeTab ( DesignBackPane backPane )
-    {
-        for ( int i = 0 ; i < getTabCount() ; i ++ )
-        {
-            if ( getComponent(i).equals(backPane) )
-                remove(i);
-        }
-    }*/
+     * public void removeTab ( DesignBackPane backPane ) { for ( int i = 0 ; i <
+     * getTabCount() ; i ++ ) { if ( getComponent(i).equals(backPane) )
+     * remove(i); } }
+     */
 }

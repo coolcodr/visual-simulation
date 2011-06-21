@@ -1,36 +1,31 @@
 package print;
 
-import java.io.*;
-import java.awt.*;
-import java.io.*;
-import java.util.Vector;
-import javax.swing.*;
-import java.util.Hashtable;
-import java.util.Enumeration;
-import java.awt.*;
+import java.awt.Component;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
-public class SaveControl
-{
+import javax.swing.JFileChooser;
+
+public class SaveControl {
     private ReportDocument reportDocument;
     private String currentPath = null;
 
-    public SaveControl()
-    {
+    public SaveControl() {
         this(null);
     }
 
-    public SaveControl(ReportDocument reportDocument)
-    {
+    public SaveControl(ReportDocument reportDocument) {
         this.reportDocument = reportDocument;
     }
 
-    public void setReportDocument(ReportDocument reportDocument)
-    {
+    public void setReportDocument(ReportDocument reportDocument) {
         this.reportDocument = reportDocument;
     }
 
-    public void saveAs( Component parent )
-    {
+    public void saveAs(Component parent) {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.addChoosableFileFilter(new ReportFileFilter());
         fileChooser.showSaveDialog(parent);
@@ -38,47 +33,37 @@ public class SaveControl
         String path = "";
         String name;
 
-        if (file != null)
-        {
-            if ( file.isFile() )
-            {
+        if (file != null) {
+            if (file.isFile()) {
                 path = file.getAbsolutePath();
-            }
-            else
-            {
+            } else {
                 path = file.getAbsolutePath() + ".vsr";
             }
             currentPath = path;
             save(parent);
-        }
-        else
-        {
+        } else {
             return;
         }
 
     }
 
-    public void save( Component parent )
-    {
-        if (reportDocument == null)
+    public void save(Component parent) {
+        if (reportDocument == null) {
             return;
-        if ( currentPath == null )
-        {
-            saveAs ( parent);
+        }
+        if (currentPath == null) {
+            saveAs(parent);
         }
         reportDocument.prepareImage();
-        //TEMP
-        try
-        {
+        // TEMP
+        try {
             File outFile = new File(currentPath);
             FileOutputStream outFileStream = new FileOutputStream(outFile);
             ObjectOutputStream outObjectStream = new ObjectOutputStream(outFileStream);
 
             outObjectStream.writeObject(reportDocument);
             outObjectStream.close();
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println(e.getStackTrace());
         }
 
@@ -86,8 +71,7 @@ public class SaveControl
 
     }
 
-    public ReportDocument load( Component parent )
-    {
+    public ReportDocument load(Component parent) {
         ReportDocument reportDocument = null;
 
         JFileChooser fc = new JFileChooser();
@@ -95,11 +79,11 @@ public class SaveControl
         fc.showOpenDialog(parent);
         File file = fc.getSelectedFile();
 
-        if (file.isFile())
+        if (file.isFile()) {
             currentPath = file.getAbsolutePath();
+        }
 
-        try
-        {
+        try {
             File inFile = new File(currentPath);
             FileInputStream inFileStream = new FileInputStream(inFile);
             ObjectInputStream inObjectStream = new ObjectInputStream(inFileStream);
@@ -108,8 +92,7 @@ public class SaveControl
             inObjectStream.close();
         }
 
-        catch (Exception e)
-        {
+        catch (Exception e) {
             System.out.println(e);
         }
 

@@ -3,77 +3,68 @@ package designer.deployment;
 import java.io.Serializable;
 import java.util.Vector;
 
-public class SimPropertyChoice implements Serializable
-{
+public class SimPropertyChoice implements Serializable {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 2951572192401059830L;
     private String value;
     private String displayName;
     private boolean display;
     private String frameID;
 
     private Vector properties = new Vector();
-    public SimPropertyChoice(String name)
-    {
+
+    public SimPropertyChoice(String name) {
         value = name;
         displayName = name;
         display = true;
-        frameID = "-1"; //TEMP, 0 means the top form, (no popup)
+        frameID = "-1"; // TEMP, 0 means the top form, (no popup)
     }
 
     /*
-       public void setFrameIDandName ( FrameIDandName id )
-       {
-     this.id = id;
-       }*/
-    public void addProperty(Object[] object)
-    {
+     * public void setFrameIDandName ( FrameIDandName id ) { this.id = id; }
+     */
+    public void addProperty(Object[] object) {
         properties.add(object);
     }
 
-    public Vector getProperties()
-    {
+    public Vector getProperties() {
         return properties;
     }
-    public String getValue ()
-    {
+
+    public String getValue() {
         return value;
     }
+
     /*
-       public FrameIDandName getFrameIDandName ()
-       {
-     return id;
-       }*/
-    public void setDisplayName(String name)
-    {
+     * public FrameIDandName getFrameIDandName () { return id; }
+     */
+    public void setDisplayName(String name) {
         displayName = name;
     }
 
-    public String getDisplayName()
-    {
+    public String getDisplayName() {
         return displayName;
     }
 
-    public String toString()
-    {
+    public String toString() {
         return getDisplayName();
     }
 
-    public void setDisplay(boolean b)
-    {
+    public void setDisplay(boolean b) {
         display = b;
     }
 
-    public boolean getDisplay()
-    {
+    public boolean getDisplay() {
         return display;
     }
 
-    public void setFrameID(String i)
-    {
+    public void setFrameID(String i) {
         frameID = i;
     }
 
-    public String getFrameID()
-    {
+    public String getFrameID() {
         return frameID;
     }
 }

@@ -1,24 +1,21 @@
 package diagram;
-import javax.swing.JComponent;
-import java.awt.*;
-import java.lang.reflect.*;
-import java.awt.event.*;
-import java.util.*;
-import javax.swing.*;
 
 /**
- * Title:
- * Description:
- * Copyright:    Copyright (c) 2001
- * Company:
+ * Title: Description: Copyright: Copyright (c) 2001 Company:
+ * 
  * @author Kenny
  * @version 1.0
  */
 
-public class DiagramChartPort extends DiagramPort{
+public class DiagramChartPort extends DiagramPort {
 
-  public DiagramChartPort() {
-  //Testing!!!
-    super();
-  }
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 6101056707195651683L;
+
+    public DiagramChartPort() {
+        // Testing!!!
+        super();
+    }
 }

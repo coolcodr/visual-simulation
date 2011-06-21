@@ -1,27 +1,28 @@
 package designer;
 
-import designer.deployment.*;
-
 import javax.swing.JComboBox;
 
-public class DesignActionChooser extends JComboBox
-{
-    /* private String[] choice =
-         {
-         "Close Dialog", "System Exit", "Start Simultation", "Stop Simulation"};*/
+import designer.deployment.DActionClose;
+import designer.deployment.DActionExit;
+import designer.deployment.DActionRun;
 
-    public DesignActionChooser()
-    {
-        super(
-            new
-            String[]
-            {"Close Dialog", "System Exit", "Start Simultation", "Stop Simulation"});
+public class DesignActionChooser extends JComboBox {
+    /*
+     * private String[] choice = { "Close Dialog", "System Exit",
+     * "Start Simultation", "Stop Simulation"};
+     */
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -5909049969473467240L;
+
+    public DesignActionChooser() {
+        super(new String[] { "Close Dialog", "System Exit", "Start Simultation", "Stop Simulation" });
     }
 
-    public Object getItemAt(int i)
-    {
-        switch (i)
-        {
+    public Object getItemAt(int i) {
+        switch (i) {
             case (0):
                 return new DActionClose();
             case (1):

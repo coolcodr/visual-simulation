@@ -1,73 +1,72 @@
 package designer.deployment;
 
-import java.io.*;
-import org.w3c.dom.*;
-//import org.xml.sax.*;
-import javax.xml.parsers.*;
-import org.apache.crimson.tree.XmlDocument;
-import javax.swing.JFileChooser;
 import java.awt.Component;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
-public class ExportDataControl
-{
+import javax.swing.JFileChooser;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.apache.crimson.tree.XmlDocument;
+import org.w3c.dom.Attr;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
+public class ExportDataControl {
     private Document document;
     private DeployObject deployObject;
 
-    public ExportDataControl(DeployObject deployObject)
-    {
+    public ExportDataControl(DeployObject deployObject) {
         this.deployObject = deployObject;
         createDocumentNode();
     }
 
-    public void saveData ( Component parent )
-    {
+    public void saveData(Component parent) {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.addChoosableFileFilter(new XFileFilter());
         fileChooser.showSaveDialog(parent);
         File file = fileChooser.getSelectedFile();
         String path;
 
-        if ( file != null )
-        {
-            if (file.isFile())
+        if (file != null) {
+            if (file.isFile()) {
                 path = file.getAbsolutePath();
-            else
+            } else {
                 path = file.getAbsolutePath() + ".xml";
+            }
 
             createDocumentNode(path);
         }
     }
-    public void createDocumentNode ()
-    {
+
+    public void createDocumentNode() {
         createDocumentNode("simulation_data_tmp.xml");
     }
-    public void createDocumentNode( String path )
-    {
+
+    public void createDocumentNode(String path) {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        try
-        {
+        try {
             DocumentBuilder builder = factory.newDocumentBuilder();
             document = builder.newDocument();
-        }
-        catch (ParserConfigurationException e)
-        {
+        } catch (ParserConfigurationException e) {
             e.printStackTrace();
         }
 
         Element e1 = document.createElement("Properties");
         document.appendChild(e1);
 
-        for ( int i = 0 ; i < deployObject.getInputObjectCount() ; i ++ )
-        {
+        for (int i = 0; i < deployObject.getInputObjectCount(); i++) {
             Element e2 = document.createElement("Input");
-            String name = ((InputComponent)deployObject.getInputObject(i)).getName();
-            String setMode = ((InputComponent)deployObject.getInputObject(i)).getSetMode();
+            String name = (deployObject.getInputObject(i)).getName();
+            String setMode = (deployObject.getInputObject(i)).getSetMode();
             String value;
 
-            try{
-                value = ((InputComponent)deployObject.getInputObject(i)).getInput().toString();
-            }
-            catch ( InvalidDataException e ){
+            try {
+                value = (deployObject.getInputObject(i)).getInput().toString();
+            } catch (InvalidDataException e) {
                 value = "";
             }
             Attr elementName = document.createAttribute("Name");
@@ -82,16 +81,14 @@ public class ExportDataControl
             e1.appendChild(e2);
         }
 
-        for ( int i = 0 ; i < deployObject.getInternalInputObjectCount() ; i ++ )
-        {
+        for (int i = 0; i < deployObject.getInternalInputObjectCount(); i++) {
 
-            String name = ((InputComponent)deployObject.getInternalInputObject(i)).getName();
-            String setMode = ((InputComponent)deployObject.getInternalInputObject(i)).getSetMode();
+            String name = (deployObject.getInternalInputObject(i)).getName();
+            String setMode = (deployObject.getInternalInputObject(i)).getSetMode();
             String value;
-            try{
-                value = ((InputComponent)deployObject.getInternalInputObject(i)).getInput().toString();
-            }
-            catch ( InvalidDataException e ){
+            try {
+                value = (deployObject.getInternalInputObject(i)).getInput().toString();
+            } catch (InvalidDataException e) {
                 value = "";
             }
             Element e2 = document.createElement("InternalInput");
@@ -103,8 +100,8 @@ public class ExportDataControl
             e2.setAttributeNode(elementMode);
             e2.setAttributeNode(elementType);
             e2.setAttributeNode(elementValue);
-            elementMode.setValue(name.substring(name.lastIndexOf("|")+1));
-            elementName.setValue(name.substring(0,name.indexOf("|")));
+            elementMode.setValue(name.substring(name.lastIndexOf("|") + 1));
+            elementName.setValue(name.substring(0, name.indexOf("|")));
             elementType.setValue(setMode);
             elementValue.setValue(value);
             e1.appendChild(e2);
@@ -113,12 +110,10 @@ public class ExportDataControl
         createDocument(path);
     }
 
-    public void createDocument(String path)
-    {
-        try{
+    public void createDocument(String path) {
+        try {
             ((XmlDocument) document).write(new FileOutputStream(path));
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

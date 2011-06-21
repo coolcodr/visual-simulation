@@ -1,38 +1,31 @@
 package designer;
 
-import javax.swing.JComponent;
-import java.awt.*;
-import javax.swing.event.MouseInputAdapter;
-import java.lang.reflect.*;
-import java.awt.event.*;
-import java.util.*;
-import javax.swing.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.Vector;
 
-public class KeyControl implements KeyListener
-{
+public class KeyControl implements KeyListener {
     boolean isMoving = false;
 
-    public KeyControl()
-    {
+    public KeyControl() {
     }
 
-    public void keyPressed(KeyEvent e)
-    {
-        if ( !isMoving)
-            UIDesigner.getControl().currentDesignPane.createBatchMoveUndo();
+    public void keyPressed(KeyEvent e) {
+        if (!isMoving) {
+            UIDesigner.getControl();
+            DesignerControl.currentDesignPane.createBatchMoveUndo();
+        }
         isMoving = true;
 
         int kc = e.getKeyCode();
         int grid = DesignerControl.gridSize;
 
-        Vector covers = UIDesigner.getControl().currentDesignPane.getSelecledObject();
-        if (kc >= 37 && kc <= 40)
-        {
-            for (int i = 0; i < covers.size(); i++)
-            {
+        UIDesigner.getControl();
+        Vector covers = DesignerControl.currentDesignPane.getSelecledObject();
+        if (kc >= 37 && kc <= 40) {
+            for (int i = 0; i < covers.size(); i++) {
                 CoverComponent cover = (CoverComponent) covers.elementAt(i);
-                switch (kc)
-                {
+                switch (kc) {
                     case 37:
                         cover.moveXY(cover.getX() - grid, cover.getY());
                         break;
@@ -51,20 +44,17 @@ public class KeyControl implements KeyListener
             }
         }
 
-        if (kc == 127)
-        {
+        if (kc == 127) {
             DesignerControl.currentDesignPane.removeDesignComponent();
         }
     }
 
-    public void keyReleased(KeyEvent e)
-    {
+    public void keyReleased(KeyEvent e) {
         isMoving = false;
         int kc = e.getKeyCode();
     }
 
-    public void keyTyped(KeyEvent e)
-    {
+    public void keyTyped(KeyEvent e) {
         int kc = e.getKeyCode();
     }
 }

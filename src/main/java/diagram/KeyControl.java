@@ -1,26 +1,22 @@
 package diagram;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.KeyEvent;
 
 /**
- * Title:
- * Description:
- * Copyright:    Copyright (c) 2001
- * Company:
+ * Title: Description: Copyright: Copyright (c) 2001 Company:
+ * 
  * @author
  * @version 1.0
  */
 
 public interface KeyControl {
-	final public static DefaultKeyControl _defaultKeyControl = new DefaultKeyControl();
-	final public static DeleteKeyControl _deleteKeyControl = new DeleteKeyControl();
-	final public static MoveShapeKeyControl _moveShapeKeyControl = new MoveShapeKeyControl();
-	
-	public void keyPressed(KeyEvent e);
-	
-	public void keyReleased(KeyEvent e);
-	
-	public void keyTyped(KeyEvent e);
+    final public static DefaultKeyControl _defaultKeyControl = new DefaultKeyControl();
+    final public static DeleteKeyControl _deleteKeyControl = new DeleteKeyControl();
+    final public static MoveShapeKeyControl _moveShapeKeyControl = new MoveShapeKeyControl();
+
+    public void keyPressed(KeyEvent e);
+
+    public void keyReleased(KeyEvent e);
+
+    public void keyTyped(KeyEvent e);
 }

@@ -1,123 +1,148 @@
-
 package chart;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.awt.image.BufferedImage;
-import javax.accessibility.*;
-import java.util.*;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.util.Vector;
 
-import chart.*;
-import print.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.WindowConstants;
 
-public class TmpChartFrame extends JFrame{
-	private Vector _charts;
-	private JTextField pointText;
-	private JTextField pointLabelText;
+import print.PrintEditor;
 
-	private JTextField xUnitText;
-	private JTextField yUnitText;
-	private JScrollPane _scroll;
-	private JPanel _chartsPane;
-	private JPanel _buttonPane;
-	private JButton _printButton;
+public class TmpChartFrame extends JFrame {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 74657235043234668L;
+    private Vector _charts;
+    private JTextField pointText;
+    private JTextField pointLabelText;
 
-	private final int SCROLL_WIDTH = 700;
-	private final int SCROLL_HEIGHT = 550;
+    private JTextField xUnitText;
+    private JTextField yUnitText;
+    private JScrollPane _scroll;
+    private JPanel _chartsPane;
+    private JPanel _buttonPane;
+    private JButton _printButton;
 
-	public TmpChartFrame() {
-		_charts=new Vector();
-		_chartsPane=new JPanel();
-		_buttonPane = new JPanel();
-		_printButton = new JButton("Print");
-		_chartsPane.setLayout(new FlowLayout());
-		_buttonPane.setLayout(new FlowLayout());
+    private final int SCROLL_WIDTH = 700;
+    private final int SCROLL_HEIGHT = 550;
 
-		setTitle("Charts after Simulation");
+    public TmpChartFrame() {
+        _charts = new Vector();
+        _chartsPane = new JPanel();
+        _buttonPane = new JPanel();
+        _printButton = new JButton("Print");
+        _chartsPane.setLayout(new FlowLayout());
+        _buttonPane.setLayout(new FlowLayout());
 
-		//this.setBounds(0,0,750,650);
-		this.setSize( new Dimension(750, 650) );
+        setTitle("Charts after Simulation");
 
-		_scroll = new JScrollPane(_chartsPane);
-		_scroll.setBounds((int)((this.getSize().getWidth()/2)-(SCROLL_WIDTH/2)), (int)((this.getSize().getHeight()/2)-(SCROLL_HEIGHT/2)), SCROLL_WIDTH, SCROLL_HEIGHT);
+        // this.setBounds(0,0,750,650);
+        this.setSize(new Dimension(750, 650));
 
-		//p.add(myChart);
-		this.getContentPane().setLayout(new BorderLayout());
-		this.getContentPane().add(_scroll, BorderLayout.CENTER);
-		this.getContentPane().add(_buttonPane, BorderLayout.SOUTH);
-		//this.setVisible(true);
-		_buttonPane.add(_printButton);
-		//this.addWindowListener(new WinAdapter());
-		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		_printButton.addActionListener(new java.awt.event.ActionListener() {
+        _scroll = new JScrollPane(_chartsPane);
+        _scroll.setBounds((int) ((this.getSize().getWidth() / 2) - (SCROLL_WIDTH / 2)), (int) ((this.getSize().getHeight() / 2) - (SCROLL_HEIGHT / 2)), SCROLL_WIDTH, SCROLL_HEIGHT);
+
+        // p.add(myChart);
+        getContentPane().setLayout(new BorderLayout());
+        getContentPane().add(_scroll, BorderLayout.CENTER);
+        getContentPane().add(_buttonPane, BorderLayout.SOUTH);
+        // this.setVisible(true);
+        _buttonPane.add(_printButton);
+        // this.addWindowListener(new WinAdapter());
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        _printButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 _printButton_actionPerformed(e);
             }
         });
 
-	}
-	void _printButton_actionPerformed(ActionEvent e) {
-        Chart[] chartAry = new Chart[_charts.size()];
-        for ( int i = 0  ; i < _charts.size() ; i ++ )
-        {
-        	chartAry[i] = (Chart)_charts.elementAt(i);
-        }
-        PrintEditor printEditor = new PrintEditor (chartAry);
-		printEditor.setVisible (true);
     }
-    public Chart[] getCharts ()
-    {
+
+    void _printButton_actionPerformed(ActionEvent e) {
         Chart[] chartAry = new Chart[_charts.size()];
-        for ( int i = 0  ; i < _charts.size() ; i ++ )
-        {
-            chartAry[i] = (Chart)_charts.elementAt(i);
+        for (int i = 0; i < _charts.size(); i++) {
+            chartAry[i] = (Chart) _charts.elementAt(i);
+        }
+        PrintEditor printEditor = new PrintEditor(chartAry);
+        printEditor.setVisible(true);
+    }
+
+    public Chart[] getCharts() {
+        Chart[] chartAry = new Chart[_charts.size()];
+        for (int i = 0; i < _charts.size(); i++) {
+            chartAry[i] = (Chart) _charts.elementAt(i);
         }
         return chartAry;
     }
-	public void addChart(Chart chart){
-		int totalWidth=0;
-		int totalHeight=0;
 
-		_charts.add(chart);
-		for(int i=0; i<_charts.size(); i++){
-			totalWidth+=((Chart)_charts.get(i)).getWidth();
-		}
+    public void addChart(Chart chart) {
+        int totalWidth = 0;
+        int totalHeight = 0;
 
-		_chartsPane.setBounds(_chartsPane.getLocation().x, _chartsPane.getLocation().y, totalWidth, _chartsPane.getHeight());
-		_chartsPane.add(chart);
-		_scroll.setViewportView(_chartsPane);
-	}
+        _charts.add(chart);
+        for (int i = 0; i < _charts.size(); i++) {
+            totalWidth += ((Chart) _charts.get(i)).getWidth();
+        }
 
-	/*
-	protected void paintComponent(Graphics g){
-		_scroll.setBounds((int)((this.getSize().getWidth()/2)-(SCROLL_WIDTH/2)), (int)((this.getSize().getHeight()/2)-(SCROLL_HEIGHT/2)), SCROLL_WIDTH, SCROLL_HEIGHT);
-		System.out.println("this.getSize().getWidth()"+this.getSize().getWidth()+" this.getSize().getHeight()"+this.getSize().getHeight());
-		super.paintComponents(g);
-	}
+        _chartsPane.setBounds(_chartsPane.getLocation().x, _chartsPane.getLocation().y, totalWidth, _chartsPane.getHeight());
+        _chartsPane.add(chart);
+        _scroll.setViewportView(_chartsPane);
+    }
 
-	public void repaint(){
-		_scroll.setBounds((int)((this.getSize().getWidth()/2)-(SCROLL_WIDTH/2)), (int)((this.getSize().getHeight()/2)-(SCROLL_HEIGHT/2)), SCROLL_WIDTH, SCROLL_HEIGHT);
-		System.out.println("this.getSize().getWidth()"+this.getSize().getWidth()+" this.getSize().getHeight()"+this.getSize().getHeight());
-		super.repaint();
-	}
-	*/
+    /*
+     * protected void paintComponent(Graphics g){
+     * _scroll.setBounds((int)((this.getSize().getWidth()/2)-(SCROLL_WIDTH/2)),
+     * (int)((this.getSize().getHeight()/2)-(SCROLL_HEIGHT/2)), SCROLL_WIDTH,
+     * SCROLL_HEIGHT);
+     * System.out.println("this.getSize().getWidth()"+this.getSize
+     * ().getWidth()+" this.getSize().getHeight()"+this.getSize().getHeight());
+     * super.paintComponents(g); }
+     * 
+     * public void repaint(){
+     * _scroll.setBounds((int)((this.getSize().getWidth()/2)-(SCROLL_WIDTH/2)),
+     * (int)((this.getSize().getHeight()/2)-(SCROLL_HEIGHT/2)), SCROLL_WIDTH,
+     * SCROLL_HEIGHT);
+     * System.out.println("this.getSize().getWidth()"+this.getSize
+     * ().getWidth()+" this.getSize().getHeight()"+this.getSize().getHeight());
+     * super.repaint(); }
+     */
 
-	public static void main(String[] args) {
-		new TmpChartFrame();
-	}
+    public static void main(String[] args) {
+        new TmpChartFrame();
+    }
 
-	static class WinAdapter implements WindowListener {
-		public void windowActivated(WindowEvent e){}
-		public void windowClosed(WindowEvent e){}
+    static class WinAdapter implements WindowListener {
+        public void windowActivated(WindowEvent e) {
+        }
 
-		public void windowClosing(WindowEvent e){
-			System.exit(0);
-		}
-		public void windowDeactivated(WindowEvent e){}
-		public void windowDeiconified(WindowEvent e){}
-		public void windowIconified(WindowEvent e){}
-		public void windowOpened(WindowEvent e){}
-	}
+        public void windowClosed(WindowEvent e) {
+        }
+
+        public void windowClosing(WindowEvent e) {
+            System.exit(0);
+        }
+
+        public void windowDeactivated(WindowEvent e) {
+        }
+
+        public void windowDeiconified(WindowEvent e) {
+        }
+
+        public void windowIconified(WindowEvent e) {
+        }
+
+        public void windowOpened(WindowEvent e) {
+        }
+    }
 
 }

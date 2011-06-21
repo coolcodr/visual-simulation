@@ -1,11 +1,10 @@
 package mcomponent.distribution;
 
 public class DefaultTransform extends Transform {
-	
-	public DefaultTransform() {
-	}
-	
-	
-	public void start() {
-	}
+
+    public DefaultTransform() {
+    }
+
+    public void start() {
+    }
 }

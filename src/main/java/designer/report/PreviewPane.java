@@ -1,20 +1,21 @@
 package designer.report;
 
-import print.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Rectangle;
 
-/**
- * <p>Title: Print Editor</p>
- * <p>Description: </p>
- * <p>Copyright: Copyright (c) 2002</p>
- * <p>Company: </p>
- * @author HYLim,
- * @version 1.0
- */
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JPanel;
 
-public class PreviewPane extends JPanel
-{
+import print.PreviewPage;
+import print.ReportDocument;
+import print.ReportMultiPage;
+
+public class PreviewPane extends JPanel {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 4686485899051004237L;
+
     private static final float EXPAND_FACTOR = 1.5f;
 
     private ReportDocument reportDocument;
@@ -22,93 +23,96 @@ public class PreviewPane extends JPanel
 
     private int numOfPage;
 
-    private double scale ;
-    public PreviewPane ( ReportDocument reportDocument )
-    {
-        this ( reportDocument, 0.5 );
+    private double scale;
+
+    public PreviewPane(ReportDocument reportDocument) {
+        this(reportDocument, 0.5);
     }
-    public PreviewPane ( ReportDocument reportDocument, double scale )
-    {
+
+    public PreviewPane(ReportDocument reportDocument, double scale) {
         this.reportDocument = reportDocument;
         previewPage = new PreviewPage[2];
         numOfPage = 0;
         this.scale = scale;
-        this.setBackground(Color.lightGray);
-        //TEMP//
+        setBackground(Color.lightGray);
+        // TEMP//
         setScale(scale);
     }
-    public void addAllPanel ( )
-    {
+
+    public void addAllPanel() {
         previewPage = new PreviewPage[2];
         numOfPage = 0;
-        this.removeAll();
+        removeAll();
         ReportMultiPage reportMultiPage;
-        reportDocument.refresh ();
+        reportDocument.refresh();
 
-        for ( int i = 0 ; i < reportDocument.getNumOfPage() ; i ++ )
-            addSinglePanel ( reportDocument.getReportMultiPage(i) );
+        for (int i = 0; i < reportDocument.getNumOfPage(); i++) {
+            addSinglePanel(reportDocument.getReportMultiPage(i));
+        }
 
         double width = previewPage[0].getPreferredSize().getWidth();
         double requiredRow;
-        if ( Math.floor(this.getPreferredSize().getWidth() / width) == 0 )
+        if (Math.floor(getPreferredSize().getWidth() / width) == 0) {
             requiredRow = reportDocument.getNumOfPage();
-        else
-            requiredRow = Math.ceil(reportDocument.getNumOfPage() / Math.floor((getPreferredSize().getWidth()+120) / width));
+        } else {
+            requiredRow = Math.ceil(reportDocument.getNumOfPage() / Math.floor((getPreferredSize().getWidth() + 120) / width));
+        }
 
-        double height = (previewPage[0].getPreferredSize().getHeight() * requiredRow ) + (5 * requiredRow + 10);
+        double height = (previewPage[0].getPreferredSize().getHeight() * requiredRow) + (5 * requiredRow + 10);
 
-        this.setPreferredSize(new Dimension ( (int)width, (int)height));
+        setPreferredSize(new Dimension((int) width, (int) height));
 
     }
 
-    /*public void paint (Graphics g)
-    {
-        Graphics2D g2d = (Graphics2D)g;
-        g2d.scale(0.5,0.5);
-        this.setBackground(Color.lightGray);
-        g2d.setBackground(Color.lightGray);
-        super.paint (g2d);
-    }*/
+    /*
+     * public void paint (Graphics g) { Graphics2D g2d = (Graphics2D)g;
+     * g2d.scale(0.5,0.5); this.setBackground(Color.lightGray);
+     * g2d.setBackground(Color.lightGray); super.paint (g2d); }
+     */
 
-    private void addSinglePanel ( ReportMultiPage reportMultiPage )
-    {
-        if ( numOfPage == this.previewPage.length)
+    private void addSinglePanel(ReportMultiPage reportMultiPage) {
+        if (numOfPage == previewPage.length) {
             expandPreviewPage();
+        }
 
-        previewPage[numOfPage] = new PreviewPage( reportMultiPage, numOfPage, scale, reportDocument.getMultiPageFormat() );
+        previewPage[numOfPage] = new PreviewPage(reportMultiPage, numOfPage, scale, reportDocument.getMultiPageFormat());
 
         this.add(previewPage[numOfPage]);
 
-        //this.setPreferredSize(new Dimension ((int)previewPage[numOfPage].getPreferredSize().getWidth(), (int)previewPage[numOfPage].getPreferredSize().getHeight()));
+        // this.setPreferredSize(new Dimension
+        // ((int)previewPage[numOfPage].getPreferredSize().getWidth(),
+        // (int)previewPage[numOfPage].getPreferredSize().getHeight()));
         previewPage[numOfPage].setVisible(true);
 
-        numOfPage ++;
+        numOfPage++;
     }
-    private void expandPreviewPage ( )
-    {
-      	int newSize = (int) (previewPage.length * EXPAND_FACTOR);
 
-        PreviewPage tempPreviewPage[] =  new PreviewPage[newSize];
+    private void expandPreviewPage() {
+        int newSize = (int) (previewPage.length * EXPAND_FACTOR);
 
-        for ( int i = 0 ; i < previewPage.length ; i ++ )
-        {
+        PreviewPage tempPreviewPage[] = new PreviewPage[newSize];
+
+        for (int i = 0; i < previewPage.length; i++) {
             tempPreviewPage[i] = previewPage[i];
         }
 
         previewPage = tempPreviewPage;
-   	}
-    public void setScale ( double d )
-    {
+    }
+
+    public void setScale(double d) {
         scale = d;
         addAllPanel();
-        //this.setPreferredSize(new Dimension ( (int)(previewPage[numOfPage].getPreferredSize().getWidth() * scale), (int)((previewPage[numOfPage].getPreferredSize().getHeight() * (numOfPage + 1) + (5 * numOfPage + 15))*scale)));
+        // this.setPreferredSize(new Dimension (
+        // (int)(previewPage[numOfPage].getPreferredSize().getWidth() * scale),
+        // (int)((previewPage[numOfPage].getPreferredSize().getHeight() *
+        // (numOfPage + 1) + (5 * numOfPage + 15))*scale)));
     }
-    public double getScale ()
-    {
+
+    public double getScale() {
         return scale;
     }
-    public void setVisibleRegion ( int x, int y )
-    {
-        this.scrollRectToVisible(new Rectangle(x, y));
+
+    public void setVisibleRegion(int x, int y) {
+        scrollRectToVisible(new Rectangle(x, y));
     }
 }

@@ -1,25 +1,31 @@
 package animation;
 
-import java.awt.*;
-import javax.swing.*;
-import java.awt.image.*;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
 
 public class Man extends Animation {
-	
-	Image cover;
-	
-	public Man() {
-		java.net.URL imageurl = this.getClass().getResource("man.gif");
-		cover = new ImageIcon(imageurl).getImage();
-		this.setSize(new Dimension(30,40));
-		this.setStartStatus(false);
-	}
-	
-	public void paintComponent(Graphics g) {
-		if(this.getStartStatus()) {
-			g.drawImage(cover,0,0,this.getParent());
-			this.setVisible(true);
-		}
-	}
-	
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 6935125103323735540L;
+    Image cover;
+
+    public Man() {
+        java.net.URL imageurl = getClass().getResource("man.gif");
+        cover = new ImageIcon(imageurl).getImage();
+        this.setSize(new Dimension(30, 40));
+        setStartStatus(false);
+    }
+
+    public void paintComponent(Graphics g) {
+        if (getStartStatus()) {
+            g.drawImage(cover, 0, 0, getParent());
+            setVisible(true);
+        }
+    }
+
 }

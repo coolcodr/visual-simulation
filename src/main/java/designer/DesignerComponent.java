@@ -1,30 +1,38 @@
 package designer;
 
-import designer.deployment.*;
-
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
 import java.awt.Dimension;
 
-public interface DesignerComponent
-{
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+import designer.deployment.DAction;
+
+public interface DesignerComponent {
     public String getText();
-    public void setText( String text );
+
+    public void setText(String text);
 
     public CoverComponent getCover();
-    public void setCover ( CoverComponent cover );
+
+    public void setCover(CoverComponent cover);
 
     public CoverControl getCoverControl();
-    public void setCoverControl( CoverControl coverControl);
 
-	public void setProperties ( ElementProperties properties );
-	public ElementProperties getProperties ();
+    public void setCoverControl(CoverControl coverControl);
+
+    public void setProperties(ElementProperties properties);
+
+    public ElementProperties getProperties();
 }
 
-class CButton extends JButton implements DesignerComponent
-{
+class CButton extends JButton implements DesignerComponent {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 8961996084886478885L;
+
     private String text;
 
     private CoverComponent cover;
@@ -34,239 +42,260 @@ class CButton extends JButton implements DesignerComponent
 
     private DAction action;
 
-    public CButton()
-    {
+    public CButton() {
         super();
         setCoverControl(CoverControl.createDraggableEditTextControl());
         setText("Untitled Button");
-        setProperties( PropertiesFactory.createButtonProperties(this) );
-        //setOpaque(false);
+        setProperties(PropertiesFactory.createButtonProperties(this));
+        // setOpaque(false);
     }
-    public void setProperties ( ElementProperties properties ){
+
+    public void setProperties(ElementProperties properties) {
         this.properties = properties;
     }
-    public ElementProperties getProperties (){
+
+    public ElementProperties getProperties() {
         return properties;
     }
-    public void setDAction ( DAction action )
-    {
+
+    public void setDAction(DAction action) {
         this.action = action;
     }
-    public DAction getDAction ()
-    {
+
+    public DAction getDAction() {
         return action;
     }
-    public CoverControl getCoverControl ()
-    {
+
+    public CoverControl getCoverControl() {
         return coverControl;
     }
-    public void setCoverControl ( CoverControl coverControl )
-    {
+
+    public void setCoverControl(CoverControl coverControl) {
         this.coverControl = coverControl;
     }
-    public CoverComponent getCover ()
-    {
+
+    public CoverComponent getCover() {
         return cover;
     }
-    public void setCoverLink ( CoverComponent cover )
-    {
+
+    public void setCoverLink(CoverComponent cover) {
         this.cover = cover;
     }
-    public void setCover ( CoverComponent cover )
-    {
+
+    public void setCover(CoverComponent cover) {
         this.cover = cover;
-        this.coverControl.setCover(cover);
+        coverControl.setCover(cover);
         this.cover.setImageIcon("designer/images/button16.gif");
     }
-    public String getText()
-    {
+
+    public String getText() {
         return super.getText();
     }
-    public void setText(String s)
-    {
+
+    public void setText(String s) {
         super.setText(s);
     }
-    public String toString ()
-    {
+
+    public String toString() {
         return getText();
     }
 }
-class CLabel extends JLabel implements DesignerComponent
-{
+
+class CLabel extends JLabel implements DesignerComponent {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -8197122200638982716L;
+
     private String text;
 
     private CoverComponent cover;
     private CoverControl coverControl;
     private ElementProperties properties;
-    public CLabel()
-    {
+
+    public CLabel() {
         super();
         setCoverControl(CoverControl.createDraggableEditTextControl());
         setText("Untitled Label");
-        setProperties( PropertiesFactory.createLabelProperties(this) );
+        setProperties(PropertiesFactory.createLabelProperties(this));
         setOpaque(true);
     }
-    public void setProperties ( ElementProperties properties ){
+
+    public void setProperties(ElementProperties properties) {
         this.properties = properties;
     }
-    public ElementProperties getProperties (){
+
+    public ElementProperties getProperties() {
         return properties;
     }
-    public CoverControl getCoverControl ()
-    {
+
+    public CoverControl getCoverControl() {
         return coverControl;
     }
-    public void setCoverControl ( CoverControl coverControl )
-    {
+
+    public void setCoverControl(CoverControl coverControl) {
         this.coverControl = coverControl;
     }
-    public CoverComponent getCover ()
-    {
+
+    public CoverComponent getCover() {
         return cover;
     }
-    public void setCover ( CoverComponent cover )
-    {
+
+    public void setCover(CoverComponent cover) {
         this.cover = cover;
-        this.coverControl.setCover(cover);
+        coverControl.setCover(cover);
         this.cover.setImageIcon("designer/images/label16.gif");
     }
-    public void setCoverLink ( CoverComponent cover )
-    {
+
+    public void setCoverLink(CoverComponent cover) {
         this.cover = cover;
     }
-    public String getText()
-    {
+
+    public String getText() {
         return super.getText();
     }
-    public void setText(String s)
-    {
+
+    public void setText(String s) {
         super.setText(s);
     }
-    public String toString()
-    {
+
+    public String toString() {
         return getText();
     }
 }
-class CTextField extends JTextField implements DesignerComponent
-{
+
+class CTextField extends JTextField implements DesignerComponent {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -4666886393616888619L;
+
     private String text;
 
     private CoverComponent cover;
     private CoverControl coverControl;
     private ElementProperties properties;
-    public CTextField()
-    {
+
+    public CTextField() {
         super();
         setCoverControl(CoverControl.createDraggableEditTextControl());
         setText("Untitled TextField");
-        setProperties( PropertiesFactory.createTextFieldProperties(this) );
-        //setOpaque(false);
+        setProperties(PropertiesFactory.createTextFieldProperties(this));
+        // setOpaque(false);
     }
-    public void setProperties ( ElementProperties properties ){
+
+    public void setProperties(ElementProperties properties) {
         this.properties = properties;
     }
-    public ElementProperties getProperties (){
+
+    public ElementProperties getProperties() {
         return properties;
     }
-    public CoverControl getCoverControl ()
-    {
+
+    public CoverControl getCoverControl() {
         return coverControl;
     }
-    public void setCoverControl ( CoverControl coverControl )
-    {
+
+    public void setCoverControl(CoverControl coverControl) {
         this.coverControl = coverControl;
     }
-    public CoverComponent getCover ()
-    {
+
+    public CoverComponent getCover() {
         return cover;
     }
-    public void setCover ( CoverComponent cover )
-    {
+
+    public void setCover(CoverComponent cover) {
         this.cover = cover;
-        this.coverControl.setCover(cover);
+        coverControl.setCover(cover);
         this.cover.setImageIcon("designer/images/text16.gif");
     }
-    public void setCoverLink ( CoverComponent cover )
-    {
+
+    public void setCoverLink(CoverComponent cover) {
         this.cover = cover;
     }
-    public String getText()
-    {
+
+    public String getText() {
         return super.getText();
     }
-    public void setText(String s)
-    {
+
+    public void setText(String s) {
         super.setText(s);
     }
-    public String toString()
-    {
+
+    public String toString() {
         return getText();
     }
 }
-class CComboBox extends JComboBox implements DesignerComponent
-{
+
+class CComboBox extends JComboBox implements DesignerComponent {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -8307907892299715794L;
+
     private String text;
 
     private CoverComponent cover;
     private CoverControl coverControl;
     private ElementProperties properties;
 
-    public CComboBox()
-    {
+    public CComboBox() {
         super();
         setCoverControl(CoverControl.createDraggableEditTextControl());
         setText("Untitled ComboBox");
-        setProperties( PropertiesFactory.createComboBoxProperties(this) );
-        //setOpaque(false);
+        setProperties(PropertiesFactory.createComboBoxProperties(this));
+        // setOpaque(false);
     }
-    public void setProperties ( ElementProperties properties ){
+
+    public void setProperties(ElementProperties properties) {
         this.properties = properties;
     }
-    public ElementProperties getProperties (){
+
+    public ElementProperties getProperties() {
         return properties;
     }
-    public CoverControl getCoverControl ()
-    {
+
+    public CoverControl getCoverControl() {
         return coverControl;
     }
-    public void setCoverControl ( CoverControl coverControl )
-    {
+
+    public void setCoverControl(CoverControl coverControl) {
         this.coverControl = coverControl;
     }
-    public CoverComponent getCover ()
-    {
+
+    public CoverComponent getCover() {
         return cover;
     }
-    public void setCover ( CoverComponent cover )
-    {
+
+    public void setCover(CoverComponent cover) {
         this.cover = cover;
-        this.coverControl.setCover(cover);
+        coverControl.setCover(cover);
         this.cover.setImageIcon("designer/images/combo16.gif");
     }
-    public void setCoverLink ( CoverComponent cover )
-    {
+
+    public void setCoverLink(CoverComponent cover) {
         this.cover = cover;
     }
-    public String getText()
-    {
+
+    public String getText() {
         return text;
     }
-    public void setText(String s)
-    {
-        this.text = s;
+
+    public void setText(String s) {
+        text = s;
     }
-    public String toString()
-    {
+
+    public String toString() {
         return getText();
     }
-    public void setSize ( Dimension d )
-    {
+
+    public void setSize(Dimension d) {
         super.setSize(d);
-        //updateUI();
+        // updateUI();
     }
-    public void setSize ( int w, int h )
-    {
+
+    public void setSize(int w, int h) {
         super.setSize(w, h);
-        //updateUI();
+        // updateUI();
     }
 }

@@ -1,21 +1,52 @@
 package print;
 
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.border.*;
-import java.awt.print.*;
-import java.awt.event.*;
+import java.awt.Color;
+import java.awt.Frame;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.AdjustmentEvent;
+
+import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JScrollBar;
+import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.border.Border;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
+
 /**
- * <p>Title: Print Editor</p>
- * <p>Description: </p>
- * <p>Copyright: Copyright (c) 2002</p>
- * <p>Company: </p>
+ * <p>
+ * Title: Print Editor
+ * </p>
+ * <p>
+ * Description:
+ * </p>
+ * <p>
+ * Copyright: Copyright (c) 2002
+ * </p>
+ * <p>
+ * Company:
+ * </p>
+ * 
  * @author HYLim,
  * @version 1.0
  */
 
 public class DialogMultiPage extends JDialog {
-    public static final int BOARDER_ON = 0 ;
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -9058200829868634733L;
+    public static final int BOARDER_ON = 0;
     public static final int BOARDER_OFF = 1;
 
     public static final int DIRECTION_DOWN = 0;
@@ -55,7 +86,7 @@ public class DialogMultiPage extends JDialog {
     private ButtonGroup buttonGroupOrdering = new ButtonGroup();
     private JComboBox jComboBox1 = new JComboBox();
 
-    private PageFormat pageFormat ;
+    private PageFormat pageFormat;
 
     private int ver;
     private int hor;
@@ -71,8 +102,7 @@ public class DialogMultiPage extends JDialog {
         super(frame, true);
         try {
             jbInit();
-        }
-        catch(Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
@@ -80,19 +110,20 @@ public class DialogMultiPage extends JDialog {
     public DialogMultiPage() {
         this(null);
     }
+
     private void jbInit() throws Exception {
 
-        this.setBounds(150,150,315,272);
-        this.setTitle("Print Editor");
+        this.setBounds(150, 150, 315, 272);
+        setTitle("Print Editor");
 
-        border1 = BorderFactory.createEtchedBorder(Color.white,new Color(142, 142, 142));
-        titledBorder1 = new TitledBorder(border1,"Layout");
-        border2 = new EtchedBorder(EtchedBorder.RAISED,Color.white,new Color(142, 142, 142));
-        titledBorder2 = new TitledBorder(BorderFactory.createEtchedBorder(Color.white,new Color(142, 142, 142)),"Custom");
-        border3 = BorderFactory.createEtchedBorder(Color.white,new Color(142, 142, 142));
-        titledBorder3 = new TitledBorder(BorderFactory.createEtchedBorder(Color.white,new Color(142, 142, 142)),"Borders");
-        border4 = BorderFactory.createEtchedBorder(Color.white,new Color(142, 142, 142));
-        titledBorder4 = new TitledBorder(border4,"Ordering");
+        border1 = BorderFactory.createEtchedBorder(Color.white, new Color(142, 142, 142));
+        titledBorder1 = new TitledBorder(border1, "Layout");
+        border2 = new EtchedBorder(EtchedBorder.RAISED, Color.white, new Color(142, 142, 142));
+        titledBorder2 = new TitledBorder(BorderFactory.createEtchedBorder(Color.white, new Color(142, 142, 142)), "Custom");
+        border3 = BorderFactory.createEtchedBorder(Color.white, new Color(142, 142, 142));
+        titledBorder3 = new TitledBorder(BorderFactory.createEtchedBorder(Color.white, new Color(142, 142, 142)), "Borders");
+        border4 = BorderFactory.createEtchedBorder(Color.white, new Color(142, 142, 142));
+        titledBorder4 = new TitledBorder(border4, "Ordering");
         panel1.setLayout(null);
         jPanel1.setForeground(new Color(102, 102, 153));
         jPanel1.setBorder(titledBorder1);
@@ -162,7 +193,7 @@ public class DialogMultiPage extends JDialog {
         jRadioButtonAcross.setSelected(true);
         jRadioButtonAcross.setText("Across");
         jRadioButtonAcross.setBounds(new Rectangle(22, 22, 74, 25));
-        //jList1.setBounds(new Rectangle(130, 25, 50, 17));
+        // jList1.setBounds(new Rectangle(130, 25, 50, 17));
         jButton1.setBounds(new Rectangle(222, 178, 75, 25));
         jButton1.setFont(new java.awt.Font("Dialog", 0, 12));
         jButton1.setFocusPainted(false);
@@ -218,8 +249,9 @@ public class DialogMultiPage extends JDialog {
         buttonGroupOrdering.add(jRadioButtonDown);
 
         String[] num = new String[6];
-        for ( int i = 0 ; i < 6 ; i ++ )
+        for (int i = 0; i < 6; i++) {
             num[i] = Integer.toString(i + 1);
+        }
 
         jList1.setListData(num);
         jList1.setVisibleRowCount(1);
@@ -241,74 +273,78 @@ public class DialogMultiPage extends JDialog {
         jList1.setEnabled(false);
         jList2.setEnabled(false);
 
-        ver = 1; hor = 1;
-        orientation = PageFormat.PORTRAIT;
+        ver = 1;
+        hor = 1;
+        orientation = java.awt.print.PageFormat.PORTRAIT;
         boarder = BOARDER_OFF;
         direction = DIRECTION_ACCROSS;
     }
-    public void showDialog ( PageFormat pf1 )
-    {
+
+    public void showDialog(PageFormat pf1) {
         pageFormat = pf1;
-        this.setVisible(true);
+        setVisible(true);
     }
-    private void updateMultiPageFormat()
-    {
-        if ( jRadioButton1.isSelected() ){
-            ver = 1; hor = 1;
+
+    private void updateMultiPageFormat() {
+        if (jRadioButton1.isSelected()) {
+            ver = 1;
+            hor = 1;
             orientation = pageFormat.getOrientation();
-        }
-        else if ( jRadioButton2.isSelected() ){
-            if ( pageFormat.getOrientation() == PageFormat.PORTRAIT){
-                orientation = PageFormat.LANDSCAPE;
+        } else if (jRadioButton2.isSelected()) {
+            if (pageFormat.getOrientation() == java.awt.print.PageFormat.PORTRAIT) {
+                orientation = java.awt.print.PageFormat.LANDSCAPE;
                 ver = 1;
-                hor = 2;}
-            else{
-                orientation = PageFormat.PORTRAIT;
+                hor = 2;
+            } else {
+                orientation = java.awt.print.PageFormat.PORTRAIT;
                 ver = 2;
-                hor = 1;}
-        }
-        else if ( jRadioButton4.isSelected() ){
-            if ( pageFormat.getOrientation() == PageFormat.PORTRAIT){
-                orientation = PageFormat.PORTRAIT;
+                hor = 1;
+            }
+        } else if (jRadioButton4.isSelected()) {
+            if (pageFormat.getOrientation() == java.awt.print.PageFormat.PORTRAIT) {
+                orientation = java.awt.print.PageFormat.PORTRAIT;
                 ver = 2;
-                hor = 2;}
-            else{
-                orientation = PageFormat.LANDSCAPE;
+                hor = 2;
+            } else {
+                orientation = java.awt.print.PageFormat.LANDSCAPE;
                 ver = 2;
-                hor = 2;}
-        }
-        else if ( jRadioButton8.isSelected() ){
-            if ( pageFormat.getOrientation() == PageFormat.PORTRAIT){
-                orientation = PageFormat.PORTRAIT;
+                hor = 2;
+            }
+        } else if (jRadioButton8.isSelected()) {
+            if (pageFormat.getOrientation() == java.awt.print.PageFormat.PORTRAIT) {
+                orientation = java.awt.print.PageFormat.PORTRAIT;
                 ver = 3;
-                hor = 2;}
-            else{
-                orientation = PageFormat.LANDSCAPE;
+                hor = 2;
+            } else {
+                orientation = java.awt.print.PageFormat.LANDSCAPE;
                 ver = 2;
-                hor = 3;}
+                hor = 3;
+            }
         }
-        if ( jCheckBox1.isSelected() )
-        {
-            if ( jComboBox1.getSelectedIndex() == 0 )
-                orientation = PageFormat.PORTRAIT;
-            else
-                orientation = PageFormat.LANDSCAPE;
+        if (jCheckBox1.isSelected()) {
+            if (jComboBox1.getSelectedIndex() == 0) {
+                orientation = java.awt.print.PageFormat.PORTRAIT;
+            } else {
+                orientation = java.awt.print.PageFormat.LANDSCAPE;
+            }
             ver = Integer.parseInt(jTextField2.getText());
             hor = Integer.parseInt(jTextField1.getText());
-            //if ( ver * hor == 1 )
-                //orientation = pageFormat.getOrientation();
+            // if ( ver * hor == 1 )
+            // orientation = pageFormat.getOrientation();
         }
-        if ( jRadioButtonOn.isSelected() )
+        if (jRadioButtonOn.isSelected()) {
             boarder = BOARDER_ON;
-        else
+        } else {
             boarder = BOARDER_OFF;
-        if ( jRadioButtonDown.isSelected() )
+        }
+        if (jRadioButtonDown.isSelected()) {
             direction = DIRECTION_DOWN;
-        else
+        } else {
             direction = DIRECTION_ACCROSS;
+        }
     }
-    public int[] getMultiPageFormat()
-    {
+
+    public int[] getMultiPageFormat() {
         int[] i = new int[5];
         i[0] = hor;
         i[1] = ver;
@@ -319,37 +355,39 @@ public class DialogMultiPage extends JDialog {
     }
 
     void jButton2_actionPerformed(ActionEvent e) {
-        this.setVisible(false);
+        setVisible(false);
     }
 
     void jButton1_actionPerformed(ActionEvent e) {
         updateMultiPageFormat();
-        this.setVisible(false);
+        setVisible(false);
     }
 
     void jCheckBox1_actionPerformed(ActionEvent e) {
 
-            jList1.setEnabled(jCheckBox1.isSelected());
-            jList2.setEnabled(jCheckBox1.isSelected());
-            jComboBox1.setEnabled(jCheckBox1.isSelected());
-            jLabel1.setEnabled(jCheckBox1.isSelected());
-            jLabel2.setEnabled(jCheckBox1.isSelected());
-            jLabel3.setEnabled(jCheckBox1.isSelected());
+        jList1.setEnabled(jCheckBox1.isSelected());
+        jList2.setEnabled(jCheckBox1.isSelected());
+        jComboBox1.setEnabled(jCheckBox1.isSelected());
+        jLabel1.setEnabled(jCheckBox1.isSelected());
+        jLabel2.setEnabled(jCheckBox1.isSelected());
+        jLabel3.setEnabled(jCheckBox1.isSelected());
 
-            jRadioButton1.setEnabled(!jCheckBox1.isSelected());
-            jRadioButton2.setEnabled(!jCheckBox1.isSelected());
-            jRadioButton4.setEnabled(!jCheckBox1.isSelected());
-            jRadioButton8.setEnabled(!jCheckBox1.isSelected());
+        jRadioButton1.setEnabled(!jCheckBox1.isSelected());
+        jRadioButton2.setEnabled(!jCheckBox1.isSelected());
+        jRadioButton4.setEnabled(!jCheckBox1.isSelected());
+        jRadioButton8.setEnabled(!jCheckBox1.isSelected());
     }
 
     void jScrollBar1_adjustmentValueChanged(AdjustmentEvent e) {
-        if ( e.getValue() != 0 )
-        jTextField1.setText(Integer.toString(e.getValue()));
+        if (e.getValue() != 0) {
+            jTextField1.setText(Integer.toString(e.getValue()));
+        }
     }
 
     void jScrollBar2_adjustmentValueChanged(AdjustmentEvent e) {
-        if ( e.getValue() != 0 )
-        jTextField2.setText(Integer.toString(e.getValue()));
+        if (e.getValue() != 0) {
+            jTextField2.setText(Integer.toString(e.getValue()));
+        }
     }
 
 }
@@ -360,6 +398,7 @@ class DialogMultiPage_jButton2_actionAdapter implements java.awt.event.ActionLis
     DialogMultiPage_jButton2_actionAdapter(DialogMultiPage adaptee) {
         this.adaptee = adaptee;
     }
+
     public void actionPerformed(ActionEvent e) {
         adaptee.jButton2_actionPerformed(e);
     }
@@ -371,6 +410,7 @@ class DialogMultiPage_jButton1_actionAdapter implements java.awt.event.ActionLis
     DialogMultiPage_jButton1_actionAdapter(DialogMultiPage adaptee) {
         this.adaptee = adaptee;
     }
+
     public void actionPerformed(ActionEvent e) {
         adaptee.jButton1_actionPerformed(e);
     }
@@ -382,6 +422,7 @@ class DialogMultiPage_jCheckBox1_actionAdapter implements java.awt.event.ActionL
     DialogMultiPage_jCheckBox1_actionAdapter(DialogMultiPage adaptee) {
         this.adaptee = adaptee;
     }
+
     public void actionPerformed(ActionEvent e) {
         adaptee.jCheckBox1_actionPerformed(e);
     }
@@ -393,6 +434,7 @@ class DialogMultiPage_jScrollBar1_adjustmentAdapter implements java.awt.event.Ad
     DialogMultiPage_jScrollBar1_adjustmentAdapter(DialogMultiPage adaptee) {
         this.adaptee = adaptee;
     }
+
     public void adjustmentValueChanged(AdjustmentEvent e) {
         adaptee.jScrollBar1_adjustmentValueChanged(e);
     }
@@ -404,6 +446,7 @@ class DialogMultiPage_jScrollBar2_adjustmentAdapter implements java.awt.event.Ad
     DialogMultiPage_jScrollBar2_adjustmentAdapter(DialogMultiPage adaptee) {
         this.adaptee = adaptee;
     }
+
     public void adjustmentValueChanged(AdjustmentEvent e) {
         adaptee.jScrollBar2_adjustmentValueChanged(e);
     }

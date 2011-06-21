@@ -1,52 +1,42 @@
 package designer;
 
-import diagram.*;
+import java.util.Vector;
 
-import javax.swing.*;
-import java.lang.reflect.*;
-import java.util.*;
-import java.awt.event.*;
+import diagram.Associations;
+import diagram.DiagramControl;
 
-public class DesignerMain
-{
+public class DesignerMain {
     private UIDesigner uIDesigner;
 
-    public DesignerMain ()
-    {
+    public DesignerMain() {
         uIDesigner = new UIDesigner();
     }
-    public void setDiagramSource ( DiagramControl dc, Vector elements, Associations associations )
-    {
+
+    public void setDiagramSource(DiagramControl dc, Vector elements, Associations associations) {
         UIGeneratorControl uIGeneratorControl = new UIGeneratorControl();
-        CodeGeneratorControl codeGeneratorControl = new CodeGeneratorControl( dc, elements, associations);
-        DiagramElementSource diagramElementSource = new DiagramElementSource( dc, elements, associations);
+        CodeGeneratorControl codeGeneratorControl = new CodeGeneratorControl(dc, elements, associations);
+        DiagramElementSource diagramElementSource = new DiagramElementSource(dc, elements, associations);
 
-        DesignerControl designerControl = new DesignerControl( uIGeneratorControl, codeGeneratorControl, diagramElementSource);
-        uIDesigner = new UIDesigner( designerControl );
+        DesignerControl designerControl = new DesignerControl(uIGeneratorControl, codeGeneratorControl, diagramElementSource);
+        uIDesigner = new UIDesigner(designerControl);
 
-        DiagramSourceList list = (DiagramSourceList)diagramElementSource.getDiagramSourceList();
-        DiagramSourceAnalysisList aList = (DiagramSourceAnalysisList)diagramElementSource.getAnalysisList();
-        System.out.println("CONE SUCCESS: "+list);
-        uIDesigner.setDiagramSourceList((DiagramSourceList)list);
+        DiagramSourceList list = diagramElementSource.getDiagramSourceList();
+        DiagramSourceAnalysisList aList = diagramElementSource.getAnalysisList();
+        System.out.println("CONE SUCCESS: " + list);
+        uIDesigner.setDiagramSourceList(list);
         uIDesigner.setAnlaysisList(aList);
         designerControl.newPane("main", "Main");
     }
-    public void showDesigner ()
-    {
+
+    public void showDesigner() {
         uIDesigner.setVisible(true);
 
         /*
-        uIDesigner.addWindowListener(new WindowAdapter()
-        {
-            public void windowDeactivated(WindowEvent e)
-            {
-                //uIDesigner.setState(JFrame.);
-                uIDesigner.toFront();
-                //uIDesigner.setState(JFrame.NORMAL);
-            }
-        });
-*/
+         * uIDesigner.addWindowListener(new WindowAdapter() { public void
+         * windowDeactivated(WindowEvent e) { //uIDesigner.setState(JFrame.);
+         * uIDesigner.toFront(); //uIDesigner.setState(JFrame.NORMAL); } });
+         */
         uIDesigner.toFront();
-        //uIDesigner.show();
+        // uIDesigner.show();
     }
 }

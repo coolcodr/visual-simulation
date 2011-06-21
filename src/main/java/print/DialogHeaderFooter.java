@@ -1,21 +1,55 @@
 package print;
 
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.border.*;
-import java.awt.event.*;
-import javax.swing.text.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GraphicsEnvironment;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+
+import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
+import javax.swing.text.MutableAttributeSet;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
 
 /**
- * <p>Title: Print Editor</p>
- * <p>Description: </p>
- * <p>Copyright: Copyright (c) 2002</p>
- * <p>Company: </p>
+ * <p>
+ * Title: Print Editor
+ * </p>
+ * <p>
+ * Description:
+ * </p>
+ * <p>
+ * Copyright: Copyright (c) 2002
+ * </p>
+ * <p>
+ * Company:
+ * </p>
+ * 
  * @author HYLim,
  * @version 1.0
  */
 
 public class DialogHeaderFooter extends JDialog {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 36581388467025809L;
     private JPanel panel1 = new JPanel();
     private Border border1;
     private TitledBorder titledBorder1;
@@ -92,29 +126,27 @@ public class DialogHeaderFooter extends JDialog {
     private ButtonGroup buttonGroup11 = new ButtonGroup();
     private ButtonGroup buttonGroup21 = new ButtonGroup();
 
-    public DialogHeaderFooter(JFrame owner)
-    {
-        this( owner, true );
+    public DialogHeaderFooter(JFrame owner) {
+        this(owner, true);
     }
 
-    public DialogHeaderFooter( JFrame owner, boolean modal )
-    {
-        super( owner, modal );
+    public DialogHeaderFooter(JFrame owner, boolean modal) {
+        super(owner, modal);
         jbInit();
     }
-    private void jbInit()
-    {
-        this.setBounds(150,150,400,370);
-		this.setTitle("Set Page Number");
-		this.setResizable(false);
 
-		//Container contentPane = this.getContentPane();
- 		//contentPane.setLayout(null);
+    private void jbInit() {
+        this.setBounds(150, 150, 400, 370);
+        setTitle("Set Page Number");
+        setResizable(false);
 
-        border1 = BorderFactory.createEtchedBorder(Color.white,new Color(142, 142, 142));
-        titledBorder1 = new TitledBorder(border1,"Page Number Format");
-        border2 = BorderFactory.createEtchedBorder(Color.white,new Color(142, 142, 142));
-        titledBorder2 = new TitledBorder(border2,"Font Format");
+        // Container contentPane = this.getContentPane();
+        // contentPane.setLayout(null);
+
+        border1 = BorderFactory.createEtchedBorder(Color.white, new Color(142, 142, 142));
+        titledBorder1 = new TitledBorder(border1, "Page Number Format");
+        border2 = BorderFactory.createEtchedBorder(Color.white, new Color(142, 142, 142));
+        titledBorder2 = new TitledBorder(border2, "Font Format");
         panel1.setLayout(null);
         jPanel6.setBounds(new Rectangle(11, 307, 372, 38));
         jPanel6.setLayout(null);
@@ -131,7 +163,7 @@ public class DialogHeaderFooter extends JDialog {
         jButtonCancel.setPreferredSize(new Dimension(73, 29));
         jButtonCancel.setText("Cancel");
         jButtonCancel.addActionListener(new DialogPageNumber_jButtonCancel_actionAdapter(this));
-        //this.getContentPane().setLayout(null);
+        // this.getContentPane().setLayout(null);
         panel1.setPreferredSize(new Dimension(300, 200));
         panel1.setBounds(new Rectangle(10, 10, 567, 503));
         jTextPaneFormat.setVisible(false);
@@ -310,7 +342,7 @@ public class DialogHeaderFooter extends JDialog {
         jPanel6.add(jTextPaneDateFormat, null);
         panel1.add(jTabbedPane1, null);
         panel1.add(jPanel6, null);
-        jTabbedPane1.add(jPanel1,  "Page Number");
+        jTabbedPane1.add(jPanel1, "Page Number");
         jPanel1.add(jRadioButtonFooter, null);
         jPanel1.add(jRadioButtonHeader, null);
         jPanel1.add(jLabel5, null);
@@ -337,7 +369,7 @@ public class DialogHeaderFooter extends JDialog {
         jPanel2.add(jCheck2, null);
         jPanel2.add(jText2, null);
         jPanel2.add(jLabel2, null);
-        jTabbedPane1.add(jPanel11,   "Date Time");
+        jTabbedPane1.add(jPanel11, "Date Time");
         jPanel11.add(jRadioButtonFooter1, null);
         jPanel11.add(jRadioButtonHeader1, null);
         jPanel11.add(jLabel12, null);
@@ -367,44 +399,34 @@ public class DialogHeaderFooter extends JDialog {
         pcDateTime = new PCPageNumber();
 
         MutableAttributeSet attr = new SimpleAttributeSet();
-        StyleConstants.setAlignment(attr, StyleConstants.ALIGN_RIGHT );
+        StyleConstants.setAlignment(attr, StyleConstants.ALIGN_RIGHT);
         jTextPaneFormat.setParagraphAttributes(attr, false);
         pcPageNumber.addPageNumber(jTextPaneFormat);
 
         MutableAttributeSet attr2 = new SimpleAttributeSet();
-        StyleConstants.setAlignment(attr2, StyleConstants.ALIGN_RIGHT );
+        StyleConstants.setAlignment(attr2, StyleConstants.ALIGN_RIGHT);
         jTextPaneDateFormat.setParagraphAttributes(attr2, false);
         pcDateTime.addPageNumber(jTextPaneDateFormat);
 
         GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
         Font fontList[] = env.getAllFonts();
-        for (int i = 0; i < fontList.length; i++)
-        {
+        for (int i = 0; i < fontList.length; i++) {
             jComboBox1.addItem(fontList[i].getFontName());
             jComboBox11.addItem(fontList[i].getFontName());
         }
         /*
-        for ( int i = 0 ; i < jComboBox1.getItemCount() ; i++ )
-        {
-            jComboBox1.setSelectedIndex(0);
-            if ( (jComboBox1.getItemAt(i).toString().compareTo("dialog.plain") == 0 ))
-            {
-                jComboBox1.setSelectedIndex(i);
-                jComboBox11.setSelectedIndex(i);
-                break;
-            }
-        }*/
-        jComboBox1.setSelectedItem("dialog.plain");//new JTextField().getFont().getFontName());
-        jComboBox11.setSelectedItem("dialog.plain");//new JTextField().getFont().getFontName());
+         * for ( int i = 0 ; i < jComboBox1.getItemCount() ; i++ ) {
+         * jComboBox1.setSelectedIndex(0); if (
+         * (jComboBox1.getItemAt(i).toString().compareTo("dialog.plain") == 0 ))
+         * { jComboBox1.setSelectedIndex(i); jComboBox11.setSelectedIndex(i);
+         * break; } }
+         */
+        jComboBox1.setSelectedItem("dialog.plain");// new
+                                                   // JTextField().getFont().getFontName());
+        jComboBox11.setSelectedItem("dialog.plain");// new
+                                                    // JTextField().getFont().getFontName());
 
-        String [][] tempString = { {
-            "dd-M", "dd-MMM-yy",
-            "dd/MM/yyyy", "dd/MM/yyyy (E)",
-            "dd MMM, yyyy", "EEEEEE dd MMM, yyyy" },{
-            "HH:mm", "HH:mm:ss",
-            "hh:mm a", "hh:mm:ss a",
-            "hh:mm a z", "hh:mm:ss a z"
-            }};
+        String[][] tempString = { { "dd-M", "dd-MMM-yy", "dd/MM/yyyy", "dd/MM/yyyy (E)", "dd MMM, yyyy", "EEEEEE dd MMM, yyyy" }, { "HH:mm", "HH:mm:ss", "hh:mm a", "hh:mm:ss a", "hh:mm a z", "hh:mm:ss a z" } };
 
         dateTimeFormat = tempString;
 
@@ -427,26 +449,27 @@ public class DialogHeaderFooter extends JDialog {
         buttonGroup21.add(jRadioButtonCenter1);
         buttonGroup21.add(jRadioButtonRight1);
     }
-    public void updatePCPageNumber()
-    {
-        //Now incomplete
+
+    public void updatePCPageNumber() {
+        // Now incomplete
         MutableAttributeSet attr = new SimpleAttributeSet();
 
-        if ( jRadioButtonLeft.isSelected() )
-            StyleConstants.setAlignment(attr,StyleConstants.ALIGN_LEFT );
-        else if ( jRadioButtonCenter.isSelected() )
-            StyleConstants.setAlignment(attr,StyleConstants.ALIGN_CENTER );
-        else if ( jRadioButtonRight.isSelected() )
-            StyleConstants.setAlignment(attr,StyleConstants.ALIGN_RIGHT );
+        if (jRadioButtonLeft.isSelected()) {
+            StyleConstants.setAlignment(attr, StyleConstants.ALIGN_LEFT);
+        } else if (jRadioButtonCenter.isSelected()) {
+            StyleConstants.setAlignment(attr, StyleConstants.ALIGN_CENTER);
+        } else if (jRadioButtonRight.isSelected()) {
+            StyleConstants.setAlignment(attr, StyleConstants.ALIGN_RIGHT);
+        }
 
         jTextPaneFormat.getStyledDocument().setParagraphAttributes(0, 1, attr, false);
 
         attr = new SimpleAttributeSet();
-        StyleConstants.setFontFamily( attr, (String)jComboBox1.getSelectedItem());
+        StyleConstants.setFontFamily(attr, (String) jComboBox1.getSelectedItem());
         jTextPaneFormat.getStyledDocument().setParagraphAttributes(0, 1, attr, false);
 
         attr = new SimpleAttributeSet();
-        StyleConstants.setFontSize( attr, Integer.parseInt(jTextSize.getText()));
+        StyleConstants.setFontSize(attr, Integer.parseInt(jTextSize.getText()));
         jTextPaneFormat.getStyledDocument().setParagraphAttributes(0, 1, attr, false);
 
         StyleConstants.setBold(attr, jCheckBoxBold.isSelected());
@@ -458,35 +481,38 @@ public class DialogHeaderFooter extends JDialog {
 
         pcPageNumber.setFirstString(jText1.getText());
         pcPageNumber.setSecondString(jText2.getText());
-        if ( jRadioButtonHeader.isSelected() )
+        if (jRadioButtonHeader.isSelected()) {
             pcPageNumber.setPageNumberLocation(PCPageNumber.AT_HEADER);
-        else if ( jRadioButtonFooter.isSelected() )
+        } else if (jRadioButtonFooter.isSelected()) {
             pcPageNumber.setPageNumberLocation(PCPageNumber.AT_FOOTER);
+        }
         pcPageNumber.setHaveTotalNumber(jCheck2.isSelected());
 
-        if ( !(jCheck1.isSelected()) )
+        if (!(jCheck1.isSelected())) {
             pcPageNumber.removePageNumber();
+        }
     }
-    public void updatePCDateTime()
-    {
-        //Now incomplete
+
+    public void updatePCDateTime() {
+        // Now incomplete
         MutableAttributeSet attr = new SimpleAttributeSet();
 
-        if ( jRadioButtonLeft1.isSelected() )
-            StyleConstants.setAlignment(attr,StyleConstants.ALIGN_LEFT );
-        else if ( jRadioButtonCenter1.isSelected() )
-            StyleConstants.setAlignment(attr,StyleConstants.ALIGN_CENTER );
-        else if ( jRadioButtonRight1.isSelected() )
-            StyleConstants.setAlignment(attr,StyleConstants.ALIGN_RIGHT );
+        if (jRadioButtonLeft1.isSelected()) {
+            StyleConstants.setAlignment(attr, StyleConstants.ALIGN_LEFT);
+        } else if (jRadioButtonCenter1.isSelected()) {
+            StyleConstants.setAlignment(attr, StyleConstants.ALIGN_CENTER);
+        } else if (jRadioButtonRight1.isSelected()) {
+            StyleConstants.setAlignment(attr, StyleConstants.ALIGN_RIGHT);
+        }
 
         jTextPaneDateFormat.getStyledDocument().setParagraphAttributes(0, 1, attr, false);
 
         attr = new SimpleAttributeSet();
-        StyleConstants.setFontFamily( attr, (String)jComboBox11.getSelectedItem());
+        StyleConstants.setFontFamily(attr, (String) jComboBox11.getSelectedItem());
         jTextPaneDateFormat.getStyledDocument().setParagraphAttributes(0, 1, attr, false);
 
         attr = new SimpleAttributeSet();
-        StyleConstants.setFontSize( attr, Integer.parseInt(jTextSize1.getText()));
+        StyleConstants.setFontSize(attr, Integer.parseInt(jTextSize1.getText()));
         jTextPaneDateFormat.getStyledDocument().setParagraphAttributes(0, 1, attr, false);
 
         StyleConstants.setBold(attr, jCheckBoxBold1.isSelected());
@@ -496,50 +522,50 @@ public class DialogHeaderFooter extends JDialog {
 
         pcDateTime.addPageNumber(jTextPaneDateFormat);
 
-        //pcPageNumber.setFirstString(jText1.getText());
-        //pcPageNumber.setSecondString(jText2.getText());
-        if ( jRadioButtonHeader1.isSelected() )
+        // pcPageNumber.setFirstString(jText1.getText());
+        // pcPageNumber.setSecondString(jText2.getText());
+        if (jRadioButtonHeader1.isSelected()) {
             pcDateTime.setPageNumberLocation(PCPageNumber.AT_HEADER);
-        else if ( jRadioButtonFooter1.isSelected() )
+        } else if (jRadioButtonFooter1.isSelected()) {
             pcDateTime.setPageNumberLocation(PCPageNumber.AT_FOOTER);
-        //pcPageNumber.setHaveTotalNumber(jCheck2.isSelected());
+            // pcPageNumber.setHaveTotalNumber(jCheck2.isSelected());
+        }
 
-        if ( !(jCheck3.isSelected()) && ! (jCheck4.isSelected())  )
+        if (!(jCheck3.isSelected()) && !(jCheck4.isSelected())) {
             pcDateTime.removePageNumber();
-        else
-        {
-            String[] tempString = {dateTimeFormat[0][jComboBox3.getSelectedIndex()],dateTimeFormat[1][jComboBox4.getSelectedIndex()]};
-            if ( !(jCheck3.isSelected()) )
+        } else {
+            String[] tempString = { dateTimeFormat[0][jComboBox3.getSelectedIndex()], dateTimeFormat[1][jComboBox4.getSelectedIndex()] };
+            if (!(jCheck3.isSelected())) {
                 tempString[0] = "None";
-            if ( !(jCheck4.isSelected()) )
+            }
+            if (!(jCheck4.isSelected())) {
                 tempString[1] = "None";
+            }
             pcDateTime.setDateTimeFormat(tempString);
         }
     }
-    public void setPageNumberFormat ( PCPageNumber ppn )
-    {
-        this.pcPageNumber = ppn;
+
+    public void setPageNumberFormat(PCPageNumber ppn) {
+        pcPageNumber = ppn;
     }
-    public void setDateTimeFormat ( PCPageNumber ppn )
-    {
-        this.pcDateTime = ppn;
+
+    public void setDateTimeFormat(PCPageNumber ppn) {
+        pcDateTime = ppn;
     }
-    public PCPageNumber getPageNumberFormat ()
-    {
+
+    public PCPageNumber getPageNumberFormat() {
         updatePCPageNumber();
         return pcPageNumber;
     }
-    public PCPageNumber getDateTimeFormat ()
-    {
+
+    public PCPageNumber getDateTimeFormat() {
         updatePCDateTime();
         return pcDateTime;
     }
-    void jCheck1_actionPerformed(ActionEvent e)
-    {
-        if ( !jCheck1.isSelected() )
-        {
-            if ( jCheck2.isSelected() )
-            {
+
+    void jCheck1_actionPerformed(ActionEvent e) {
+        if (!jCheck1.isSelected()) {
+            if (jCheck2.isSelected()) {
                 jCheck2.setSelected(false);
                 jText2.setEnabled(jCheck2.isSelected());
                 jLabel2.setEnabled(jCheck2.isSelected());
@@ -549,25 +575,21 @@ public class DialogHeaderFooter extends JDialog {
         jLabel1.setEnabled(jCheck1.isSelected());
     }
 
-    void jCheck2_actionPerformed(ActionEvent e)
-    {
+    void jCheck2_actionPerformed(ActionEvent e) {
         jText2.setEnabled(jCheck2.isSelected());
         jLabel2.setEnabled(jCheck2.isSelected());
     }
 
-    public void showInitial()
-    {
+    public void showInitial() {
         setTimeCombo();
         setVisible(true);
     }
 
-    void jButtonCancel_actionPerformed(ActionEvent e)
-    {
+    void jButtonCancel_actionPerformed(ActionEvent e) {
         setVisible(false);
     }
 
-    void jButtonOK_actionPerformed(ActionEvent e)
-    {
+    void jButtonOK_actionPerformed(ActionEvent e) {
         updatePCDateTime();
         updatePCPageNumber();
         setVisible(false);
@@ -580,21 +602,19 @@ public class DialogHeaderFooter extends JDialog {
     void jCheck4_actionPerformed(ActionEvent e) {
 
     }
-    private void setTimeCombo()
-    {
+
+    private void setTimeCombo() {
         int selected3 = jComboBox3.getSelectedIndex();
         int selected4 = jComboBox4.getSelectedIndex();
         jComboBox3.removeAllItems();
         jComboBox4.removeAllItems();
-        for ( int i = 0 ; i < dateTimeFormat[0].length ; i ++ )
-        {
+        for (int i = 0; i < dateTimeFormat[0].length; i++) {
             java.text.DateFormat formatter = new java.text.SimpleDateFormat(dateTimeFormat[0][i]);
-            jComboBox3.addItem( formatter.format(java.util.Calendar.getInstance().getTime()));
+            jComboBox3.addItem(formatter.format(java.util.Calendar.getInstance().getTime()));
         }
-        for ( int i = 0 ; i < dateTimeFormat[1].length ; i ++ )
-        {
+        for (int i = 0; i < dateTimeFormat[1].length; i++) {
             java.text.DateFormat formatter = new java.text.SimpleDateFormat(dateTimeFormat[1][i]);
-            jComboBox4.addItem( formatter.format(java.util.Calendar.getInstance().getTime()));
+            jComboBox4.addItem(formatter.format(java.util.Calendar.getInstance().getTime()));
         }
         jComboBox3.setSelectedIndex(selected3);
         jComboBox4.setSelectedIndex(selected4);
@@ -607,6 +627,7 @@ class DialogPageNumber_jButtonCancel_actionAdapter implements java.awt.event.Act
     DialogPageNumber_jButtonCancel_actionAdapter(DialogHeaderFooter adaptee) {
         this.adaptee = adaptee;
     }
+
     public void actionPerformed(ActionEvent e) {
         adaptee.jButtonCancel_actionPerformed(e);
     }
@@ -618,6 +639,7 @@ class DialogPageNumber_jButtonOK_actionAdapter implements java.awt.event.ActionL
     DialogPageNumber_jButtonOK_actionAdapter(DialogHeaderFooter adaptee) {
         this.adaptee = adaptee;
     }
+
     public void actionPerformed(ActionEvent e) {
         adaptee.jButtonOK_actionPerformed(e);
     }
@@ -629,6 +651,7 @@ class DialogPageNumber_jCheck1_actionAdapter implements java.awt.event.ActionLis
     DialogPageNumber_jCheck1_actionAdapter(DialogHeaderFooter adaptee) {
         this.adaptee = adaptee;
     }
+
     public void actionPerformed(ActionEvent e) {
         adaptee.jCheck1_actionPerformed(e);
     }
@@ -640,6 +663,7 @@ class DialogPageNumber_jCheck2_actionAdapter implements java.awt.event.ActionLis
     DialogPageNumber_jCheck2_actionAdapter(DialogHeaderFooter adaptee) {
         this.adaptee = adaptee;
     }
+
     public void actionPerformed(ActionEvent e) {
         adaptee.jCheck2_actionPerformed(e);
     }
@@ -651,6 +675,7 @@ class DialogPageNumber_jCheck3_actionAdapter implements java.awt.event.ActionLis
     DialogPageNumber_jCheck3_actionAdapter(DialogHeaderFooter adaptee) {
         this.adaptee = adaptee;
     }
+
     public void actionPerformed(ActionEvent e) {
         adaptee.jCheck3_actionPerformed(e);
     }
@@ -662,6 +687,7 @@ class DialogPageNumber_jCheck4_actionAdapter implements java.awt.event.ActionLis
     DialogPageNumber_jCheck4_actionAdapter(DialogHeaderFooter adaptee) {
         this.adaptee = adaptee;
     }
+
     public void actionPerformed(ActionEvent e) {
         adaptee.jCheck4_actionPerformed(e);
     }

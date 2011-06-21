@@ -1,8 +1,8 @@
 package diagram;
 
 import java.io.File;
-import javax.swing.*;
-import javax.swing.filechooser.*;
+
+import javax.swing.filechooser.FileFilter;
 
 public class XFileFilter extends FileFilter {
 
@@ -12,23 +12,20 @@ public class XFileFilter extends FileFilter {
             return true;
         }
 
-		String extension = Utils.getExtension(f);
+        String extension = Utils.getExtension(f);
 
-		if (extension != null) {
-			if (extension.equals(Utils.xml))
-			{
-				return true;
-			}
-			else
-			{
-				return false;
-			}
-		}
+        if (extension != null) {
+            if (extension.equals(Utils.xml)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
 
-		return false;
-	}
+        return false;
+    }
 
-	public String getDescription() {
+    public String getDescription() {
         return "XML document(*.xml)";
     }
 }

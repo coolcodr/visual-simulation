@@ -1,155 +1,145 @@
 package animation;
 
 public class ObjectFIFO extends Object {
-	private Object[] queue;
-	private int capacity;
-	private int size;
-	private int head;
-	private int tail;
+    private Object[] queue;
+    private int capacity;
+    private int size;
+    private int head;
+    private int tail;
 
-	public ObjectFIFO(int cap) {
-		capacity = ( cap > 0 ) ? cap : 1; // at least 1
-		queue = new Object[capacity];
-		head = 0;
-		tail = 0;
-		size = 0;
-	}
+    public ObjectFIFO(int cap) {
+        capacity = (cap > 0) ? cap : 1; // at least 1
+        queue = new Object[capacity];
+        head = 0;
+        tail = 0;
+        size = 0;
+    }
 
-	public int getCapacity() {
-		return capacity;
-	}
+    public int getCapacity() {
+        return capacity;
+    }
 
-	public synchronized int getSize() {
-		return size;
-	}
+    public synchronized int getSize() {
+        return size;
+    }
 
-	public synchronized boolean isEmpty() {
-		return ( size == 0 );
-	}
+    public synchronized boolean isEmpty() {
+        return (size == 0);
+    }
 
-	public synchronized boolean isFull() {
-		return ( size == capacity );
-	}
+    public synchronized boolean isFull() {
+        return (size == capacity);
+    }
 
-	public synchronized void add(Object obj) 
-			throws InterruptedException {
+    public synchronized void add(Object obj) throws InterruptedException {
 
-		waitWhileFull();
+        waitWhileFull();
 
-		queue[head] = obj;
-		head = ( head + 1 ) % capacity;
-		size++;
+        queue[head] = obj;
+        head = (head + 1) % capacity;
+        size++;
 
-		notifyAll(); // let any waiting threads know about change
-	}
+        notifyAll(); // let any waiting threads know about change
+    }
 
-	public synchronized void addEach(Object[] list) 
-			throws InterruptedException {
+    public synchronized void addEach(Object[] list) throws InterruptedException {
 
-		//
-		// You might want to code a more efficient 
-		// implementation here ... (see ByteFIFO.java)
-		//
+        //
+        // You might want to code a more efficient
+        // implementation here ... (see ByteFIFO.java)
+        //
 
-		for ( int i = 0; i < list.length; i++ ) {
-			add(list[i]);
-		}
-	}
+        for (int i = 0; i < list.length; i++) {
+            add(list[i]);
+        }
+    }
 
-	public synchronized Object remove() 
-			throws InterruptedException {
+    public synchronized Object remove() throws InterruptedException {
 
-		waitWhileEmpty();
-		
-		Object obj = queue[tail];
+        waitWhileEmpty();
 
-		// don't block GC by keeping unnecessary reference
-		queue[tail] = null; 
+        Object obj = queue[tail];
 
-		tail = ( tail + 1 ) % capacity;
-		size--;
+        // don't block GC by keeping unnecessary reference
+        queue[tail] = null;
 
-		notifyAll(); // let any waiting threads know about change
+        tail = (tail + 1) % capacity;
+        size--;
 
-		return obj;
-	}
+        notifyAll(); // let any waiting threads know about change
 
-	public synchronized Object[] removeAll() 
-			throws InterruptedException {
+        return obj;
+    }
 
-		//
-		// You might want to code a more efficient 
-		// implementation here ... (see ByteFIFO.java)
-		//
+    public synchronized Object[] removeAll() throws InterruptedException {
 
-		Object[] list = new Object[size]; // use the current size
+        //
+        // You might want to code a more efficient
+        // implementation here ... (see ByteFIFO.java)
+        //
 
-		for ( int i = 0; i < list.length; i++ ) {
-			list[i] = remove();
-		}
+        Object[] list = new Object[size]; // use the current size
 
-		// if FIFO was empty, a zero-length array is returned
-		return list; 
-	}
+        for (int i = 0; i < list.length; i++) {
+            list[i] = remove();
+        }
 
-	public synchronized Object[] removeAtLeastOne() 
-			throws InterruptedException {
+        // if FIFO was empty, a zero-length array is returned
+        return list;
+    }
 
-		waitWhileEmpty(); // wait for a least one to be in FIFO
-		return removeAll();
-	}
+    public synchronized Object[] removeAtLeastOne() throws InterruptedException {
 
-	public synchronized boolean waitUntilEmpty(long msTimeout) 
-			throws InterruptedException {
+        waitWhileEmpty(); // wait for a least one to be in FIFO
+        return removeAll();
+    }
 
-		if ( msTimeout == 0L ) {
-			waitUntilEmpty();  // use other method
-			return true;
-		}
+    public synchronized boolean waitUntilEmpty(long msTimeout) throws InterruptedException {
 
-		// wait only for the specified amount of time
-		long endTime = System.currentTimeMillis() + msTimeout;
-		long msRemaining = msTimeout;
+        if (msTimeout == 0L) {
+            waitUntilEmpty(); // use other method
+            return true;
+        }
 
-		while ( !isEmpty() && ( msRemaining > 0L ) ) {
-			wait(msRemaining);
-			msRemaining = endTime - System.currentTimeMillis();
-		}
+        // wait only for the specified amount of time
+        long endTime = System.currentTimeMillis() + msTimeout;
+        long msRemaining = msTimeout;
 
-		// May have timed out, or may have met condition, 
-		// calc return value.
-		return isEmpty();
-	}
+        while (!isEmpty() && (msRemaining > 0L)) {
+            wait(msRemaining);
+            msRemaining = endTime - System.currentTimeMillis();
+        }
 
-	public synchronized void waitUntilEmpty() 
-			throws InterruptedException {
+        // May have timed out, or may have met condition,
+        // calc return value.
+        return isEmpty();
+    }
 
-		while ( !isEmpty() ) {
-			wait();
-		}
-	}
+    public synchronized void waitUntilEmpty() throws InterruptedException {
 
-	public synchronized void waitWhileEmpty() 
-			throws InterruptedException {
+        while (!isEmpty()) {
+            wait();
+        }
+    }
 
-		while ( isEmpty() ) {
-			wait();
-		}
-	}
+    public synchronized void waitWhileEmpty() throws InterruptedException {
 
-	public synchronized void waitUntilFull() 
-			throws InterruptedException {
+        while (isEmpty()) {
+            wait();
+        }
+    }
 
-		while ( !isFull() ) {
-			wait();
-		}
-	}
+    public synchronized void waitUntilFull() throws InterruptedException {
 
-	public synchronized void waitWhileFull() 
-			throws InterruptedException {
+        while (!isFull()) {
+            wait();
+        }
+    }
 
-		while ( isFull() ) {
-			wait();
-		}
-	}
+    public synchronized void waitWhileFull() throws InterruptedException {
+
+        while (isFull()) {
+            wait();
+        }
+    }
 }

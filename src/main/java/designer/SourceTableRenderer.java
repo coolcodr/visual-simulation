@@ -6,6 +6,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
+import util.ImageIconHelper;
+
 class SourceTableRenderer extends DefaultTreeCellRenderer {
     /**
      * 
@@ -14,7 +16,7 @@ class SourceTableRenderer extends DefaultTreeCellRenderer {
     private ImageIcon imageIcon;
 
     public SourceTableRenderer() {
-        imageIcon = new ImageIcon("designer/images/test.gif");
+        imageIcon = new ImageIconHelper().getImageIcon("/designer/images/test.gif");
     }
 
     public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded, boolean leaf, int row, boolean hasFocus) {

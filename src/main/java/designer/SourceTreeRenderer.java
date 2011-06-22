@@ -7,6 +7,7 @@ import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
+import util.ImageIconHelper;
 import designer.deployment.SimPropertyChoice;
 
 class SourceTreeRenderer extends DefaultTreeCellRenderer {
@@ -19,9 +20,9 @@ class SourceTreeRenderer extends DefaultTreeCellRenderer {
     private ImageIcon pane;
 
     public SourceTreeRenderer() {
-        inputG = new ImageIcon("designer/images/Input-g16.gif");
-        // inputR = new ImageIcon("designer/images/Input-r16.gif");
-        pane = new ImageIcon("designer/images/Pane16.gif");
+        inputG = new ImageIconHelper().getImageIcon("/designer/images/Input-g16.gif");
+        // inputR = new ImageIconHelper().getImageIcon("/designer/images/Input-r16.gif");
+        pane = new ImageIconHelper().getImageIcon("/designer/images/Pane16.gif");
     }
 
     public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded, boolean leaf, int row, boolean hasFocus) {

@@ -15,7 +15,6 @@ import java.beans.PropertyChangeEvent;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JComboBox;
@@ -39,6 +38,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.event.MenuEvent;
 import javax.swing.tree.DefaultMutableTreeNode;
 
+import util.ImageIconHelper;
 import designer.deployment.FrameIDandName;
 import designer.report.PrintEditor;
 
@@ -158,84 +158,84 @@ public class UIDesigner extends JFrame {
     JButton jButton17 = new JButton();
     JButton jButton10 = new JButton();
     TitledBorder titledBorder3;
-    JButton jButton18 = new JButton(new ImageIcon("designer/images/New16.gif"));
-    JButton jButton19 = new JButton(new ImageIcon("designer/images/Open16.gif"));
-    JButton jButton20 = new JButton(new ImageIcon("designer/images/Save16.gif"));
-    JButton jButton21 = new JButton(new ImageIcon("designer/images/SaveAs16.gif"));
-    JButton jButton22 = new JButton(new ImageIcon("designer/images/Undo16.gif"));
-    JButton jButton23 = new JButton(new ImageIcon("designer/images/Redo16.gif"));
-    JButton jButton24 = new JButton(new ImageIcon("designer/images/AlignLeft16.gif"));
-    JButton jButton25 = new JButton(new ImageIcon("designer/images/AlignRight16.gif"));
-    JButton jButton26 = new JButton(new ImageIcon("designer/images/AlignTop16.gif"));
-    JButton jButton27 = new JButton(new ImageIcon("designer/images/AlignBottom16.gif"));
-    JButton jButton28 = new JButton(new ImageIcon("designer/images/AlignAuto16.gif"));
-    JButton jButton29 = new JButton(new ImageIcon("designer/images/Delete16.gif"));
-    JButton jButton31 = new JButton(new ImageIcon("designer/images/Stop16.gif"));
+    JButton jButton18 = new JButton(new ImageIconHelper().getImageIcon("/designer/images/New16.gif"));
+    JButton jButton19 = new JButton(new ImageIconHelper().getImageIcon("/designer/images/Open16.gif"));
+    JButton jButton20 = new JButton(new ImageIconHelper().getImageIcon("/designer/images/Save16.gif"));
+    JButton jButton21 = new JButton(new ImageIconHelper().getImageIcon("/designer/images/SaveAs16.gif"));
+    JButton jButton22 = new JButton(new ImageIconHelper().getImageIcon("/designer/images/Undo16.gif"));
+    JButton jButton23 = new JButton(new ImageIconHelper().getImageIcon("/designer/images/Redo16.gif"));
+    JButton jButton24 = new JButton(new ImageIconHelper().getImageIcon("/designer/images/AlignLeft16.gif"));
+    JButton jButton25 = new JButton(new ImageIconHelper().getImageIcon("/designer/images/AlignRight16.gif"));
+    JButton jButton26 = new JButton(new ImageIconHelper().getImageIcon("/designer/images/AlignTop16.gif"));
+    JButton jButton27 = new JButton(new ImageIconHelper().getImageIcon("/designer/images/AlignBottom16.gif"));
+    JButton jButton28 = new JButton(new ImageIconHelper().getImageIcon("/designer/images/AlignAuto16.gif"));
+    JButton jButton29 = new JButton(new ImageIconHelper().getImageIcon("/designer/images/Delete16.gif"));
+    JButton jButton31 = new JButton(new ImageIconHelper().getImageIcon("/designer/images/Stop16.gif"));
 
-    JButton jButton30 = new JButton(new ImageIcon("designer/images/Play16.gif"));
+    JButton jButton30 = new JButton(new ImageIconHelper().getImageIcon("/designer/images/Play16.gif"));
     JLabel jLabel5 = new JLabel();
     JComboBox jComboBoxFrame = new JComboBox();
-    JButton jButton32 = new JButton(new ImageIcon("designer/images/Remove16.gif"));
+    JButton jButton32 = new JButton(new ImageIconHelper().getImageIcon("/designer/images/Remove16.gif"));
     JLabel jLabel6 = new JLabel();
     JButton jButton37 = new JButton();
     TitledBorder titledBorder4;
-    JMenuItem jMenuItem1 = new JMenuItem(new ImageIcon("designer/images/New16.gif"));
-    JMenuItem jMenuItem5 = new JMenuItem(new ImageIcon("designer/images/SaveAs16.gif"));
-    JMenuItem jMenuItem6 = new JMenuItem(new ImageIcon("designer/images/Save16.gif"));
-    JMenuItem jMenuItem7 = new JMenuItem(new ImageIcon("designer/images/Blank16.gif"));// BLANK
-    JMenuItem jMenuItem8 = new JMenuItem(new ImageIcon("designer/images/Open16.gif"));// BLANK
-    JMenuItem jMenuItem11 = new JMenuItem(new ImageIcon("designer/images/Blank16.gif"));// BLANK
-    JMenuItem jMenuItem9 = new JMenuItem(new ImageIcon("designer/images/Blank16.gif"));// BLANK
-    JMenuItem jMenuItem4 = new JMenuItem(new ImageIcon("designer/images/Blank16.gif"));// BLANK
-    JMenuItem jMenuItem12 = new JMenuItem(new ImageIcon("designer/images/Blank16.gif"));// BLANK
-    JMenuItem jMenuItem13 = new JMenuItem(new ImageIcon("designer/images/Delete16.gif"));
-    JMenuItem jMenuItem15 = new JMenuItem(new ImageIcon("designer/images/Redo16.gif"));
-    JMenuItem jMenuItem16 = new JMenuItem(new ImageIcon("designer/images/Undo16.gif"));
-    JMenuItem jMenuItem17 = new JMenuItem(new ImageIcon("designer/images/Blank16.gif"));// BLANK
+    JMenuItem jMenuItem1 = new JMenuItem(new ImageIconHelper().getImageIcon("/designer/images/New16.gif"));
+    JMenuItem jMenuItem5 = new JMenuItem(new ImageIconHelper().getImageIcon("/designer/images/SaveAs16.gif"));
+    JMenuItem jMenuItem6 = new JMenuItem(new ImageIconHelper().getImageIcon("/designer/images/Save16.gif"));
+    JMenuItem jMenuItem7 = new JMenuItem(new ImageIconHelper().getImageIcon("/designer/images/Blank16.gif"));// BLANK
+    JMenuItem jMenuItem8 = new JMenuItem(new ImageIconHelper().getImageIcon("/designer/images/Open16.gif"));// BLANK
+    JMenuItem jMenuItem11 = new JMenuItem(new ImageIconHelper().getImageIcon("/designer/images/Blank16.gif"));// BLANK
+    JMenuItem jMenuItem9 = new JMenuItem(new ImageIconHelper().getImageIcon("/designer/images/Blank16.gif"));// BLANK
+    JMenuItem jMenuItem4 = new JMenuItem(new ImageIconHelper().getImageIcon("/designer/images/Blank16.gif"));// BLANK
+    JMenuItem jMenuItem12 = new JMenuItem(new ImageIconHelper().getImageIcon("/designer/images/Blank16.gif"));// BLANK
+    JMenuItem jMenuItem13 = new JMenuItem(new ImageIconHelper().getImageIcon("/designer/images/Delete16.gif"));
+    JMenuItem jMenuItem15 = new JMenuItem(new ImageIconHelper().getImageIcon("/designer/images/Redo16.gif"));
+    JMenuItem jMenuItem16 = new JMenuItem(new ImageIconHelper().getImageIcon("/designer/images/Undo16.gif"));
+    JMenuItem jMenuItem17 = new JMenuItem(new ImageIconHelper().getImageIcon("/designer/images/Blank16.gif"));// BLANK
     JMenu jMenu4 = new JMenu();
-    JMenuItem jMenuItem14 = new JMenuItem(new ImageIcon("designer/images/Blank16.gif"));// BLANK
-    JMenuItem jMenuItem18 = new JMenuItem(new ImageIcon("designer/images/Blank16.gif"));// BLANK
-    JMenuItem jMenuItem19 = new JMenuItem(new ImageIcon("designer/images/Blank16.gif"));// BLANK
-    JMenuItem jMenuItem20 = new JMenuItem(new ImageIcon("designer/images/Blank16.gif"));// BLANK
+    JMenuItem jMenuItem14 = new JMenuItem(new ImageIconHelper().getImageIcon("/designer/images/Blank16.gif"));// BLANK
+    JMenuItem jMenuItem18 = new JMenuItem(new ImageIconHelper().getImageIcon("/designer/images/Blank16.gif"));// BLANK
+    JMenuItem jMenuItem19 = new JMenuItem(new ImageIconHelper().getImageIcon("/designer/images/Blank16.gif"));// BLANK
+    JMenuItem jMenuItem20 = new JMenuItem(new ImageIconHelper().getImageIcon("/designer/images/Blank16.gif"));// BLANK
     JMenu jMenu5 = new JMenu();
     JMenu jMenu6 = new JMenu();
-    JMenuItem jMenuItem2 = new JMenuItem(new ImageIcon("designer/images/AlignAuto16.gif"));
-    JMenuItem jMenuItem21 = new JMenuItem(new ImageIcon("designer/images/AlignLeft16.gif"));
-    JMenuItem jMenuItem22 = new JMenuItem(new ImageIcon("designer/images/AlignRight16.gif"));
-    JMenuItem jMenuItem23 = new JMenuItem(new ImageIcon("designer/images/AlignTop16.gif"));
-    JMenuItem jMenuItem24 = new JMenuItem(new ImageIcon("designer/images/AlignBottom16.gif"));
-    JMenuItem jMenuItem25 = new JMenuItem(new ImageIcon("designer/images/Blank16.gif"));// BLANK
-    JMenuItem jMenuItem26 = new JMenuItem(new ImageIcon("designer/images/Blank16.gif"));// BLANK
-    JMenuItem jMenuItem27 = new JMenuItem(new ImageIcon("designer/images/Blank16.gif"));// BLANK
-    JMenuItem jMenuItem28 = new JMenuItem(new ImageIcon("designer/images/Play16.gif"));
-    JMenuItem jMenuItem29 = new JMenuItem(new ImageIcon("designer/images/Stop16.gif"));
+    JMenuItem jMenuItem2 = new JMenuItem(new ImageIconHelper().getImageIcon("/designer/images/AlignAuto16.gif"));
+    JMenuItem jMenuItem21 = new JMenuItem(new ImageIconHelper().getImageIcon("/designer/images/AlignLeft16.gif"));
+    JMenuItem jMenuItem22 = new JMenuItem(new ImageIconHelper().getImageIcon("/designer/images/AlignRight16.gif"));
+    JMenuItem jMenuItem23 = new JMenuItem(new ImageIconHelper().getImageIcon("/designer/images/AlignTop16.gif"));
+    JMenuItem jMenuItem24 = new JMenuItem(new ImageIconHelper().getImageIcon("/designer/images/AlignBottom16.gif"));
+    JMenuItem jMenuItem25 = new JMenuItem(new ImageIconHelper().getImageIcon("/designer/images/Blank16.gif"));// BLANK
+    JMenuItem jMenuItem26 = new JMenuItem(new ImageIconHelper().getImageIcon("/designer/images/Blank16.gif"));// BLANK
+    JMenuItem jMenuItem27 = new JMenuItem(new ImageIconHelper().getImageIcon("/designer/images/Blank16.gif"));// BLANK
+    JMenuItem jMenuItem28 = new JMenuItem(new ImageIconHelper().getImageIcon("/designer/images/Play16.gif"));
+    JMenuItem jMenuItem29 = new JMenuItem(new ImageIconHelper().getImageIcon("/designer/images/Stop16.gif"));
     JMenuItem jMenuItem30 = new JMenuItem();// new
                                             // ImageIcon("designer/images/Blank16.gif"));//BLANK
     JCheckBoxMenuItem jCheckBoxMenuItem1 = new JCheckBoxMenuItem();
     JMenu jMenu7 = new JMenu();
-    JMenuItem jMenuItem3 = new JMenuItem(new ImageIcon("designer/images/Remove16.gif"));
-    JMenuItem jMenuItem31 = new JMenuItem(new ImageIcon("designer/images/Blank16.gif"));
-    JMenuItem jMenuItem32 = new JMenuItem(new ImageIcon("designer/images/Blank16.gif"));// BLANK
+    JMenuItem jMenuItem3 = new JMenuItem(new ImageIconHelper().getImageIcon("/designer/images/Remove16.gif"));
+    JMenuItem jMenuItem31 = new JMenuItem(new ImageIconHelper().getImageIcon("/designer/images/Blank16.gif"));
+    JMenuItem jMenuItem32 = new JMenuItem(new ImageIconHelper().getImageIcon("/designer/images/Blank16.gif"));// BLANK
     JMenu jMenu8 = new JMenu();
-    JMenuItem jMenuItem33 = new JMenuItem(new ImageIcon("designer/images/Blank16.gif"));// BLANK
-    JMenuItem jMenuItem34 = new JMenuItem(new ImageIcon("designer/images/Blank16.gif"));// BLANK
-    JMenuItem jMenuItem35 = new JMenuItem(new ImageIcon("designer/images/Blank16.gif"));// BLANK
+    JMenuItem jMenuItem33 = new JMenuItem(new ImageIconHelper().getImageIcon("/designer/images/Blank16.gif"));// BLANK
+    JMenuItem jMenuItem34 = new JMenuItem(new ImageIconHelper().getImageIcon("/designer/images/Blank16.gif"));// BLANK
+    JMenuItem jMenuItem35 = new JMenuItem(new ImageIconHelper().getImageIcon("/designer/images/Blank16.gif"));// BLANK
     JEditorPane jEditorPane1 = new JEditorPane();
     JMenu jMenu9 = new JMenu();
     JMenu jMenu10 = new JMenu();
     JMenu jMenu11 = new JMenu();
     JMenuItem jMenuItem36 = new JMenuItem();// new
                                             // ImageIcon("designer/images/Blank16.gif"));//BLANK
-    JMenuItem jMenuItem37 = new JMenuItem(new ImageIcon("designer/images/Blank16.gif"));// BLANK
-    JMenuItem jMenuItem38 = new JMenuItem(new ImageIcon("designer/images/Blank16.gif"));// BLANK
+    JMenuItem jMenuItem37 = new JMenuItem(new ImageIconHelper().getImageIcon("/designer/images/Blank16.gif"));// BLANK
+    JMenuItem jMenuItem38 = new JMenuItem(new ImageIconHelper().getImageIcon("/designer/images/Blank16.gif"));// BLANK
     JCheckBoxMenuItem jCheckBoxMenuItem2 = new JCheckBoxMenuItem();
-    JMenuItem jMenuItem39 = new JMenuItem(new ImageIcon("designer/images/Blank16.gif"));// BLANK
-    JMenuItem jMenuItem40 = new JMenuItem(new ImageIcon("designer/images/Blank16.gif"));// BLANK
+    JMenuItem jMenuItem39 = new JMenuItem(new ImageIconHelper().getImageIcon("/designer/images/Blank16.gif"));// BLANK
+    JMenuItem jMenuItem40 = new JMenuItem(new ImageIconHelper().getImageIcon("/designer/images/Blank16.gif"));// BLANK
     JCheckBoxMenuItem jCheckBoxMenuItem3 = new JCheckBoxMenuItem();
     JMenuItem jMenuItem41 = new JMenuItem();// new
                                             // ImageIcon("designer/images/Blank16.gif"));//BLANK
-    JMenuItem jMenuItem10 = new JMenuItem(new ImageIcon("designer/images/Blank16.gif"));// BLANK
-    JMenuItem jMenuItem42 = new JMenuItem(new ImageIcon("designer/images/Blank16.gif"));// BLANK
+    JMenuItem jMenuItem10 = new JMenuItem(new ImageIconHelper().getImageIcon("/designer/images/Blank16.gif"));// BLANK
+    JMenuItem jMenuItem42 = new JMenuItem(new ImageIconHelper().getImageIcon("/designer/images/Blank16.gif"));// BLANK
 
     // TEMP!!
 

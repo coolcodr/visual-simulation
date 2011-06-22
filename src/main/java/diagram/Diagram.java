@@ -6,6 +6,8 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
@@ -99,7 +101,18 @@ public class Diagram extends JPanel {
     public void addButton(String label, String image, DiagramElementType t, String controller) {
         DiagramButton button = null;
 
-        button = new DiagramButton(label, image, t, controller, _diagramControl);
+        ImageIcon imageIcon = null;
+        try {
+            System.out.println("image: " + image);
+            imageIcon = new ImageIcon(this.getClass().getResource(image), label);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        button = new DiagramButton(label, t, controller, _diagramControl);
+        if(imageIcon != null )
+            button.setIcon(imageIcon);
+        button.setHorizontalTextPosition(JButton.CENTER);
+        button.setVerticalTextPosition(JButton.TOP);
         button.addActionListener(_buttonControl);
         _toolBar.add(button);
     }

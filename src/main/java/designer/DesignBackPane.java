@@ -13,7 +13,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JDesktopPane;
@@ -22,6 +21,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
+
+import util.ImageIconHelper;
 
 public class DesignBackPane extends JPanel {
     /**
@@ -42,7 +43,7 @@ public class DesignBackPane extends JPanel {
     private DesignerComponentButton jToggleButton2 = new DesignerComponentButton(CButton.class);
     private DesignerComponentButton jToggleButton3 = new DesignerComponentButton(TitlePane.class);
     private DesignerComponentButton jToggleButton4 = new DesignerComponentButton(CardPane.class);
-    private JToggleButton jButton37 = new JToggleButton(new ImageIcon("designer/images/Pointer16.gif"));
+    private JToggleButton jButton37 = new JToggleButton(new ImageIconHelper().getImageIcon("/designer/images/Pointer16.gif"));
     private JLabel jLabel6 = new JLabel();
     private JLabel titleLabel = new JLabel();
 
@@ -161,7 +162,7 @@ public class DesignBackPane extends JPanel {
         JPanel panel = new JPanel();
         panel.setLayout(null);
         panel.setPreferredSize(new Dimension(25, 25));
-        JButton button = new JButton(new ImageIcon("designer/images/close.gif"));
+        JButton button = new JButton(new ImageIconHelper().getImageIcon("/designer/images/close.gif"));
 
         // titlePanel.add(panel, BorderLayout.EAST);
         textPanel.add(panel, BorderLayout.EAST);

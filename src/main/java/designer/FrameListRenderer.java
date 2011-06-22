@@ -2,10 +2,11 @@ package designer;
 
 import java.awt.Component;
 
-import javax.swing.ImageIcon;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
+
+import util.ImageIconHelper;
 
 public class FrameListRenderer extends DefaultTreeCellRenderer {/*
                                                                  * private
@@ -68,7 +69,7 @@ public class FrameListRenderer extends DefaultTreeCellRenderer {/*
         if (node.getUserObject() instanceof CoverComponent) {
             setIcon(((CoverComponent) node.getUserObject()).getImageIcon());
         } else {
-            setIcon(new ImageIcon("designer/images/Pane16.gif"));
+            setIcon(new ImageIconHelper().getImageIcon("/designer/images/Pane16.gif"));
         }
 
         // setToolTipText("This book is in the Tutorial series.");

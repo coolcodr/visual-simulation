@@ -2,11 +2,12 @@ package diagram;
 
 import java.awt.BorderLayout;
 
-import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
+
+import util.ImageIconHelper;
 
 public class CompilationThread extends Thread {
     Process _process;
@@ -27,7 +28,7 @@ public class CompilationThread extends Thread {
             _progressDialog.getContentPane().setLayout(new BorderLayout());
             _progressDialog.setSize(450, 130);
             _progressDialog.setLocation(450, 400);
-            JLabel _progressLabel = new JLabel("Compilation in progress....", new ImageIcon("diagram/images/bullet.GIF"), SwingConstants.HORIZONTAL);
+            JLabel _progressLabel = new JLabel("Compilation in progress....", new ImageIconHelper().getImageIcon("/diagram/images/bullet.GIF"), SwingConstants.HORIZONTAL);
             _progressDialog.getContentPane().add(_progressLabel, BorderLayout.CENTER);
             // _progressLabel.setVisible(false);
             _progressLabel.repaint();

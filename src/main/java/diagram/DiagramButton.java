@@ -1,6 +1,5 @@
 package diagram;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 /**
@@ -18,8 +17,9 @@ public class DiagramButton extends JButton {
     private DiagramElementType _type;
     private Control _controller;
 
-    public DiagramButton(String label, String image, DiagramElementType type, String controller, DiagramControl control) {
-        super(new ImageIcon(image, label));
+    public DiagramButton(String label, DiagramElementType type, String controller, DiagramControl control) {
+        super();
+//        super(label);
         // super(label);
         _type = type;
         try {
